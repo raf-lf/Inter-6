@@ -7,17 +7,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mud
-  m_Shader: {fileID: -6465566751694194690, guid: abdf9a5e26b66e04c9830962fd182f4a,
+  m_Name: GasFill
+  m_Shader: {fileID: -6465566751694194690, guid: cc174c8f63558054698f4e1e25c7ad1d,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _RECEIVE_SHADOWS_OFF
   m_InvalidKeywords: []
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -35,20 +39,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Eye_Smooth: 0.47
-    - _Noise1: 3
-    - _Noise2: 1
-    - _Normal_Intensity: 0.8
-    - _QueueControl: 1
+    - _AlphaClip: 1
+    - _Blend: 0
+    - _CastShadows: 0
+    - _Cull: 0
+    - _DstBlend: 0
+    - _Fill: 0.19
+    - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.445
+    - _ReceiveShadows: 0
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
-    - _ColorBase: {r: 0.5943396, g: 0.33700746, b: 0.26072443, a: 1}
-    - _ColorWave: {r: 0.5188679, g: 0.22420299, b: 0.070977226, a: 1}
-    - _Remap_Values: {r: 0, g: 0, b: 0, a: 0}
-    - _UV_Time_Multiplier: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _Color: {r: 0.5176471, g: 0.44414923, b: 0.27058825, a: 1}
+    - _ColorBack: {r: 0.6981132, g: 0.36544684, b: 0.25290132, a: 1}
+    - _ColorDanger: {r: 0.7490196, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1343058128743372473
+--- !u!114 &4452352379282518477
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

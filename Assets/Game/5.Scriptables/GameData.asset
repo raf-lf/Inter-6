@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad94e5af9bf30e4f952edaed23fce71, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  currentHp: 100
   playerHp: 100
   iFrames: 60
+  currentGas: 19
+  maxGas: 100
   moveSpeed: 10
   turnSpeed: 90
   velocityLow: 5
