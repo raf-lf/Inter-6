@@ -11,11 +11,11 @@ public class PlayerHp : MonoBehaviour
     {
         if (!dead)
         {
-                if (attacksImmuneTo.Contains(attackId) == false)
-                {
-                    HpChange(-value);
-                    StartCoroutine(Iframes(attackId));
-                }
+            if (attacksImmuneTo.Contains(attackId) == false)
+            {
+                HpChange(-value);
+                StartCoroutine(Iframes(attackId));
+            }
         }
     }
 
@@ -23,13 +23,14 @@ public class PlayerHp : MonoBehaviour
     public IEnumerator Iframes(int id)
     {
         attacksImmuneTo.Add(id);
-        yield return new WaitForSeconds(GameManager.GameData.iFrames);
+        yield return new WaitForSeconds(GameManager.GameData.invulnerabilitySeconds);
         attacksImmuneTo.Remove(id);
     }
 
     public void HpChange(int value)
     {
         GameManager.GameData.currentHp = Mathf.Clamp(GameManager.GameData.currentHp + value, 0, GameManager.GameData.playerHp);
+
 
         if (value < 0)
         {

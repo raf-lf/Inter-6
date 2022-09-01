@@ -8,10 +8,11 @@ public class GameData : ScriptableObject
     [Header("Player")]
     public int currentHp;
     public int playerHp;
-    public int iFrames;
+    public float invulnerabilitySeconds;
     public int currentGas;
     public int maxGas;
 
+    [Header("Player Movement")]
     public float moveSpeed;
     public float turnSpeed;
 

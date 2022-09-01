@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad94e5af9bf30e4f952edaed23fce71, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  currentHp: 100
+  currentHp: 12
   playerHp: 100
-  iFrames: 60
-  currentGas: 19
+  invulnerabilitySeconds: 0.5
+  currentGas: 13
   maxGas: 100
   moveSpeed: 10
   turnSpeed: 90
   velocityLow: 5
   velocityHigh: 8
-  damageLowVelocity: 5
-  damageHighVelocity: 15
+  damageLowVelocity: 1
+  damageHighVelocity: 5

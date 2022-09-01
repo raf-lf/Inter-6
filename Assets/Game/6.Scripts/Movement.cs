@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float rotSpeed;
     private CharacterController controller;
 
     private void Awake()
@@ -21,10 +19,10 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        float rotateMove = rotSpeed * Input.GetAxis("Horizontal");
+        float rotateMove = GameManager.GameData.turnSpeed * Input.GetAxis("Horizontal");
         transform.Rotate(new Vector3(0, rotateMove * Time.deltaTime, 0));
 
-        float movement = speed * Input.GetAxis("Vertical") * Time.deltaTime;
+        float movement = GameManager.GameData.moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
         controller.Move(movement * transform.forward);
 
     }

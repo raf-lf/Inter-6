@@ -11,26 +11,31 @@ public class Collision : MonoBehaviour
     public float collisionRadius;
     private List<RaycastHit> hits = new List<RaycastHit>();
     public GameObject dmg;
+    public PlayerHp playerHp;
 
 
     private void Update()
     {
-      // if(Time.frameCount % 5 == 0)
-       //     CheckCollision();
+        velocity = controller.velocity.magnitude;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        velocity = controller.velocity.magnitude;
 
-        if (velocity > 5)
+        if(velocity > GameManager.GameData.velocityHigh)
         {
-            //PlayerData.PlayerInstance.gameData.hp.Damage(5, -1);
+            playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
 
-            Debug.Log(hit.collider.name + " hit");
             var thing = Instantiate(dmg);
             thing.transform.position = hit.point;
+        }
+        else if(velocity > GameManager.GameData.velocityLow)
+        {
 
+            playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
+
+            var thing = Instantiate(dmg);
+            thing.transform.position = hit.point;
         }
     }
 
