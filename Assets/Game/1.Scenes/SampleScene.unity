@@ -208,12 +208,12 @@ PrefabInstance:
     - target: {fileID: 8829612779332759879, guid: c921fbcfd19c56e4cbc4ba0c0436b0e8,
         type: 3}
       propertyPath: lanternRecovery
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8829612779332759879, guid: c921fbcfd19c56e4cbc4ba0c0436b0e8,
         type: 3}
       propertyPath: targetThreshold
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c921fbcfd19c56e4cbc4ba0c0436b0e8, type: 3}
@@ -554,11 +554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 289213250, guid: cf0d997c071d8f744b5d5954ad710332, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.28221774
+      value: -0.28221777
       objectReference: {fileID: 0}
     - target: {fileID: 289213250, guid: cf0d997c071d8f744b5d5954ad710332, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.10217706
+      value: -0.10217708
       objectReference: {fileID: 0}
     - target: {fileID: 289213250, guid: cf0d997c071d8f744b5d5954ad710332, type: 3}
       propertyPath: m_LocalRotation.y
@@ -715,12 +715,12 @@ PrefabInstance:
     - target: {fileID: 1269432203529406584, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016746089
+      value: -0.000000016746096
       objectReference: {fileID: 0}
     - target: {fileID: 1269432203529406584, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000039532155
+      value: 0.0000000039532173
       objectReference: {fileID: 0}
     - target: {fileID: 1830972966717479415, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
@@ -800,12 +800,12 @@ PrefabInstance:
     - target: {fileID: 4985537465937864432, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000023823706
+      value: 0.000000023823706
       objectReference: {fileID: 0}
     - target: {fileID: 4985537465937864432, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000049547992
+      value: -0.0000000049547992
       objectReference: {fileID: 0}
     - target: {fileID: 5070327545917608528, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
@@ -6190,11 +6190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4603877228698705831, guid: cc8fea0027110bc438347e8989a0de85,
-        type: 3}
-      propertyPath: lanternPower
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4603877228805478928, guid: cc8fea0027110bc438347e8989a0de85,
         type: 3}
       propertyPath: m_Name
