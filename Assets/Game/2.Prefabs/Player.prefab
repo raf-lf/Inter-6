@@ -24741,8 +24741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a97f6f54e7753242810ab50ed21923f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lanternPower: 15
   lerpTransitionSpeed: 0.1
   lanternAnimator: {fileID: 4603877228714810270}
+  AoeRepetitions: 8
+  AoeDistanceIncrement: 1.5
+  AoeSizeIncrement: 0.5
+  targetsAffected: []
 --- !u!1 &4603877228714810266
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Lantern : MonoBehaviour
 {
+    [SerializeField] private float lanternPower;
     [SerializeField] private float lerpTransitionSpeed;
     [SerializeField] private Animator lanternAnimator;
+
+    [Header("AoE")]
+    [SerializeField] private int AoeRepetitions;
+    [SerializeField] private float AoeDistanceIncrement;
+    [SerializeField] private float AoeSizeIncrement;
+    [SerializeField] private List<LanternTarget> targetsAffected = new List<LanternTarget>();
 
     private void UseLantern(bool active)
     {
@@ -14,6 +21,7 @@ public class Lantern : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation,Camera.main.transform.rotation,lerpTransitionSpeed);
             GameManager.CameraManager.SwitchCamera(CameraType.Lantern);
             lanternAnimator.SetBool("focus", true);
+            CheckLanternArea();
         }
         else
         {
@@ -25,7 +33,27 @@ public class Lantern : MonoBehaviour
 
     private void CheckLanternArea()
     {
+        targetsAffected.Clear();
 
+        for (int i = AoeRepetitions; i > 0 ; i--)
+        {
+            RaycastHit[] hit = Physics.SphereCastAll(transform.position + transform.forward * (i * AoeDistanceIncrement), i * AoeSizeIncrement, Vector3.forward) ;
+
+            foreach (var item in hit)
+            {
+                if (item.collider.gameObject.GetComponentInChildren<LanternTarget>())
+                {
+                    LanternTarget target = item.collider.gameObject.GetComponentInChildren<LanternTarget>();
+                    if(!targetsAffected.Contains(target))
+                        targetsAffected.Add(target);
+                }
+            }
+        }
+
+        foreach (var item in targetsAffected)
+        {
+            item.LanternGain(lanternPower);
+        }
     }
 
     void Update()
@@ -47,16 +75,13 @@ public class Lantern : MonoBehaviour
         */
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, .8f, .6f, .1f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 0, .25f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 1, .5f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 2, .75f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 3,  1f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 4,  1.25f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 5,  1.5f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 6,  1.75f);
-        Gizmos.DrawSphere(transform.position + transform.forward * 7,  2f);
+
+        for (int i = AoeRepetitions; i > 0; i--)
+        {
+            Gizmos.DrawSphere(transform.position + transform.forward * (i * AoeDistanceIncrement), i * AoeSizeIncrement);
+        }
     }
 }
