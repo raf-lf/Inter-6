@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("Singletons")]
+    public static PlayerData PlayerInstance;
     public static CameraManager CameraManager;
+    public static DialogueSystem DialogueSystem;
 
     private void Awake()
     {
