@@ -10,7 +10,7 @@ public class EnergyOrb : MonoBehaviour
     [SerializeField] private float baseSpeed;
     [SerializeField] private float acceleration;
     [SerializeField] private float seekingInterval = 5;
-    [SerializeField] private bool seeking;
+    //[SerializeField] private bool seeking;
     [SerializeField] private bool chasing;
     [SerializeField] private bool collected;
     [SerializeField] private float chaseStartTime;
@@ -33,7 +33,6 @@ public class EnergyOrb : MonoBehaviour
             chasing = true;
         }
 
-        seeking = true;
         currentSpeed = Mathf.Clamp(baseSpeed + acceleration * Time.deltaTime * (Time.time - chaseStartTime) , 0, Mathf.Infinity);
         transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position,currentSpeed * Time.deltaTime);
     }
@@ -44,7 +43,7 @@ public class EnergyOrb : MonoBehaviour
             chasing = false;
 
         currentSpeed = Mathf.Clamp(baseSpeed - acceleration * Time.deltaTime * (Time.time - chaseStartTime), 0, Mathf.Infinity);
-        seeking = false;
+        
 
         if(currentSpeed > 0)
             transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, currentSpeed * Time.deltaTime);
@@ -62,7 +61,7 @@ public class EnergyOrb : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (collected)
             return;
@@ -71,4 +70,5 @@ public class EnergyOrb : MonoBehaviour
         AttemptCollection();
 
     }
+
 }
