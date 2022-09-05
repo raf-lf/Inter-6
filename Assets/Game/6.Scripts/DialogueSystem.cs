@@ -8,6 +8,7 @@ using DG.Tweening;
 public class DialogueSystem : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
+    public CanvasGroup canvasGroupBlinds;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Image portraitImage;
@@ -22,6 +23,13 @@ public class DialogueSystem : MonoBehaviour
     {
         GameManager.DialogueSystem = this;
         canvasGroup.alpha = 0;
+    }
+    public void CinematicMode(bool active)
+    {
+        float endValue = active ? 1 : 0;
+
+        canvasGroupBlinds.DOFade(endValue, .5f);
+
     }
 
     public void StartDialogue(CE_Dialogue dialogue)

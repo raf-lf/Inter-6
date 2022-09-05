@@ -19,6 +19,9 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+        if (!GameManager.PlayerControl)
+            return;
+
         float rotateMove = GameManager.GameData.turnSpeed * Input.GetAxis("Horizontal");
         transform.Rotate(new Vector3(0, rotateMove * Time.deltaTime, 0));
 

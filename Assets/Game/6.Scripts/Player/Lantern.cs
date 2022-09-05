@@ -58,6 +58,12 @@ public class Lantern : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.PlayerControl)
+        {
+            UseLantern(false);
+            return;
+        }
+
         if (Input.GetMouseButton(1))
             UseLantern(true);
         else

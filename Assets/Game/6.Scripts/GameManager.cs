@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameData GameDataRef;
     public static GameData GameData;
     public static GameManager Instance;
+    public static bool PlayerControl = true;
 
     [Header("Singletons")]
     public static PlayerData PlayerInstance;
