@@ -38,6 +38,7 @@ public class Cinematic : MonoBehaviour
     {
         if (CinematicMode)
         {
+
             GameManager.DialogueSystem.CinematicMode(false);
             GameManager.PlayerControl = true;
         }

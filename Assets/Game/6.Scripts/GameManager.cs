@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static PlayerData PlayerInstance;
     public static CameraManager CameraManager;
     public static DialogueSystem DialogueSystem;
+    public static CanvasManager CanvasManager;
 
     private void Awake()
     {

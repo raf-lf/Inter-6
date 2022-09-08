@@ -7,24 +7,24 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GasFill
-  m_Shader: {fileID: -6465566751694194690, guid: cc174c8f63558054698f4e1e25c7ad1d,
+  m_Name: Interactible
+  m_Shader: {fileID: -6465566751694194690, guid: 8cca553ffc8d96444ba5eab99c7dc6ce,
     type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _RECEIVE_SHADOWS_OFF
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
-  disabledShaderPasses:
-  - SHADOWCASTER
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: a6390ca99a9e0b148b28e155e43844b8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,27 +39,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _Blend: 0
-    - _CastShadows: 0
-    - _Cull: 0
-    - _DstBlend: 0
-    - _Fill: 13.95
+    - _BlinkIntensity: 0.005
+    - _BlinkSpeed: 10
+    - _FlashSineMultiplier: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 0
-    - _SrcBlend: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _ZTest: 4
-    - _ZWrite: 1
-    - _ZWriteControl: 0
-    m_Colors:
-    - _Color: {r: 0.5176471, g: 0.44414923, b: 0.27058825, a: 1}
-    - _ColorBack: {r: 0.6981132, g: 0.36544684, b: 0.25290132, a: 1}
-    - _ColorDanger: {r: 0.7490196, g: 0, b: 0, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &4452352379282518477
+--- !u!114 &7776399136402976085
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
