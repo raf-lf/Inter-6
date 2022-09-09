@@ -7,10 +7,17 @@ public class SceneTransition : MonoBehaviour
 {
     [SerializeField] private string sceneDestination;
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
-            StartCoroutine(Transition());
+        if (other.gameObject.CompareTag("Player"))
+            StartSceneTransition();
+    }
+    */
+
+    public void StartSceneTransition()
+    {
+        StartCoroutine(Transition());
+
     }
 
     IEnumerator Transition() 
