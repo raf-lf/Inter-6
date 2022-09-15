@@ -18,8 +18,13 @@ public class LanternTarget : MonoBehaviour
     [SerializeField] private float lanternBuffer;
     [SerializeField] private ParticleSystem vfxBurn;
     [SerializeField] private ParticleSystem vfxDeath;
+    [SerializeField] private Renderer matRenderer;
 
-
+    private void Awake()
+    {
+        if(matRenderer == null)
+            matRenderer = GetComponent<Renderer>();
+    }
     public void LanternGain(float effect)
     {
         if (lanternImmune)
@@ -59,7 +64,9 @@ public class LanternTarget : MonoBehaviour
         {
             case LanternTargetType.soul:
                 vfxDeath.Play();
-                GetComponent<Renderer>().material.DOFloat(1,"_Fade", 1);
+
+                if (matRenderer)
+                    matRenderer.material.DOFloat(1,"_Fade", 1);
 
                 break;
             case LanternTargetType.dredge:
@@ -73,7 +80,8 @@ public class LanternTarget : MonoBehaviour
 
     private void UpdateBurnProgressVfx()
     {
-        GetComponent<Renderer>().material.SetFloat("_Burn", lanternProgress / targetThreshold);
+        if(matRenderer)
+            matRenderer.material.SetFloat("_Burn", lanternProgress / targetThreshold);
     }
 
     private void Update()
