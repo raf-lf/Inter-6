@@ -24,15 +24,18 @@ public class CanvasManager : MonoBehaviour
         switch (animation)
         {
             case OverlayAnimation.Off:
+                Overlay.raycastTarget = false;
                 Overlay.DOFade(0, speed);
                 break;
             case OverlayAnimation.Black:
                 Overlay.DOFade(1, speed);
                 Overlay.DOColor(Color.black, speed);
+                Overlay.raycastTarget = true;
                 break;
             case OverlayAnimation.White:
                 Overlay.DOFade(1, speed);
                 Overlay.DOColor(Color.white, speed);
+                Overlay.raycastTarget = true;
                 break;
 
         }
