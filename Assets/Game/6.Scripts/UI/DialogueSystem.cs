@@ -12,7 +12,6 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Image portraitImage;
-    public Button clickOverlay;
 
     private CE_Dialogue currentDialogue;
     private int currentDialogueIndex;
@@ -23,6 +22,13 @@ public class DialogueSystem : MonoBehaviour
     {
         GameManager.DialogueSystem = this;
         canvasGroup.alpha = 0;
+    }
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Continue();
+        }
     }
     public void CinematicMode(bool active)
     {
@@ -35,7 +41,6 @@ public class DialogueSystem : MonoBehaviour
     public void StartDialogue(CE_Dialogue dialogue)
     {
         canvasGroup.DOFade(1, .33f);
-        clickOverlay.interactable = true;
         currentDialogue = dialogue;
         currentDialogueIndex = 0;
         PlayDialogue();
@@ -66,9 +71,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void EndDialogue()
     {
-        clickOverlay.interactable = false;
-
-        currentDialogue.NextEvent();
+        StartCoroutine(currentDialogue.NextEvent());
         currentDialogue = null;
 
         canvasGroup.DOFade(0, .33f);

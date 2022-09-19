@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class PointClickTarget : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PointClickTarget : MonoBehaviour
     [SerializeField] private ParticleSystem vfxMouseClick;
     [SerializeField] private ParticleSystem.EmissionModule mouseOverEm;
     [SerializeField] private Renderer renderer;
+
+    [SerializeField] private UnityEvent ClickEvent;
 
     private void Awake()
     {
@@ -27,6 +30,7 @@ public class PointClickTarget : MonoBehaviour
     public virtual void Click()
     {
         vfxMouseClick.Play();
+        ClickEvent?.Invoke();
     }
 
     private void OnMouseEnter()
@@ -41,7 +45,7 @@ public class PointClickTarget : MonoBehaviour
     
     private void MouseOver(bool active)
     {
-        if (!GameManager.PlayerControl)
+        if (!GameManager.PlayerControl || !GameManager.PlayerClickControl)
             return;
         
         mouseOver = active;

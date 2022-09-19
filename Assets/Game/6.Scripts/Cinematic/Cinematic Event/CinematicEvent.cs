@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CinematicEvent : MonoBehaviour
+public abstract class CinematicEvent : MonoBehaviour
 {
     protected Cinematic currentCinematic;
+    [SerializeField] protected float nextEventDelay;
 
     public virtual void Play(Cinematic cine)
     {
         currentCinematic = cine;
     }
 
-    public void NextEvent()
+    public IEnumerator NextEvent()
     {
-        currentCinematic.PlayCinematic();
+        yield return new WaitForSeconds(nextEventDelay);
+        currentCinematic.ContinueCinematic();
     }
 }

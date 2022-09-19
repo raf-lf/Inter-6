@@ -11,7 +11,9 @@ public enum OverlayAnimation
 
 public class CanvasManager : MonoBehaviour
 {
-    public Image Overlay;
+    [SerializeField] private CanvasGroup overlay;
+
+    [SerializeField] private Image overlayImage;
 
     private void Awake()
     {
@@ -24,15 +26,15 @@ public class CanvasManager : MonoBehaviour
         switch (animation)
         {
             case OverlayAnimation.Off:
-                Overlay.DOFade(0, speed);
+                overlay.DOFade(0, speed);
                 break;
             case OverlayAnimation.Black:
-                Overlay.DOFade(1, speed);
-                Overlay.DOColor(Color.black, speed);
+                overlay.DOFade(1, speed);
+                overlayImage.DOColor(Color.black, speed);
                 break;
             case OverlayAnimation.White:
-                Overlay.DOFade(1, speed);
-                Overlay.DOColor(Color.white, speed);
+                overlay.DOFade(1, speed);
+                overlayImage.DOColor(Color.white, speed);
                 break;
 
         }

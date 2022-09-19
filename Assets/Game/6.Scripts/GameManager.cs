@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameData GameData;
     public static GameManager Instance;
     public static bool PlayerControl = true;
+    public static bool PlayerClickControl = true;
 
     [Header("Singletons")]
     public static PlayerData PlayerInstance;
