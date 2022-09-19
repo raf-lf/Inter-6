@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,17 @@ public class LanternTarget : MonoBehaviour
     public LanternTargetType targetType;
     public float lanternProgress;
     public float targetThreshold;
-    [SerializeField] private float lanternRecovery;
-    [SerializeField] private bool lanternImmune;
+    [SerializeField] protected float lanternRecovery;
+    [SerializeField] protected bool lanternImmune;
     [SerializeField] private float lanternBuffer;
-    [SerializeField] private ParticleSystem vfxBurn;
-    [SerializeField] private ParticleSystem vfxDeath;
+    [SerializeField] protected ParticleSystem vfxBurn;
+    [SerializeField] protected ParticleSystem vfxDeath;
+    private Renderer renderer;
+
+    private void Awake()
+    {
+        renderer = GetComponent<Renderer>();
+    }
 
 
     public void LanternGain(float effect)
@@ -51,7 +58,7 @@ public class LanternTarget : MonoBehaviour
         }
     }
 
-    public void LanternEffect()
+    public virtual void LanternEffect()
     {
         lanternImmune = true;
 
@@ -59,7 +66,8 @@ public class LanternTarget : MonoBehaviour
         {
             case LanternTargetType.soul:
                 vfxDeath.Play();
-                GetComponent<Renderer>().material.DOFloat(1,"_Fade", 1);
+                if(renderer)
+                    renderer.material.DOFloat(1,"_Fade", 1);
 
                 break;
             case LanternTargetType.dredge:
@@ -73,10 +81,11 @@ public class LanternTarget : MonoBehaviour
 
     private void UpdateBurnProgressVfx()
     {
-        GetComponent<Renderer>().material.SetFloat("_Burn", lanternProgress / targetThreshold);
+        if(renderer)
+            renderer.material.SetFloat("_Burn", lanternProgress / targetThreshold);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         LanternLoss();
         UpdateBurnProgressVfx();
