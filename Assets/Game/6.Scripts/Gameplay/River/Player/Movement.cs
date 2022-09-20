@@ -6,10 +6,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private CharacterController controller;
+    private EnergyDashing energyDashing;
+    public float movement;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        energyDashing = GetComponent<EnergyDashing>();
     }
 
     private void Update()
@@ -25,8 +28,13 @@ public class Movement : MonoBehaviour
         float rotateMove = GameManager.GameData.turnSpeed * Input.GetAxis("Horizontal");
         transform.Rotate(new Vector3(0, rotateMove * Time.deltaTime, 0));
 
-        float movement = GameManager.GameData.moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
+        movement = 0;
+
+        movement = GameManager.GameData.moveSpeed * GameManager.PlayerInstance.GetSpeedModifier() * Input.GetAxis("Vertical") * Time.deltaTime;
+
         controller.Move(movement * transform.forward);
+        
+        
 
     }
 }

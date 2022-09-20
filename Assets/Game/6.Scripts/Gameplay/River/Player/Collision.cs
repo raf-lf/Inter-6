@@ -11,7 +11,7 @@ public class Collision : MonoBehaviour
     public float collisionRadius;
     private List<RaycastHit> hits = new List<RaycastHit>();
     public GameObject dmg;
-    public PlayerHp playerHp;
+    public PlayerAtributes playerHp;
 
 
     private void Update()

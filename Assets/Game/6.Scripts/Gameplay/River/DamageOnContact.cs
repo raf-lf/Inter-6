@@ -16,9 +16,9 @@ public class DamageOnContact : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponentInChildren<PlayerHp>())
+        if(other.gameObject.GetComponentInChildren<PlayerAtributes>())
         {
-            other.gameObject.GetComponentInChildren<PlayerHp>().Damage(damage,id);
+            other.gameObject.GetComponentInChildren<PlayerAtributes>().Damage(damage,id);
         }
     }
 

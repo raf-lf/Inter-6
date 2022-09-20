@@ -37,17 +37,17 @@ public class RestManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 3);
 
-        PlayerHp hp = GameManager.PlayerInstance.scriptHp;
+        PlayerAtributes hp = GameManager.PlayerInstance.atributes;
 
         if (restItemIndex < 0 || restItemIndex > restItems.Length)
         {
-            if (GameManager.GameData.currentHp < GameManager.GameData.playerHp / 2)
-                hp.HpChange(GameManager.GameData.playerHp / 2 - GameManager.GameData.currentHp);
+            if (GameManager.GameData.currentHp < GameManager.GameData.maxHp / 2)
+                hp.HpChange(GameManager.GameData.maxHp / 2 - GameManager.GameData.currentHp);
         }
         else
         {
-            if (GameManager.GameData.currentHp < GameManager.GameData.playerHp)
-                hp.HpChange(GameManager.GameData.playerHp - GameManager.GameData.currentHp);
+            if (GameManager.GameData.currentHp < GameManager.GameData.maxHp)
+                hp.HpChange(GameManager.GameData.maxHp - GameManager.GameData.currentHp);
 
             restItems[restItemIndex].itemReference.quantity--;
 

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static CameraManager CameraManager;
     public static DialogueSystem DialogueSystem;
     public static CanvasManager CanvasManager;
+    public static Hud Hud;
 
     private void Awake()
     {

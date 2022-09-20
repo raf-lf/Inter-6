@@ -7,6 +7,7 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float lanternPower;
     [SerializeField] private float lerpTransitionSpeed;
     [SerializeField] private Animator lanternAnimator;
+    [HideInInspector] public bool usingLantern;
 
     [Header("AoE")]
     [SerializeField] private int AoeRepetitions;
@@ -16,6 +17,8 @@ public class Lantern : MonoBehaviour
 
     private void UseLantern(bool active)
     {
+        usingLantern = active;
+
         if (active)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation,Camera.main.transform.rotation,lerpTransitionSpeed);

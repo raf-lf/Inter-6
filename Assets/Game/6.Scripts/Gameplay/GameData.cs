@@ -6,14 +6,16 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     [Header("Player")]
-    public int currentHp;
-    public int playerHp;
+    public float currentHp;
+    public float maxHp;
     public float invulnerabilitySeconds;
-    public int currentGas;
-    public int maxGas;
+    public float currentGas;
+    public float maxGas;
 
     [Header("Player Movement")]
     public float moveSpeed;
+    public float multiplierUsingLantern;
+    public float multiplierDashing;
     public float turnSpeed;
 
     [Header("Collision")]
@@ -21,4 +23,10 @@ public class GameData : ScriptableObject
     public float velocityHigh;
     public int damageLowVelocity;
     public int damageHighVelocity;
+
+    public void ResetValues()
+    {
+        currentHp = maxHp;
+        currentGas = maxGas;
+    }
 }

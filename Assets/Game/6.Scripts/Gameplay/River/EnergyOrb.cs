@@ -54,7 +54,7 @@ public class EnergyOrb : MonoBehaviour
     {
         if (Vector3.Distance(GameManager.PlayerInstance.transform.position, transform.position) <= .5f)
         {
-            GameManager.GameData.currentGas += energyGain;
+            GameManager.PlayerInstance.atributes.EnergyChange(energyGain);
             GetComponent<Animator>().SetTrigger("collect");
             collected = true;
             Destroy(gameObject,5);

@@ -29,11 +29,12 @@ public class PointClickTarget : MonoBehaviour
 
     public virtual void Click()
     {
+        mouseOver = false;
         vfxMouseClick.Play();
         ClickEvent?.Invoke();
     }
 
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         MouseOver(true);
     }
