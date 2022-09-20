@@ -56,6 +56,7 @@ public class Zombie : MonoBehaviour
 
     private void StateBehaviour()
     {
+        /*
         if (lanternTarget.lanternProgress >= lanternTarget.targetThreshold)
         {
             ChangeState(StateZombie.banished);
@@ -68,6 +69,7 @@ public class Zombie : MonoBehaviour
             ChangeState(StateZombie.banishing);
             return;        
         }
+        */
 
         switch (currentState)
         {
