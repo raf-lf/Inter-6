@@ -7,7 +7,9 @@ using UnityEngine;
 public class InventoryItem : ScriptableObject
 {
     public string itemName;
+    [TextArea (2,5)]
     public string description;
+    [TextArea(2, 5)]
     public string flavorText;
     public Sprite itemIcon;
 

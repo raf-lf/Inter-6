@@ -5,6 +5,9 @@ using DG.Tweening;
 
 public class HiddenItem : LanternTarget
 {
+    [Header("Hidden Item")]
+    [SerializeField] private InventoryItem itemToGive;
+    [SerializeField] private int itemQuantity;
     [SerializeField] private GameObject itemMesh;
     [SerializeField] private ParticleSystem pfxBubbles;
 
@@ -13,6 +16,8 @@ public class HiddenItem : LanternTarget
         base.LanternEffect();
         itemMesh.transform.DOScale(0, .33f).SetEase(Ease.InBounce);
         pfxBubbles.Stop();
+        itemToGive.quantity += itemQuantity;
+        StartCoroutine(GameManager.Hud.GetItemSequence(itemToGive, itemQuantity));
     }
 
     protected override void Update()

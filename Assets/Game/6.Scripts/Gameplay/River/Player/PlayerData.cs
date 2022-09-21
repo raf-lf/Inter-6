@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField] public PlayerAtributes atributes;
-    [SerializeField] public Movement movement;
+    public Transform cameraTargetPlayer;
+    public Transform cameraTargetLantern;
+    [HideInInspector] public PlayerAtributes atributes;
+    [HideInInspector] public Movement movement;
     private EnergyDashing energyDashing;
     private Lantern lantern;
 

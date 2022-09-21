@@ -27,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684077737844227993}
-  m_LocalRotation: {x: 0.3270514, y: 0.42486882, z: -0.16797502, w: 0.8272293}
-  m_LocalPosition: {x: -11.766722, y: 9.363323, z: -8.277117}
+  m_LocalRotation: {x: 0.1502124, y: 0.6781248, z: -0.1445345, w: 0.70476437}
+  m_LocalPosition: {x: 447.16815, y: 6.974, z: 143.12115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60,7 +60,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 70
+  field of view: 90.53
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  islandSpeed: 3
+  islandSpeed: 5
   pointEntry: {fileID: 684077738143586786}
   pointExit: {fileID: 684077739656468475}
   transition: {fileID: 684077739426590110}

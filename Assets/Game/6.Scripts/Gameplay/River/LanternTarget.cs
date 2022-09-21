@@ -19,12 +19,7 @@ public class LanternTarget : MonoBehaviour
     [SerializeField] private float lanternBuffer;
     [SerializeField] protected ParticleSystem vfxBurn;
     [SerializeField] protected ParticleSystem vfxDeath;
-    private Renderer renderer;
-
-    private void Awake()
-    {
-        renderer = GetComponent<Renderer>();
-    }
+    [SerializeField] private Renderer renderer;
 
 
     public void LanternGain(float effect)
@@ -66,6 +61,7 @@ public class LanternTarget : MonoBehaviour
         {
             case LanternTargetType.soul:
                 vfxDeath.Play();
+
                 if(renderer)
                     renderer.material.DOFloat(1,"_Fade", 1);
 

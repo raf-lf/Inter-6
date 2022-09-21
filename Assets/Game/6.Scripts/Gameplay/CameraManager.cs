@@ -15,6 +15,14 @@ public class CameraManager : MonoBehaviour
         GameManager.CameraManager = this;
     }
 
+    private void Start()
+    {
+
+        ShipCamera.Follow = GameManager.PlayerInstance.cameraTargetPlayer;
+        ShipCamera.LookAt = GameManager.PlayerInstance.cameraTargetPlayer;
+        LanternCamera.Follow = GameManager.PlayerInstance.cameraTargetLantern;
+        LanternCamera.LookAt = GameManager.PlayerInstance.cameraTargetLantern;
+    }
     public void SwitchCamera(CameraType type)
     {
         CinemachineVirtualCameraBase chosenCam = null;

@@ -7,10 +7,16 @@ using DG.Tweening;
 
 public class Hud : MonoBehaviour
 {
-    public TextMeshProUGUI hpTextCurrent ;
-    public TextMeshProUGUI hpTextMax ;
-    public Image hpFill;
-    public Image energyFill;
+    [Header("Atributes")]
+    [SerializeField] private TextMeshProUGUI hpTextCurrent ;
+    [SerializeField] private TextMeshProUGUI hpTextMax ;
+    [SerializeField] private Image hpFill;
+    [SerializeField] private Image energyFill;
+    [Header("Inventory")]
+    [SerializeField] private RectTransform itemOrigin;
+    [SerializeField] private RectTransform itemDestination;
+    [SerializeField] private GameObject inventoryItemPrefab;
+    [SerializeField] private AnimationCurve getItemAnimationCurve;
 
     private void Awake()
     {
@@ -23,7 +29,6 @@ public class Hud : MonoBehaviour
         UpdateEnergy(0);
     }
 
-
     public void UpdateHp(float value)
     {
         hpTextCurrent.text = GameManager.GameData.currentHp.ToString();
@@ -35,4 +40,25 @@ public class Hud : MonoBehaviour
     {
         energyFill.DOFillAmount((float)GameManager.GameData.currentGas / (float)GameManager.GameData.maxGas, .15f);
     }
+
+    public IEnumerator GetItemSequence(InventoryItem item, int quantity)
+    {
+        for (int i = quantity; i > 0; i--)
+        {
+            var newItem = Instantiate(inventoryItemPrefab, itemOrigin);
+            newItem.transform.position += new Vector3(Random.Range(-50, 50), Random.Range(-50, 50),0);
+            newItem.GetComponent<Image>().sprite = item.itemIcon;
+            var newItemRect = newItem.GetComponent<RectTransform>();
+    
+            Sequence seq = DOTween.Sequence();
+            seq.Append(newItemRect.DOScale(0, 0));
+            seq.Append(newItemRect.DOScale(1, .5f).SetEase(Ease.InBounce));
+            seq.Append(newItemRect.DOMove(itemDestination.position, .5f).SetEase(getItemAnimationCurve));
+            seq.Append(newItemRect.DOScale(0, .5f));
+
+            Destroy(newItem, 2);
+            yield return new WaitForSeconds(.5f / quantity);
+        }
+    }
+
 }

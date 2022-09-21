@@ -39,7 +39,7 @@ public class IslandManager : MonoBehaviour
         while (player.transform.position != position.position)
         {
             player.transform.position =
-                Vector3.MoveTowards(player.transform.position, position.position, islandSpeed * 0.01f);
+                Vector3.MoveTowards(player.transform.position, position.position, islandSpeed * Time.deltaTime);
             yield return null;
         }
 

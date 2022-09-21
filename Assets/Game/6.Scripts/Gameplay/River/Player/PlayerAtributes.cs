@@ -54,6 +54,16 @@ public class PlayerAtributes : MonoBehaviour
     public void Death()
     {
         dead = true;
+        StartCoroutine(DeathSequence());
 
+    }
+    public IEnumerator DeathSequence()
+    {
+        GameManager.PlayerControl = false;
+        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 2);
+        yield return new WaitForSeconds(2);
+        GameManager.PlayerControl = true;
+        GameManager.GameData.ResetValues();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

@@ -11,6 +11,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float rangeLeash;
     [SerializeField] private float rangeAttack;
     [SerializeField] private float moveSpeed;
+    private Vector3 startPosition;
     private Animator animator;
     private CharacterController controller;
     private LanternTarget lanternTarget;
@@ -21,8 +22,16 @@ public class Zombie : MonoBehaviour
 
     private void Awake()
     {
+        startPosition = transform.position;
+
         if (encounterPoint == null)
-            encounterPoint = transform;
+        {
+            var point = Instantiate(new GameObject());
+            point.transform.position = transform.position;
+            point.name = "SelfEncounterPoint";
+            encounterPoint = point.transform;
+        }
+
 
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -50,26 +59,27 @@ public class Zombie : MonoBehaviour
         if (Vector3.Distance(transform.position, encounterPoint.position) > rangeLeash)
         {
             ChangeState(StateZombie.resting);
-            transform.position = encounterPoint.position;
+            transform.position = startPosition;
         }
     }
 
     private void StateBehaviour()
     {
-        /*
-        if (lanternTarget.lanternProgress >= lanternTarget.targetThreshold)
+        if (currentState != StateZombie.banished)
         {
-            ChangeState(StateZombie.banished);
-            banished = true;
-            return;
-        }
+            if (lanternTarget.lanternProgress >= lanternTarget.targetThreshold)
+            {
+                ChangeState(StateZombie.banished);
+                banished = true;
+                return;
+            }
 
-        if (lanternTarget.lanternProgress > 0)
-        {
-            ChangeState(StateZombie.banishing);
-            return;        
+            if (lanternTarget.lanternProgress > 0)
+            {
+                ChangeState(StateZombie.banishing);
+                return;
+            }
         }
-        */
 
         switch (currentState)
         {
@@ -79,18 +89,24 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.chasing:
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
+
                 if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) <= rangeAttack)
                     ChangeState(StateZombie.attacking);
-                else
-                    controller.transform.position = Vector3.MoveTowards(transform.position,GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
                 break;
 
             case StateZombie.attacking:
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
+
                 if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) > rangeAttack)
                     ChangeState(StateZombie.chasing);
                 break;
 
             case StateZombie.banishing:
+                if (lanternTarget.lanternProgress <= 0)
+                {
+                    ChangeState(StateZombie.chasing);
+                }
                 break;
 
             case StateZombie.banished:
@@ -103,10 +119,10 @@ public class Zombie : MonoBehaviour
         switch (state)
         {
             case StateZombie.resting:
-                animator.SetTrigger("resting");
                 animator.SetBool("chasing", false);
                 animator.SetBool("attacking", false);
                 animator.SetBool("banishing", false);
+                animator.SetTrigger("resting");
                 lanternTarget.lanternProgress = 0;
                 break;
             case StateZombie.chasing:
@@ -121,9 +137,12 @@ public class Zombie : MonoBehaviour
                 animator.SetBool("banishing", true);
                 break;
             case StateZombie.banished:
+                animator.SetBool("banishing", false);
                 animator.SetTrigger("banished");
                 break;
         }
+
+        currentState = state;
 
     }
 

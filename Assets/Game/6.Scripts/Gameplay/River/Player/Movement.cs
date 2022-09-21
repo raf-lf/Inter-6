@@ -18,6 +18,9 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         Move();
+
+        if(transform.position.y > 0)
+            controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
 
     private void Move()
