@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{6438d845-9268-4145-b13f-5b0cf9edc53c}">
+		<property name="name">
+			<value>draga</value>
+		</property>
+		<relationship name="folder">
+			<destination>{607ba0b0-5268-4428-827d-d5f47f03a7c8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{75193c7f-b6e6-44c6-ad8d-806174dc5343}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{75193c7f-b6e6-44c6-ad8d-806174dc5343}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

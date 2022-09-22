@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{7a33c115-e4eb-43ed-8df9-b10f39cb0bed}">
+		<property name="name">
+			<value>FALA</value>
+		</property>
+		<relationship name="masters">
+			<destination>{1097b408-db41-4504-a911-633ccb7b0337}</destination>
+		</relationship>
+		<relationship name="effectChain">
+			<destination>{7052eab5-0d51-451e-b83f-67c97e0e9e72}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{692f6282-7903-425c-81b0-23f439dc663a}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{5be06fa7-8c45-48b7-86b0-228ff262b2ac}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7052eab5-0d51-451e-b83f-67c97e0e9e72}">
+		<relationship name="effects">
+			<destination>{a8d960ca-3e76-4a23-8d52-2daf9c44e76a}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{692f6282-7903-425c-81b0-23f439dc663a}" />
+	<object class="MixerBusFader" id="{a8d960ca-3e76-4a23-8d52-2daf9c44e76a}" />
+</objects>

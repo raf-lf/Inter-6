@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{b7682e45-319c-4e1b-a88b-742c9fa63375}">
+		<property name="name">
+			<value>luz</value>
+		</property>
+		<relationship name="folder">
+			<destination>{607ba0b0-5268-4428-827d-d5f47f03a7c8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{93521fb6-0631-4de9-be54-0fcd572cba17}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{93521fb6-0631-4de9-be54-0fcd572cba17}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

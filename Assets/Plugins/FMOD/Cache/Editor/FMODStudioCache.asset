@@ -1,0 +1,333 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9105197624360950020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SOUNDSCAPE/ambiente
+  m_EditorClassIdentifier: 
+  Path: event:/SOUNDSCAPE/ambiente
+  Guid:
+    Data1: 1476614251
+    Data2: 1076043101
+    Data3: -601994623
+    Data4: -1485996402
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 55250
+--- !u!114 &-8630818566585626170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PERSONAGEM/colisao_barco
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PERSONAGEM/colisao_barco
+  Guid:
+    Data1: -767411251
+    Data2: 1331974513
+    Data3: 1891519621
+    Data4: 2013971034
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 6233111373054157595}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
+--- !u!114 &-8492790409593777006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PERSONAGEM/brilho
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PERSONAGEM/brilho
+  Guid:
+    Data1: 131629230
+    Data2: 1281538197
+    Data3: -666429273
+    Data4: 1711454569
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 161791435351574187}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11000
+--- !u!114 &-4242912305005362011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/PERSONAGEM/motor_barco
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/PERSONAGEM/motor_barco
+  Guid:
+    Data1: -567006698
+    Data2: 1139642088
+    Data3: -1384284233
+    Data4: 909285379
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4506700351895488470}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1595254884489851879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/main/draga
+  m_EditorClassIdentifier: 
+  Name: draga
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3394891950
+    data2: 2221069776
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-1054991677124151795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../FMOD/Brumadinho FMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637982706380000000
+  FileSizes:
+  - Name: Desktop
+    Value: 1388
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -1054991677124151795}
+  - {fileID: 3219347454671911136}
+  EditorEvents:
+  - {fileID: -4242912305005362011}
+  - {fileID: -9105197624360950020}
+  - {fileID: 3084419231143757802}
+  - {fileID: -8492790409593777006}
+  - {fileID: 8736922484839035640}
+  - {fileID: -8630818566585626170}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 3219347454671911136}
+  StringsBanks:
+  - {fileID: -1054991677124151795}
+  cacheTime: 637982706380000000
+  cacheVersion: 131592
+--- !u!114 &161791435351574187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/brilho/luz
+  m_EditorClassIdentifier: 
+  Name: luz
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 682929738
+    data2: 1507160933
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3084419231143757802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSICA/main
+  m_EditorClassIdentifier: 
+  Path: event:/MUSICA/main
+  Guid:
+    Data1: 1765353367
+    Data2: 1210743732
+    Data3: 1313130660
+    Data4: -2007957469
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1595254884489851879}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 109714
+--- !u!114 &3219347454671911136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../FMOD/Brumadinho FMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637982706380000000
+  FileSizes:
+  - Name: Desktop
+    Value: 5558464
+  Exists: 1
+--- !u!114 &4506700351895488470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/motor_barco/rpm
+  m_EditorClassIdentifier: 
+  Name: rpm
+  StudioPath: 
+  Min: 0
+  Max: 1.6
+  Default: 0
+  ID:
+    data1: 2010090983
+    data2: 3922783933
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6233111373054157595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/colisao_barco/rpm
+  m_EditorClassIdentifier: 
+  Name: rpm
+  StudioPath: 
+  Min: 0
+  Max: 1.6
+  Default: 0
+  ID:
+    data1: 2010090983
+    data2: 3922783933
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8736922484839035640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/dialogo
+  m_EditorClassIdentifier: 
+  Path: snapshot:/dialogo
+  Guid:
+    Data1: 1768767664
+    Data2: 1226882333
+    Data3: 2024183198
+    Data4: -1525107567
+  Banks:
+  - {fileID: 3219347454671911136}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
