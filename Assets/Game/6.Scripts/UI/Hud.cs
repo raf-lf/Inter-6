@@ -52,7 +52,7 @@ public class Hud : MonoBehaviour
     
             Sequence seq = DOTween.Sequence();
             seq.Append(newItemRect.DOScale(0, 0));
-            seq.Append(newItemRect.DOScale(1, .5f).SetEase(Ease.InBounce));
+            seq.Append(newItemRect.DOScale(1, 1f).SetEase(Ease.OutBack));
             seq.Append(newItemRect.DOMove(itemDestination.position, .5f).SetEase(getItemAnimationCurve));
             seq.Append(newItemRect.DOScale(0, .5f));
 

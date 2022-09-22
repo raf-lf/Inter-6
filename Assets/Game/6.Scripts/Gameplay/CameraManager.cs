@@ -9,20 +9,28 @@ public class CameraManager : MonoBehaviour
 {
     public CinemachineVirtualCameraBase ShipCamera;
     public CinemachineVirtualCameraBase LanternCamera;
+    public CinemachineBrain brain;
+    public float standardBlendTime = .5f;
 
     private void Awake()
     {
+        brain = Camera.main.GetComponent<CinemachineBrain>();
         GameManager.CameraManager = this;
     }
 
     private void Start()
     {
-
         ShipCamera.Follow = GameManager.PlayerInstance.cameraTargetPlayer;
         ShipCamera.LookAt = GameManager.PlayerInstance.cameraTargetPlayer;
         LanternCamera.Follow = GameManager.PlayerInstance.cameraTargetLantern;
         LanternCamera.LookAt = GameManager.PlayerInstance.cameraTargetLantern;
     }
+    public void EnableDisableBaseCams(bool active)
+    {
+        ShipCamera.enabled = active;
+        LanternCamera.enabled = active;
+    }
+
     public void SwitchCamera(CameraType type)
     {
         CinemachineVirtualCameraBase chosenCam = null;

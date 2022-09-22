@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ActorEmotion { neutral, happy, sad, angry, confused }
 
-[CreateAssetMenu(fileName = "ActorData", menuName = "Cinematic/Actor")]
+[CreateAssetMenu(fileName = "ActorData", menuName = "Scriptables/Cinematic/Actor")]
 public class ActorData : ScriptableObject
 {
     public string actorNameReal;

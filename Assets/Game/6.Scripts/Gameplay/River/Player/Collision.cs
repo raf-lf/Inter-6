@@ -8,7 +8,6 @@ public class Collision : MonoBehaviour
     public float velocity;
     public CharacterController controller;
     public LayerMask collisionMask;
-    public float collisionRadius;
     private List<RaycastHit> hits = new List<RaycastHit>();
     public GameObject dmg;
     public PlayerAtributes playerHp;
