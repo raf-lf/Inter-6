@@ -67,6 +67,7 @@ public class LanternTarget : MonoBehaviour
 
                 break;
             case LanternTargetType.spiritLock:
+                GetComponent<SpiritLock>().OpenLock();
                 break;
             case LanternTargetType.hiddenItem:
                 break;
