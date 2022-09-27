@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CE_ChangeCamera : CinematicEvent
+public class ES_ChangeCamera : ES_EventBase
 {
 
     [SerializeField] private CinemachineVirtualCameraBase changingCamera;
     [SerializeField] private bool activeCam = true;
     [SerializeField] private float blendTime = 1;
 
-    public override void Play(Cinematic cine)
+    public override void Play(EventSequence cine)
     {
         base.Play(cine);
         GameManager.CameraManager.brain.m_DefaultBlend.m_Time = blendTime;

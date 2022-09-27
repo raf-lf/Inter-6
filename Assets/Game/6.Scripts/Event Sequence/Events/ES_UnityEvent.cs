@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CE_UnityEvent : CinematicEvent
+public class ES_UnityEvent : ES_EventBase
 {
     [SerializeField] private UnityEvent unityEvent;
-    public override void Play(Cinematic cine)
+    public override void Play(EventSequence cine)
     {
         base.Play(cine);
         unityEvent?.Invoke();

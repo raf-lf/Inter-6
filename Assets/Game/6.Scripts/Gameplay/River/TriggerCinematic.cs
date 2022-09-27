@@ -7,8 +7,8 @@ public class TriggerCinematic : MonoBehaviour
     [SerializeField] bool repeats;
     //THIS NEEDS TO BE A FLAG OR SOMETHING
     private bool alreadyPlayed;
-    [SerializeField] private Cinematic cinematicToPlayFlagCleared;
-    [SerializeField] private Cinematic cinematicToPlayFlagBlocked;
+    [SerializeField] private EventSequence cinematicToPlayFlagCleared;
+    [SerializeField] private EventSequence cinematicToPlayFlagBlocked;
     private FlagLock flagLock;
 
     private void Awake()

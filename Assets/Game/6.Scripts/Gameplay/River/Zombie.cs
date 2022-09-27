@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LanternTarget))]
 public class Zombie : MonoBehaviour
 {
     [Tooltip("If encounter point is NOT selected, zombie will define start position on self.")]

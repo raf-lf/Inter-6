@@ -13,7 +13,7 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image portraitImage;
 
-    private CE_Dialogue currentDialogue;
+    private ES_Dialogue currentDialogue;
     private int currentDialogueIndex;
 
     private bool lineEnded;
@@ -38,7 +38,7 @@ public class DialogueSystem : MonoBehaviour
 
     }
 
-    public void StartDialogue(CE_Dialogue dialogue)
+    public void StartDialogue(ES_Dialogue dialogue)
     {
         canvasGroup.DOFade(1, .33f);
         currentDialogue = dialogue;

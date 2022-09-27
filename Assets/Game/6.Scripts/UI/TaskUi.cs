@@ -21,7 +21,7 @@ public class TaskUi : MonoBehaviour
         associatedTask = creatingTask;
         taskDescription.text = creatingTask.taskDescription;
 
-        if (associatedTask.completed)
+        if (associatedTask.taskState == TaskState.completed)
         {
             CompleteTask();
             return;

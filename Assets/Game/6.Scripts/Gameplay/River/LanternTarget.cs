@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public enum LanternTargetType
 {
-    soul, dredge, hiddenItem
+    soul, spiritLock, hiddenItem
 }
 
 public class LanternTarget : MonoBehaviour
@@ -66,7 +66,7 @@ public class LanternTarget : MonoBehaviour
                     renderer.material.DOFloat(1,"_Fade", 1);
 
                 break;
-            case LanternTargetType.dredge:
+            case LanternTargetType.spiritLock:
                 break;
             case LanternTargetType.hiddenItem:
                 break;

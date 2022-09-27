@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TaskManager : MonoBehaviour
 {
     [SerializeField] private RectTransform taskParent;
     [SerializeField] private TaskUi taskPrefab;
-    private List<TaskUi> taskUiElements = new List<TaskUi>();
-    [SerializeField] static public List<Task> activeTasks = new List<Task>();
+    private CanvasGroup cv;
+    [SerializeField] private List<TaskUi> taskUiElements = new List<TaskUi>();
+
+    private void Awake()
+    {
+        GameManager.TaskManager = this;
+        cv = GetComponent<CanvasGroup>();
+    }
 
     private void Start()
     {
@@ -17,18 +24,40 @@ public class TaskManager : MonoBehaviour
     //Used when the scene begins
     private void PopulateTaskList()
     {
-        foreach (var item in activeTasks)
+        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
         {
-            CreateTask(item);
+            if (item.taskState == TaskState.acquired || item.taskState == TaskState.completed)
+            {
+                CreateTask(item);
+            }
         }
+
+        ShowHideTaskList();
+    }
+
+    public void ShowHideTaskList()
+    {
+        bool hasActiveTask = false;
+
+        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
+        {
+            if (item.taskState == TaskState.acquired || item.taskState == TaskState.completed)
+            { 
+                hasActiveTask = true;
+                break;
+            }
+        }
+        
+        cv.DOFade(hasActiveTask ? 1 : 0, .5f);
     }
 
     //Used when a new task appears
     public void CreateTask(Task creatingTask)
     {
-        var newTask = Instantiate(taskPrefab, taskParent);
-        newTask.Setup(creatingTask);
-        taskUiElements.Add(newTask);
+        var newUiTask = Instantiate(taskPrefab, taskParent);
+        taskUiElements.Add(newUiTask);
+        newUiTask.Setup(creatingTask);
+        ShowHideTaskList();
 
     }
 
@@ -45,6 +74,22 @@ public class TaskManager : MonoBehaviour
             }
 
         }
+        ShowHideTaskList();
 
+    }
+
+    public void UpdateTaskList()
+    {
+        foreach (var item in taskUiElements)
+        {
+            Destroy(item.gameObject);
+        }
+        taskUiElements.Clear();
+
+        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
+        {
+            CreateTask(item);
+        }
+        ShowHideTaskList();
     }
 }

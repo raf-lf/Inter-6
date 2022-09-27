@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CE_Dialogue : CinematicEvent
+public class ES_Dialogue : ES_EventBase
 {
     public Dialogue[] scenes = new Dialogue[0];
 
-    public override void Play(Cinematic cine)
+    public override void Play(EventSequence cine)
     {
         base.Play(cine);
         GameManager.DialogueSystem.StartDialogue(this);

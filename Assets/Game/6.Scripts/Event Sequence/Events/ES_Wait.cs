@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CE_Wait : CinematicEvent
+public class ES_Wait : ES_EventBase
 {
-    public override void Play(Cinematic cine)
+    public override void Play(EventSequence cine)
     {
         base.Play(cine);
         StartCoroutine(NextEvent());

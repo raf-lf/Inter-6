@@ -10,16 +10,22 @@ public class GameManager : MonoBehaviour
     public static bool PlayerControl = true;
     public static bool PlayerClickControl = true;
 
+    public ScriptableManager scriptableManger;
+
     [Header("Singletons")]
     public static PlayerData PlayerInstance;
     public static CameraManager CameraManager;
     public static DialogueSystem DialogueSystem;
     public static CanvasManager CanvasManager;
     public static Hud Hud;
+    public static TaskManager TaskManager;
+
 
     private void Awake()
     {
         Instance = this;
         GameData = GameDataRef;
+        scriptableManger.PopulateLists();
+
     }
 }

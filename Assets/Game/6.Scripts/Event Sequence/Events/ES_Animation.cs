@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CE_Animation : CinematicEvent
+public class ES_Animation : ES_EventBase
 {
     public enum AnimationType { Trigger, Boolean, Integer, Float }
     public AnimationType type;
@@ -11,7 +11,7 @@ public class CE_Animation : CinematicEvent
     public bool valueBool;
     public float valueNumeric;
 
-    public override void Play(Cinematic cine)
+    public override void Play(EventSequence cine)
     {
         base.Play(cine);
         switch (type)

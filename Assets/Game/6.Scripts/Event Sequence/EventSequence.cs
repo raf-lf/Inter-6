@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cinematic : MonoBehaviour
+public class EventSequence : MonoBehaviour
 {
     [SerializeField] private bool CinematicMode;
-    [SerializeField] private List<CinematicEvent> eventList = new List<CinematicEvent>();
+    [SerializeField] private List<ES_EventBase> eventList = new List<ES_EventBase>();
     [SerializeField] private int currentEventIndex;
     private void Awake()
     {
         if(eventList.Count <= 0)
-           eventList.AddRange(GetComponentsInChildren<CinematicEvent>());
+           eventList.AddRange(GetComponentsInChildren<ES_EventBase>());
     }
     public void StartCinematic()
     {

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CinematicEvent : MonoBehaviour
+public abstract class ES_EventBase : MonoBehaviour
 {
-    protected Cinematic currentCinematic;
+    protected EventSequence currentCinematic;
     [SerializeField] protected float nextEventDelay;
 
-    public virtual void Play(Cinematic cine)
+    public virtual void Play(EventSequence cine)
     {
         currentCinematic = cine;
     }
