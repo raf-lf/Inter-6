@@ -61,7 +61,7 @@ public class Lantern : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.PlayerControl)
+        if (!GameManager.PlayerControl || GameManager.PlayerInstance.lanternBlocked)
         {
             UseLantern(false);
             return;

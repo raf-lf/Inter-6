@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private CharacterController controller;
     private EnergyDashing energyDashing;
     public float movement;
+    public float movementSlowdown;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
         movement = 0;
 
         movement = GameManager.GameData.moveSpeed * GameManager.PlayerInstance.GetSpeedModifier() * Input.GetAxis("Vertical") * Time.deltaTime;
+        movement *= 1 - movementSlowdown;
 
         controller.Move(movement * transform.forward);
         

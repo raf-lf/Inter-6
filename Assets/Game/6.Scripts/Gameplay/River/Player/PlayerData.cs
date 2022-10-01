@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    [Header("Flags")]
+    public bool lanternBlocked;
+    public int onFogModifier;
+    public bool movementSlowed;
+    public float extraMovementModifier;
+
+
+    [Header("Scripts")]
     public Transform cameraTargetPlayer;
     public Transform cameraTargetLantern;
     [HideInInspector] public PlayerAtributes atributes;
@@ -26,6 +34,7 @@ public class PlayerData : MonoBehaviour
 
         modifier += energyDashing.dashing ? GameManager.GameData.multiplierDashing : 0;
         modifier += lantern.usingLantern? GameManager.GameData.multiplierUsingLantern : 0;
+      //  modifier += movementSlowed? GameManager.GameData.multiplierUsingLantern : 0;
 
         return modifier;
     }

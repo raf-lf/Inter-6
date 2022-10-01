@@ -1,20 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class SpiritLock : MonoBehaviour
 {
-    [SerializeField] Animator selfAnimator;
-    [SerializeField] Animator connectedAnimator;
+    public bool active = true;
+    public SpiritGate connectedGate;
+    [HideInInspector] public int lockIndex;
+    Animator anim;
 
     private void Awake()
     {
-        selfAnimator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     public void OpenLock()
     {
-        selfAnimator.SetBool("open", true);
-        connectedAnimator.SetBool("open", true);
+        active = false;
+        anim.SetBool("active", false);
+        StartCoroutine(connectedGate.OpenLockSequence(lockIndex));
+    }
+
+    public void ResetLock()
+    {
+        active = true;
+        anim.SetBool("active", true);
     }
 }
