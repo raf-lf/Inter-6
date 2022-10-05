@@ -16,14 +16,20 @@ public class PlayerData : MonoBehaviour
     public Transform cameraTargetLantern;
     [HideInInspector] public PlayerAtributes atributes;
     [HideInInspector] public Movement movement;
+    [HideInInspector] public PlayerSfx playerSfx;
     private EnergyDashing energyDashing;
     private Lantern lantern;
+
+
+    
+
 
     private void Awake()
     {
         GameManager.PlayerInstance = GetComponent<PlayerData>();
         atributes = gameObject.GetComponent<PlayerAtributes>();
         movement = gameObject.GetComponent<Movement>();
+        playerSfx = gameObject.GetComponent<PlayerSfx>();
         energyDashing = gameObject.GetComponent<EnergyDashing>();
         lantern = gameObject.GetComponentInChildren<Lantern>();
     }
