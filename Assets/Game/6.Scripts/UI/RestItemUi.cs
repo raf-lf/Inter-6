@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseOverItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RestItemUi : InventoryElement
 {
     private RestManager restManager;
     [SerializeField] private bool noItemOption;
@@ -13,16 +13,20 @@ public class MouseOverItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         restManager = GetComponentInParent<RestManager>();
     }
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerEnter(PointerEventData eventData)
     {
+        base.OnPointerEnter(eventData);
+
         if(noItemOption)
             restManager.UpdateDescription(null, true);
 
         restManager.UpdateDescription(inventoryItem, false);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
+        base.OnPointerExit(eventData);
+
         restManager.UpdateDescription(null, false);
     }
 }

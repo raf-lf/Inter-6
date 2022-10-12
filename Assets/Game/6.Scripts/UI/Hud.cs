@@ -12,10 +12,11 @@ public class Hud : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpTextMax ;
     [SerializeField] private Image hpFill;
     [SerializeField] private Image energyFill;
-    [Header("Inventory")]
+
+    [Header("GetItemAnimation")]
     [SerializeField] private RectTransform itemOrigin;
     [SerializeField] private RectTransform itemDestination;
-    [SerializeField] private GameObject inventoryItemPrefab;
+    [SerializeField] private GameObject getItemPrefab;
     [SerializeField] private AnimationCurve getItemAnimationCurve;
 
     private void Awake()
@@ -36,16 +37,16 @@ public class Hud : MonoBehaviour
 
         hpFill.DOFillAmount((float)GameManager.GameData.currentHp / (float)GameManager.GameData.maxHp, .15f);
     }
+
     public void UpdateEnergy(float value)
     {
         energyFill.DOFillAmount((float)GameManager.GameData.currentGas / (float)GameManager.GameData.maxGas, .15f);
     }
-
     public IEnumerator GetItemSequence(InventoryItem item, int quantity)
     {
         for (int i = quantity; i > 0; i--)
         {
-            var newItem = Instantiate(inventoryItemPrefab, itemOrigin);
+            var newItem = Instantiate(getItemPrefab, itemOrigin);
             newItem.transform.position += new Vector3(Random.Range(-50, 50), Random.Range(-50, 50),0);
             newItem.GetComponent<Image>().sprite = item.itemIcon;
             var newItemRect = newItem.GetComponent<RectTransform>();

@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public enum CameraType { Ship, Lantern }
-public enum OverlayEffectType { None, Fog, Ethereal}
+public enum OverlayEffectType { None, Pause, Fog, Ethereal}
 
 public class CameraManager : MonoBehaviour
 {
@@ -96,7 +96,7 @@ public class OverlayEffect
 
     public void ActivateDeactivateEffect(bool active)
     {
-        DOTween.To(() => volumeFilter.weight, x => volumeFilter.weight= x, active ? 1 : 0 , .5f);
+        DOTween.To(() => volumeFilter.weight, x => volumeFilter.weight= x, active ? 1 : 0 , .5f).SetUpdate(true);
 
         if (active)
         {
@@ -106,7 +106,8 @@ public class OverlayEffect
                 main.simulationSpeed = 1;
             }
 
-            particles[0].Play();
+            if(particles.Length > 0)
+                particles[0].Play();
         }
         else
         {
@@ -116,7 +117,8 @@ public class OverlayEffect
                 main.simulationSpeed = 3;
             }
 
-            particles[0].Stop();
+            if (particles.Length > 0)
+                particles[0].Stop();
         }
 
     }

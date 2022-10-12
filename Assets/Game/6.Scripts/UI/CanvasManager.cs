@@ -11,8 +11,11 @@ public enum OverlayAnimation
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup overlay;
+    [Header ("Scripts")]
+    [SerializeField] public Inventory inventory;
 
+    [Header("Overlay")]
+    [SerializeField] private CanvasGroup overlay;
     [SerializeField] private Image overlayImage;
 
     private void Awake()
