@@ -15573,7 +15573,7 @@ GameObject:
   - component: {fileID: 1104442103}
   - component: {fileID: 1104442102}
   m_Layer: 0
-  m_Name: w
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21320,6 +21320,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -87.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506156718025613767, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5946682018157464625, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}

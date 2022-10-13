@@ -16,6 +16,7 @@ public class SpiritUi : InventoryElement
     [SerializeField] private CanvasGroup descriptionCanvasGroup;
     [SerializeField] private EventSequence eventSequence;
     [SerializeField] private ES_Dialogue dialogueEvent;
+    [SerializeField] private ContentSizeFitter contentSizeFitterUpdate;
     private Tween tween;
 
     public void Setup(Spirit spirit)
@@ -28,6 +29,8 @@ public class SpiritUi : InventoryElement
         
         if(associatedSpirit.dialogue != null)
             dialogueEvent.dialogue = associatedSpirit.dialogue;
+
+        contentSizeFitterUpdate.verticalFit = ContentSizeFitter.FitMode.MinSize;
     }
 
     public void OpenDescription()
