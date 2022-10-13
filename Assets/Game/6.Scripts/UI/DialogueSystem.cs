@@ -5,13 +5,17 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 
+public enum PortraitPosition { left, right }
+
 public class DialogueSystem : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
     public CanvasGroup canvasGroupBlinds;
+    public RectTransform nameTagRect;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public Image portraitImage;
+    public Image portraitLeft;
+    public Image portraitRight;
 
     private ES_Dialogue currentDialogue;
     private int currentDialogueIndex;
@@ -34,13 +38,15 @@ public class DialogueSystem : MonoBehaviour
     {
         float endValue = active ? 1 : 0;
 
-        canvasGroupBlinds.DOFade(endValue, .5f);
+        canvasGroupBlinds.DOFade(endValue, .5f).SetUpdate(true);
 
     }
 
     public void StartDialogue(ES_Dialogue dialogue)
     {
-        canvasGroup.DOFade(1, .33f);
+        portraitLeft.color = new Color(portraitLeft.color.r, portraitLeft.color.g, portraitLeft.color.b, 0);
+        portraitRight.color = new Color(portraitRight.color.r, portraitRight.color.g, portraitRight.color.b, 0);
+        canvasGroup.DOFade(1, .33f).SetUpdate(true);
         currentDialogue = dialogue;
         currentDialogueIndex = 0;
         PlayDialogue();
@@ -48,13 +54,17 @@ public class DialogueSystem : MonoBehaviour
 
     public void PlayDialogue()
     {
-        if (currentDialogueIndex >= currentDialogue.scenes.Length)
+        if (currentDialogueIndex >= currentDialogue.dialogue.lines.Length)
         {
             EndDialogue();
             return;
         }
 
-        PlayLine(currentDialogue.scenes[currentDialogueIndex].actor, currentDialogue.scenes[currentDialogueIndex].emotion, currentDialogue.scenes[currentDialogueIndex].line);
+        PlayLine(currentDialogue.dialogue.lines[currentDialogueIndex].actor, 
+            currentDialogue.dialogue.lines[currentDialogueIndex].emotion, 
+            currentDialogue.dialogue.lines[currentDialogueIndex].line,
+            currentDialogue.dialogue.lines[currentDialogueIndex].portraitPosition);
+
         currentDialogueIndex++;
 
     }
@@ -74,13 +84,35 @@ public class DialogueSystem : MonoBehaviour
         StartCoroutine(currentDialogue.NextEvent());
         currentDialogue = null;
 
-        canvasGroup.DOFade(0, .33f);
+        canvasGroup.DOFade(0, .33f).SetUpdate(true);
     }
 
-    public void PlayLine(ActorData actor, ActorEmotion emotion, string line)
+    public void PlayLine(ActorData actor, ActorEmotion emotion, string line, PortraitPosition position)
     {
         nameText.text = actor.ReturnName();
-        portraitImage.sprite = actor.ReturnPortrait(emotion);
+
+        Image currentPortrait = null;
+
+        switch(position)
+        {
+            case PortraitPosition.left:
+                currentPortrait = portraitLeft;
+                nameTagRect.DOAnchorMin(new Vector3(0, 0), .15f).SetUpdate(true);
+                nameTagRect.DOAnchorMax(new Vector3(0, 0), .15f).SetUpdate(true);
+                nameTagRect.DOPivotX(0, .15f).SetUpdate(true);
+                break;
+            case PortraitPosition.right:
+                currentPortrait = portraitRight;
+                nameTagRect.DOAnchorMin(new Vector3(1, 0), .15f).SetUpdate(true);
+                nameTagRect.DOAnchorMax(new Vector3(1, 0), .15f).SetUpdate(true);
+                nameTagRect.DOPivotX(1, .15f).SetUpdate(true);
+                break;
+        }
+
+        currentPortrait.sprite = actor.ReturnPortrait(emotion);
+        if (currentPortrait.color.a == 0)
+            currentPortrait.DOFade(1, .3f).SetUpdate(true);
+
         dialogueText.text = line;
     }
 }

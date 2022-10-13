@@ -810,14 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  scenes:
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 1
-    line: Uma ilhota... Que vontade de tirar uma soneca...
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 1
-    line: "Ora, por que n\xE3o parar por la? Pode ser uma boa ideia descansar e comer
-      alguma coisa!"
+  dialogue: {fileID: 11400000, guid: 378defb7292fc9e48bf10665d9359671, type: 2}
 --- !u!1 &304103863
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,24 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  scenes:
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 2
-    line: ...
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 2
-    line: Parece que temos alguns pobre coitados por aqui...
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "N\xE3o tem nada que eu possa fazer por eles agora... "
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "\xC9 melhor evita-los... V\xE3o me deixar em paz se eu conseguir escapar
-      deles."
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "Posso usar a lanterna tamb\xE9m. Tenho certeza que a luz vai acalma-los
-      por um tempo."
+  dialogue: {fileID: 11400000, guid: 90e8eaaaa7d256942896feb3f692802c, type: 2}
 --- !u!1 &325565713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,14 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  scenes:
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 3
-    line: "Lasqueira! Esse vale ta cheio de trambolhos largados por a\xED!"
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "Como meu barquinho ja \xE9 velhinho, vou ter que andar com cuidado por
-      aqui."
+  dialogue: {fileID: 11400000, guid: 21833b2f98d65df42a5e09955ada0ec3, type: 2}
 --- !u!1 &765494592
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,15 +3697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  scenes:
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: Uai... O que ta acontecendo aqui? Parece que tem alguma coisa escondida
-      na lama.
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "Certeza que se eu der uma olhadinha com a lanterna, vai dar pra descobrir
-      o que \xE9..."
+  dialogue: {fileID: 11400000, guid: 05cf10d82eebd664b8adaeafbeb9048f, type: 2}
 --- !u!1001 &1382706906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6366,10 +6327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  scenes:
-  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
-    emotion: 0
-    line: "Pois vamos l\xE1... Tem muito trabalho pra fazer por aqui."
+  dialogue: {fileID: 11400000, guid: 96dedf2f94595f046a295196ab81e5d3, type: 2}
 --- !u!1 &2144913972
 GameObject:
   m_ObjectHideFlags: 0

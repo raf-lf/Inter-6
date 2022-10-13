@@ -24,17 +24,19 @@ public class Collision : MonoBehaviour
         if(velocity > GameManager.GameData.velocityHigh)
         {
             playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
-
+            /*
             var thing = Instantiate(dmg);
             thing.transform.position = hit.point;
+            */
         }
         else if(velocity > GameManager.GameData.velocityLow)
         {
 
             playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
-
+            /*
             var thing = Instantiate(dmg);
             thing.transform.position = hit.point;
+            */
         }
     }
 

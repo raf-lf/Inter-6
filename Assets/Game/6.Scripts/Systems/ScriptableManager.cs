@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScriptableManager : ScriptableObject
 {
     public List<InventoryItem> allItems = new List<InventoryItem>();
+    public List<Spirit> allSpirits = new List<Spirit>();
     public List<Flag> allFlags = new List<Flag>();
     public List<Task> allTasks = new List<Task>();
 
@@ -13,6 +14,8 @@ public class ScriptableManager : ScriptableObject
     {
         if (allItems.Count == 0)
             allItems.AddRange(Resources.FindObjectsOfTypeAll<InventoryItem>());
+        if (allSpirits.Count == 0)
+            allSpirits.AddRange(Resources.FindObjectsOfTypeAll<Spirit>());
         if (allFlags.Count == 0)
             allFlags.AddRange(Resources.FindObjectsOfTypeAll<Flag>());
         if (allTasks.Count == 0)
@@ -25,11 +28,14 @@ public class ScriptableManager : ScriptableObject
         {
             item.quantity = 0;
         }
+        foreach (var item in allSpirits)
+        {
+            item.found = false;
+        }
         foreach (var item in allFlags)
         {
             item.flagActive = false;
         }
-
         foreach (var item in allTasks)
         {
             item.ChangeTaskState(TaskState.notStarted);

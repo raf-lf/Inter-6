@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventoryElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler//, IPointerClickHandler
 {
+    /*
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+    }
+    */
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
     }

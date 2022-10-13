@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private Transform inventoryParent;
     [SerializeField] private InventoryItemUi inventoryItemUi;
+    [SerializeField] private Transform spiritParent;
+    [SerializeField] private SpiritUi spiritUi;
     [SerializeField] private bool inventoryOpen;
     [SerializeField] private CanvasGroup canvasGroup;
 
@@ -21,6 +23,17 @@ public class Inventory : MonoBehaviour
         foreach (var item in GameManager.Instance.scriptableManger.allItems)
         {
             var newUiItem = Instantiate(inventoryItemUi, inventoryParent);
+            newUiItem.Setup(item);
+        }
+
+        foreach (var item in spiritParent.GetComponentsInChildren<SpiritUi>())
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var item in GameManager.Instance.scriptableManger.allSpirits)
+        {
+            var newUiItem = Instantiate(spiritUi, spiritParent);
             newUiItem.Setup(item);
         }
     }
