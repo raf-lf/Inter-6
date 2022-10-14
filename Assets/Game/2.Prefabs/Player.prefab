@@ -29602,6 +29602,7 @@ GameObject:
   - component: {fileID: 4603877228805478933}
   - component: {fileID: 4603877228805478935}
   - component: {fileID: 4603877228805478932}
+  - component: {fileID: 1356033398230425419}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29642,6 +29643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: 0
   movementSlowdown: 0
+  defaultRPM: 0.45
+  maxRPM: 1
 --- !u!114 &4603877228805479019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29662,6 +29665,7 @@ MonoBehaviour:
   cameraTargetLantern: {fileID: 4603877228714810267}
   atributes: {fileID: 4603877228805479018}
   movement: {fileID: 0}
+  playerSfx: {fileID: 0}
 --- !u!114 &4603877228805479018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29750,6 +29754,21 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1356033398230425419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603877228805478928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e8b1610f63414d861c48ea54243eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineEventPath: event:/SFX/PERSONAGEM/motor_barco
+  collisionEventPath: event:/SFX/PERSONAGEM/colisao_barco
+  lanternEventPath: event:/SFX/lanterna
 --- !u!1 &6588583779845641239
 GameObject:
   m_ObjectHideFlags: 0
