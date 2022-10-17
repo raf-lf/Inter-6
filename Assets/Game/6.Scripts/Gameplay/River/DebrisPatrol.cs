@@ -16,10 +16,10 @@ public class DebrisPatrol : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (waypoints != null)
+        Gizmos.color = Color.yellow;
+        for (int i = 0; i < waypoints.Length; i++)
         {
-            Gizmos.color = Color.yellow;
-            for (int i = 0; i < waypoints.Length; i++)
+            if (waypoints[i] != null)
             {
                 Gizmos.DrawWireCube(waypoints[i].position, .3f * Vector3.one);
 

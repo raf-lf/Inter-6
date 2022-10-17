@@ -31,6 +31,11 @@ public class Movement : MonoBehaviour
         if(transform.position.y > 0)
             controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
+    public void MoveTo(Transform destination)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, destination.position, GameManager.GameData.moveSpeed * Time.deltaTime);
+
+    }
 
     private void Move()
     {
