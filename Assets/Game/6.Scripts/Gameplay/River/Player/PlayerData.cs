@@ -9,7 +9,9 @@ public class PlayerData : MonoBehaviour
     public int onFogModifier;
     public bool movementSlowed;
     public float extraMovementModifier;
-
+    public static bool buffResistance;
+    public static bool buffEfficiency;
+    public static bool buffStealth;
 
     [Header("Scripts")]
     public Transform cameraTargetPlayer;
@@ -18,10 +20,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public Movement movement;
     [HideInInspector] public PlayerSfx playerSfx;
     private EnergyDashing energyDashing;
-    private Lantern lantern;
-
-
-    
+    private Lantern lantern;   
 
 
     private void Awake()

@@ -12,6 +12,9 @@ public class Hud : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpTextMax ;
     [SerializeField] private Image hpFill;
     [SerializeField] private Image energyFill;
+    [SerializeField] private CanvasGroup buffCv;
+    [SerializeField] private Image buffIcon;
+    [SerializeField] private InventoryItem[] buffItems = new InventoryItem[3];
 
     [Header("GetItemAnimation")]
     [SerializeField] private RectTransform itemOrigin;
@@ -28,6 +31,24 @@ public class Hud : MonoBehaviour
     {
         UpdateHp(0);
         UpdateEnergy(0);
+        UpdateBuff();
+    }
+
+    public void UpdateBuff()
+    {
+        if (PlayerData.buffResistance || PlayerData.buffEfficiency || PlayerData.buffStealth)
+        {
+            buffCv.alpha = 1;
+            if (PlayerData.buffResistance)
+                buffIcon.sprite = buffItems[0].itemIcon;
+            if (PlayerData.buffEfficiency)
+                buffIcon.sprite = buffItems[1].itemIcon;
+            if (PlayerData.buffStealth)
+                buffIcon.sprite = buffItems[2].itemIcon;
+        }
+        else
+            buffCv.alpha = 0;
+
     }
 
     public void UpdateHp(float value)

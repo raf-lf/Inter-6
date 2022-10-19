@@ -37,8 +37,9 @@ public class Collision : MonoBehaviour
         {
             collisionSFX.setParameterByName("rpm", 1.6f);
             collisionSFX.start();
-           
-            playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
+
+            if (!PlayerData.buffResistance)
+                playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
             /*
             var thing = Instantiate(dmg);
             thing.transform.position = hit.point;
@@ -50,7 +51,8 @@ public class Collision : MonoBehaviour
             collisionSFX.setParameterByName("rpm", 0);
             collisionSFX.start();
 
-            playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
+            if (!PlayerData.buffResistance)
+                playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
             /*
             var thing = Instantiate(dmg);
             thing.transform.position = hit.point;

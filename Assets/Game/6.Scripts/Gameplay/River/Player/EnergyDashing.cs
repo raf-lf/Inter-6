@@ -36,7 +36,11 @@ public class EnergyDashing : MonoBehaviour
             else if (GameManager.GameData.currentGas > 0)
             {
                 dashing = true;
-                GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime);
+
+                if(PlayerData.buffEfficiency)
+                    GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime/2);
+                else
+                    GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime);
             }
             else
             {

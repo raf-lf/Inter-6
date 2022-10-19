@@ -26,6 +26,11 @@ public class RestManager : MonoBehaviour
 
     public IEnumerator RestSequence(int restItemIndex)
     {
+
+        PlayerData.buffResistance = false;
+        PlayerData.buffEfficiency = false;
+        PlayerData.buffStealth = false;
+
         OpenCloseModal(false);
 
         foreach (var item in restItems)
@@ -50,15 +55,29 @@ public class RestManager : MonoBehaviour
                 hp.HpChange(GameManager.GameData.maxHp - GameManager.GameData.currentHp);
 
             restItems[restItemIndex].itemReference.quantity--;
+            
+            switch(restItemIndex)
+            {
+                case 0:
+                    PlayerData.buffResistance = true;
+                    break;
+                case 1:
+                    PlayerData.buffEfficiency = true;
+                    break;
+                case 2:
+                    PlayerData.buffStealth = true;
+                    break;
+
+            }
 
         }
 
-
         UpdateModal();
-
+        GameManager.Hud.UpdateBuff();
 
 
     }
+
     public void UpdateDescription(InventoryItem item, bool noItemSelected)
     {
         if(noItemSelected)

@@ -37,6 +37,9 @@ public class Zombie : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         lanternTarget = GetComponent<LanternTarget>();
+
+        if (PlayerData.buffStealth)
+            rangeDetection /= 2;
     }
 
     private void FixedUpdate()
