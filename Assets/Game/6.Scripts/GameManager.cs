@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
-    public GameData GameDataRef;
     public static GameData GameData;
-    public static GameManager Instance;
     public static bool PlayerControl = true;
     public static bool PlayerClickControl = true;
 
-    public ScriptableManager scriptableManger;
+    public static ScriptableManager ScriptableManager;
 
     [Header("Singletons")]
     public static PlayerData PlayerInstance;
@@ -19,13 +17,6 @@ public class GameManager : MonoBehaviour
     public static CanvasManager CanvasManager;
     public static Hud Hud;
     public static TaskManager TaskManager;
+    public static GameplayManager GameplayManager;
 
-
-    private void Awake()
-    {
-        Instance = this;
-        GameData = GameDataRef;
-        scriptableManger.PopulateLists();
-
-    }
 }

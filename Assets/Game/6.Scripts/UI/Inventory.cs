@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach (var item in GameManager.Instance.scriptableManger.allItems)
+        foreach (var item in GameManager.ScriptableManager.allItems)
         {
             var newUiItem = Instantiate(inventoryItemUi, inventoryParent);
             newUiItem.Setup(item);
@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach (var item in GameManager.Instance.scriptableManger.allSpirits)
+        foreach (var item in GameManager.ScriptableManager.allSpirits)
         {
             var newUiItem = Instantiate(spiritUi, spiritParent);
             newUiItem.Setup(item);

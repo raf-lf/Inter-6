@@ -24,7 +24,7 @@ public class TaskManager : MonoBehaviour
     //Used when the scene begins
     private void PopulateTaskList()
     {
-        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
+        foreach (var item in GameManager.ScriptableManager.allTasks)
         {
             if (item.taskState == TaskState.acquired || item.taskState == TaskState.completed)
             {
@@ -39,7 +39,7 @@ public class TaskManager : MonoBehaviour
     {
         bool hasActiveTask = false;
 
-        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
+        foreach (var item in GameManager.ScriptableManager.allTasks)
         {
             if (item.taskState == TaskState.acquired || item.taskState == TaskState.completed)
             { 
@@ -86,7 +86,7 @@ public class TaskManager : MonoBehaviour
         }
         taskUiElements.Clear();
 
-        foreach (var item in GameManager.Instance.scriptableManger.allTasks)
+        foreach (var item in GameManager.ScriptableManager.allTasks)
         {
             CreateTask(item);
         }
