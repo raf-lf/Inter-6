@@ -6,19 +6,24 @@ using TMPro;
 
 public class IslandManager : MonoBehaviour
 {
-    [Header("Components")] [SerializeField]
-    private GameObject player;
+    [Header("Components")]
 
     [SerializeField] private float islandSpeed;
 
     [SerializeField] private Transform pointEntry;
     [SerializeField] private Transform pointExit;
     [SerializeField] private SceneTransition transition;
+    public CanvasIslandManager canvasIslandManager;
+    public static IslandManager CurrentIslandManager;
+
+    private void Awake()
+    {
+        CurrentIslandManager = this;
+        canvasIslandManager = GetComponentInChildren<CanvasIslandManager>();
+    }
 
     private void Start()
     {
-        //StartCoroutine(MovePlayer(deckPosition, false));
-
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 0);
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 1);
 
@@ -30,16 +35,20 @@ public class IslandManager : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(PlayerEntryExit(pointExit, true));
+
     }
 
     IEnumerator PlayerEntryExit(Transform position, bool leaving)
     {
+        yield return new WaitForEndOfFrame();
         GameManager.PlayerControl = false;
-
-        while (player.transform.position != position.position)
+        canvasIslandManager.UpdateAuxiliaryButtons();
+        GameManager.CameraManager.brain.m_DefaultBlend.m_Time = 0;
+        GameManager.CameraManager.FocusCamera(canvasIslandManager.clickableAnchor.focusCamera);
+        while (GameManager.PlayerInstance.transform.position != position.position)
         {
-            player.transform.position =
-                Vector3.MoveTowards(player.transform.position, position.position, islandSpeed * Time.deltaTime);
+            GameManager.PlayerInstance.transform.position =
+                Vector3.MoveTowards(GameManager.PlayerInstance.transform.position, position.position, islandSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -47,5 +56,16 @@ public class IslandManager : MonoBehaviour
 
         if (leaving)
             transition.StartSceneTransition();
+        else
+        {
+            yield return new WaitForEndOfFrame();
+            GameManager.CameraManager.brain.m_DefaultBlend.m_Time = 2;
+            GameManager.CameraManager.ReturnCamera();
+            yield return new WaitForEndOfFrame();
+            GameManager.CameraManager.brain.m_DefaultBlend.m_Time = GameManager.CameraManager.standardBlendTime;
+            canvasIslandManager.UpdateAuxiliaryButtons();
+
+        }
+
     }
 }

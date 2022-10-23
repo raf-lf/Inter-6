@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class RestItemUi : InventoryElement
 {
-    private RestManager restManager;
+    private ModalRest restManager;
     [SerializeField] private bool noItemOption;
     [SerializeField] private InventoryItem inventoryItem;
 
     private void Awake()
     {
-        restManager = GetComponentInParent<RestManager>();
+        restManager = GetComponentInParent<ModalRest>();
     }
     public override void OnPointerEnter(PointerEventData eventData)
     {

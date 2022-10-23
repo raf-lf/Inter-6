@@ -18,6 +18,7 @@ public class CameraManager : MonoBehaviour
     public CinemachineBrain brain;
     public float standardBlendTime = .5f;
     private float memoryFov;
+    public CinemachineVirtualCameraBase overridingCamera;
 
     [Header ("Overlay Effects")]
     [SerializeField] private OverlayEffect[] overlayEffects = new OverlayEffect[0];
@@ -70,6 +71,20 @@ public class CameraManager : MonoBehaviour
         }
 
         
+    }
+    public void ReturnCamera()
+    {
+        overridingCamera.enabled = false;
+        EnableDisableBaseCams(true);
+        overridingCamera = null;
+    }
+
+    public void FocusCamera(CinemachineVirtualCameraBase focusCamera)
+    {
+        focusCamera.Priority = 100;
+        EnableDisableBaseCams(false);
+        focusCamera.enabled = true;
+        overridingCamera = focusCamera;
     }
 
     public void CameraCloseUp(float customFov)
