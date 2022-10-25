@@ -11,6 +11,8 @@ public enum OverlayAnimation
 
 public class CanvasManager : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup hudCanvasGroup;
+
     [Header ("Scripts")]
     [SerializeField] public Inventory inventory;
 
@@ -22,6 +24,11 @@ public class CanvasManager : MonoBehaviour
     {
         GameManager.CanvasManager = this;
 
+    }
+
+    public void ShowHud(bool active)
+    {
+        hudCanvasGroup.DOFade(active ? 1 : 0, .33f);
     }
 
     public void AnimateOverlay(OverlayAnimation animation, float speed)

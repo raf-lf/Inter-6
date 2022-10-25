@@ -19,8 +19,9 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public PlayerAtributes atributes;
     [HideInInspector] public Movement movement;
     [HideInInspector] public PlayerSfx playerSfx;
+    [HideInInspector] public PlayerVfx playerVfx;
     private EnergyDashing energyDashing;
-    private Lantern lantern;   
+    private Lantern lantern;
 
 
     private void Awake()
@@ -29,6 +30,7 @@ public class PlayerData : MonoBehaviour
         atributes = gameObject.GetComponent<PlayerAtributes>();
         movement = gameObject.GetComponent<Movement>();
         playerSfx = gameObject.GetComponent<PlayerSfx>();
+        playerVfx = gameObject.GetComponent<PlayerVfx>();
         energyDashing = gameObject.GetComponent<EnergyDashing>();
         lantern = gameObject.GetComponentInChildren<Lantern>();
     }

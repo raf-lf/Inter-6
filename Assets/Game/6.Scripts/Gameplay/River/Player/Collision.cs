@@ -13,18 +13,6 @@ public class Collision : MonoBehaviour
     public GameObject dmg;
     public PlayerAtributes playerHp;
 
-
-
-
-    FMOD.Studio.EventInstance collisionSFX;
-
-    private void Start()
-    {
-        collisionSFX = GameManager.PlayerInstance.playerSfx.collisionEvent;
-    }
-
-
-
     private void Update()
     {
         velocity = controller.velocity.magnitude;
@@ -35,28 +23,16 @@ public class Collision : MonoBehaviour
 
         if(velocity > GameManager.GameData.velocityHigh)
         {
-            collisionSFX.setParameterByName("rpm", 1.6f);
-            collisionSFX.start();
 
             if (!PlayerData.buffResistance)
                 playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
-            /*
-            var thing = Instantiate(dmg);
-            thing.transform.position = hit.point;
-            */
         }
         else if(velocity > GameManager.GameData.velocityLow)
         {
 
-            collisionSFX.setParameterByName("rpm", 0);
-            collisionSFX.start();
 
             if (!PlayerData.buffResistance)
                 playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
-            /*
-            var thing = Instantiate(dmg);
-            thing.transform.position = hit.point;
-            */
         }
     }
 

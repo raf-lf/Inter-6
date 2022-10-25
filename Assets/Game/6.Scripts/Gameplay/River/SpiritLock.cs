@@ -7,7 +7,7 @@ using UnityEngine;
 public class SpiritLock : MonoBehaviour
 {
     public bool active = true;
-    public SpiritGate connectedGate;
+    [HideInInspector] public SpiritGate connectedGate;
     [HideInInspector] public int lockIndex;
     Animator anim;
 

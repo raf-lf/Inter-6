@@ -7,12 +7,19 @@ public class PlayerAtributes : MonoBehaviour
     public bool dead;
     private List<int> attacksImmuneTo = new List<int>();
 
+    [SerializeField] private int damageThresholdHigh;
+
     public void Damage(int value, int attackId)
     {
         if (!dead)
         {
             if (attacksImmuneTo.Contains(attackId) == false)
             {
+                if(value >= damageThresholdHigh)
+                    GameManager.PlayerInstance.playerVfx.VfxDamageHigh();
+                else
+                    GameManager.PlayerInstance.playerVfx.VfxDamageLow();
+
                 HpChange(-value);
                 StartCoroutine(Iframes(attackId));
             }

@@ -29,9 +29,9 @@ public class FlagLock : MonoBehaviour
                 foreach (var item in flagsToCheck)
                 {
                     if(item.flagActive)
-                        clears++;
+                        clears--;
                 }
-                if (clears >= flagsToCheck.Length)
+                if (clears <= 0)
                     return true;
                 else return false;
         }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerCinematic : MonoBehaviour
+public class TriggerEventSequence : MonoBehaviour
 {
     [SerializeField] bool repeats;
     //THIS NEEDS TO BE A FLAG OR SOMETHING
-    private bool alreadyPlayed;
+    private bool disablePlaying;
     [SerializeField] private EventSequence cinematicToPlayFlagCleared;
     [SerializeField] private EventSequence cinematicToPlayFlagBlocked;
     private FlagLock flagLock;
@@ -18,9 +18,10 @@ public class TriggerCinematic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !alreadyPlayed)
+        if (other.gameObject.CompareTag("Player") && !disablePlaying)
         {
-            alreadyPlayed = true;
+            if(!repeats)
+                disablePlaying = true;
             AttemptPlayCinematic();
         }
     }

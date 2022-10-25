@@ -30,11 +30,12 @@ public class SpiritGate : MonoBehaviour
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
         yield return new WaitForSeconds(1f);
         lockParticles[lockIndex].Stop();
-        yield return new WaitForSeconds(1f);
-        CheckLocks();
-        yield return new WaitForSeconds(2f);
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
         yield return new WaitForSeconds(.5f);
+        
+        yield return new WaitForSeconds(CheckLocks() <= 0 ? 5 : 2);
+
+        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
+        yield return new WaitForSeconds(1f);
         focusCamera.enabled = false;
         yield return new WaitForEndOfFrame();
         GameManager.CameraManager.brain.m_DefaultBlend.m_Time = GameManager.CameraManager.standardBlendTime;
@@ -42,7 +43,7 @@ public class SpiritGate : MonoBehaviour
         GameManager.PlayerControl = true;
     }
 
-    private void CheckLocks()
+    private int CheckLocks()
     {
         int locksActive = 0;
 
@@ -55,6 +56,7 @@ public class SpiritGate : MonoBehaviour
         if (locksActive <= 0)
             Open();
 
+        return locksActive;
     }
 
     public void Open()
