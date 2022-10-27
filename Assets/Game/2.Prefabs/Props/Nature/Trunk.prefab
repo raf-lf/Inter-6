@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 1338637739425712599}
   - component: {fileID: 2683037599469782642}
   - component: {fileID: 205167988494119608}
+  - component: {fileID: 114091234174458898}
   m_Layer: 0
   m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1338637739425712599
 Transform:
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &114091234174458898
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862268420089090925}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2712835
+  m_Height: 2.932953
+  m_Direction: 0
+  m_Center: {x: 0.009887695, y: 0.3328029, z: 0.038401484}

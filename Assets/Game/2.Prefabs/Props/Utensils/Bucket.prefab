@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6525197757716754180}
   - component: {fileID: 7863834003578478753}
   - component: {fileID: 5387717018700878955}
+  - component: {fileID: 994953722460226067}
   m_Layer: 0
   m_Name: Bucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6525197757716754180
 Transform:
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &994953722460226067
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5892388802295608766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1670927
+  m_Height: 0.52701235
+  m_Direction: 1
+  m_Center: {x: -0.01587534, y: 0.19554639, z: 0.01216726}

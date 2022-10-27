@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     {
         Move();
 
-        if(transform.position.y > 0)
+        if(transform.position.y != 0)
             controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
     public void MoveTo(Transform destination)
