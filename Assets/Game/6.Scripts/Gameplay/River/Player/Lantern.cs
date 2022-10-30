@@ -15,11 +15,11 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float AoeSizeIncrement;
     [SerializeField] private List<LanternTarget> targetsAffected = new List<LanternTarget>();
 
-    FMOD.Studio.EventInstance lanterLightSfx;
+    //FMOD.Studio.EventInstance lanterLightSfx;
 
     private void Start()
     {
-        lanterLightSfx = GameManager.PlayerInstance.playerSfx.lanternEvent;
+       /// lanterLightSfx = GameManager.PlayerInstance.playerSfx.lanternEvent;
     }
 
     private void UseLantern(bool active)
@@ -32,14 +32,14 @@ public class Lantern : MonoBehaviour
             GameManager.CameraManager.SwitchCamera(CameraType.Lantern);
             lanternAnimator.SetBool("focus", true);
             CheckLanternArea();
-            lanterLightSfx.start();
+          //  lanterLightSfx.start();
         }
         else
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, transform.parent.rotation, lerpTransitionSpeed);
             GameManager.CameraManager.SwitchCamera(CameraType.Ship);
             lanternAnimator.SetBool("focus", false);
-            lanterLightSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+         //   lanterLightSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         }
     }
@@ -56,7 +56,7 @@ public class Lantern : MonoBehaviour
             {
                 if (item.collider.gameObject.GetComponentInChildren<LanternTarget>())
                 {
-                    lanterLightSfx.setParameterByName("alma", 1);
+                  //  lanterLightSfx.setParameterByName("alma", 1);
                     LanternTarget target = item.collider.gameObject.GetComponentInChildren<LanternTarget>();
                     if(!targetsAffected.Contains(target))
                         targetsAffected.Add(target);
@@ -72,7 +72,7 @@ public class Lantern : MonoBehaviour
         
         if(targetsAffected.Count == 0) 
         {
-            lanterLightSfx.setParameterByName("alma", 0);
+          //  lanterLightSfx.setParameterByName("alma", 0);
         }
     
     

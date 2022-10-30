@@ -27,6 +27,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI logTitle;
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private LogStyles logStyles;
+    [SerializeField] private ContentSizeFitter contentSizeFitterUpdate;
 
     private void Awake()
     {
@@ -73,9 +74,11 @@ public class CanvasManager : MonoBehaviour
         logTitle.text = logStyles.ReturnLogInfo(LogTypes.Item).type.ToString();
         
         if(quantity == 1)
-            logText.text = item.name + " encontrado";
+            logText.text = item.itemName + " encontrado";
         else
-            logText.text = item.name + " x" + quantity + " encontrados";
+            logText.text = item.itemName + " x" + quantity + " encontrados";
+        
+        contentSizeFitterUpdate.verticalFit = ContentSizeFitter.FitMode.MinSize;
         
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));
