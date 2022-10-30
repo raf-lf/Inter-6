@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class MainMenu : MonoBehaviour
 {
@@ -17,6 +18,20 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsWindow;
 
 
+    FMOD.Studio.VCA sfxVCA;
+    FMOD.Studio.VCA bGVCA;
+    FMOD.Studio.VCA soundScapeVCA;
+
+
+    public Slider sfxSlider;
+    public Slider mSlider;
+
+    [SerializeField][Range(-80f,10f)]
+    private float sfxVolume;
+
+    [SerializeField][Range(-80f,10f)]
+    private float backGroundVolume;
+
     private void Start()
     {
 
@@ -28,6 +43,14 @@ public class MainMenu : MonoBehaviour
         settingsWindow.SetActive(false);
         creditsWindow.SetActive(false);
 
+        sfxVCA = RuntimeManager.GetVCA("vca:/SFX");
+        bGVCA = RuntimeManager.GetVCA("vca:/MUSICA");
+        soundScapeVCA = RuntimeManager.GetVCA("vca:/SOUNDSCAPE");
+
+        sfxSlider.onValueChanged.AddListener(delegate { sfxVCA.setVolume(DecibelToLinear(sfxSlider.value)); });
+        mSlider.onValueChanged.AddListener(delegate { bGVCA.setVolume(DecibelToLinear(mSlider.value)); });
+        mSlider.onValueChanged.AddListener(delegate { soundScapeVCA.setVolume(DecibelToLinear(mSlider.value)); });
+    
     }
 
 
@@ -38,12 +61,34 @@ public class MainMenu : MonoBehaviour
             if (Input.anyKeyDown) ChangeStage(1);
         }
 
+      
+
+
     }
+
+    float DecibelToLinear (float db) {return Mathf.Pow(10.0f, db / 20f);}
+
+
+    public void ChangeSfxVolume() 
+    {
+        sfxVCA.setVolume(DecibelToLinear(sfxSlider.value));
+    
+    }
+    public void ChangeMVolume() 
+    {
+        bGVCA.setVolume(DecibelToLinear(mSlider.value));
+        soundScapeVCA.setVolume(DecibelToLinear(mSlider.value));
+    
+    
+    } 
+
+
+
 
     void GoToGame() {SceneManager.LoadScene("Tutorial");}
 
 
-    void ChangeStage(int x) 
+    public void ChangeStage(int x) 
     {
         if(stage == 0) pressAnyKey.gameObject.SetActive(false);
         stage += x;
@@ -63,7 +108,7 @@ public class MainMenu : MonoBehaviour
 
 
         }
-        else if (stage == 2)
+        else if (stage == 3)
         {
             creditsWindow.SetActive(true);
             OpenButtons(false);
