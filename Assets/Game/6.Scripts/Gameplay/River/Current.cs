@@ -7,6 +7,7 @@ using UnityEngine.TextCore.Text;
 public class Current : MonoBehaviour
 {
     [SerializeField] private float currentSpeed;
+    [SerializeField] private Renderer strip;
 
     private void OnTriggerStay(Collider other)
     {
@@ -22,6 +23,6 @@ public class Current : MonoBehaviour
 
     private void Update()
     {
-        GetComponent<Renderer>().material.SetVector("_UV_Time_Multiplier", transform.up * currentSpeed);
+        strip.material.SetVector("_UV_Time_Multiplier", transform.up * currentSpeed);
     }
 }

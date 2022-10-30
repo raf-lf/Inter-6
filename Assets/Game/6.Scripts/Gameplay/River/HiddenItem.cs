@@ -18,6 +18,7 @@ public class HiddenItem : LanternTarget
         pfxBubbles.Stop();
         itemToGive.quantity += itemQuantity;
         StartCoroutine(GameManager.Hud.GetItemSequence(itemToGive, itemQuantity));
+        GameManager.CanvasManager.DisplayItemMessage(itemToGive, itemQuantity);
     }
 
     protected override void Update()

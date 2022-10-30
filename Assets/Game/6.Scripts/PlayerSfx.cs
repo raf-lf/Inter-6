@@ -19,7 +19,7 @@ public class PlayerSfx : MonoBehaviour
 
         engineEvent = RuntimeManager.CreateInstance(engineEventPath);
         collisionEvent = RuntimeManager.CreateInstance(collisionEventPath);
-        //lanternEvent = RuntimeManager.CreateInstance(lanternEventPath);
+        lanternEvent = RuntimeManager.CreateInstance(lanternEventPath);
 
         engineEvent.start();
         engineEvent.setParameterByName("rpm", 0.4f );

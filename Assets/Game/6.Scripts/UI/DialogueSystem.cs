@@ -37,6 +37,7 @@ public class DialogueSystem : MonoBehaviour
     public void CinematicMode(bool active)
     {
         float endValue = active ? 1 : 0;
+        GameManager.CanvasManager.ShowHud(!active);
 
         canvasGroupBlinds.DOFade(endValue, .5f).SetUpdate(true);
 
