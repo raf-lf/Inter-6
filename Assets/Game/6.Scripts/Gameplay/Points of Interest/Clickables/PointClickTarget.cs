@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using Cinemachine;
 
@@ -12,7 +7,7 @@ public class PointClickTarget : MonoBehaviour
     [SerializeField] private bool mouseOver;
     [SerializeField] private ParticleSystem vfxMouseOver;
     [SerializeField] private ParticleSystem vfxMouseClick;
-    [SerializeField] private ParticleSystem.EmissionModule mouseOverEm;
+    private ParticleSystem.EmissionModule mouseOverEm;
     [SerializeField] private Renderer renderer;
 
     [SerializeField] public CinemachineVirtualCameraBase focusCamera;
@@ -26,6 +21,8 @@ public class PointClickTarget : MonoBehaviour
 
     private void Update()
     {
+        mouseOverEm.enabled = mouseOver;
+        
         if (mouseOver && GameManager.PlayerControl && Input.GetMouseButtonDown(0))
             Click();
     }
@@ -64,7 +61,9 @@ public class PointClickTarget : MonoBehaviour
         mouseOver = active;
         
         float value = active ? .5f : 0f;
-        renderer.material.SetFloat("_BlinkIntensity", value);
+        
+        if(renderer)
+            renderer.material.SetFloat("_BlinkIntensity", value);
     }
     
 }

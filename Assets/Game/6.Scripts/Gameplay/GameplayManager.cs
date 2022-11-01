@@ -23,7 +23,7 @@ public class GameplayManager : MonoBehaviour
 
     private void SetPlayerStartPosition()
     {
-        foreach (var item in FindObjectsOfType<Island>())
+        foreach (var item in FindObjectsOfType<Interactable_Island>())
         {
             if (item.islandConnected == currentIsland)
             {

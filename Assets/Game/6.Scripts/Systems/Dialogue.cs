@@ -16,6 +16,6 @@ public class DialogueLine
     public ActorData actor;
     public ActorEmotion emotion;
     public PortraitPosition portraitPosition;
-    [TextArea(2, 10)]
+    [TextArea(3, 10)]
     public string line;
 }

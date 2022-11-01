@@ -77,8 +77,7 @@ public class CanvasManager : MonoBehaviour
             logText.text = item.itemName + " encontrado";
         else
             logText.text = item.itemName + " x" + quantity + " encontrados";
-        
-        contentSizeFitterUpdate.verticalFit = ContentSizeFitter.FitMode.MinSize;
+
         
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));

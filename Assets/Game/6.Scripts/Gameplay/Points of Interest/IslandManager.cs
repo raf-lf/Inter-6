@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class IslandManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class IslandManager : MonoBehaviour
     [SerializeField] private SceneTransition transition;
     public CanvasIslandManager canvasIslandManager;
     public static IslandManager CurrentIslandManager;
+
 
     private void Awake()
     {
@@ -30,7 +32,8 @@ public class IslandManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(PlayerEntryExit(pointEntry, false));
     }
-
+    
+    
     public void LeaveIsland()
     {
         StopAllCoroutines();

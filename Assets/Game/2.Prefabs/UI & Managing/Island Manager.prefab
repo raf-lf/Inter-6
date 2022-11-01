@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 4105139824340520758}
   - component: {fileID: 2303732453912188936}
   - component: {fileID: 8605618330308568162}
+  - component: {fileID: 5168723302487450056}
   m_Layer: 5
   m_Name: Canvas Island
   m_TagString: Untagged
@@ -217,6 +218,7 @@ MonoBehaviour:
   buttonAuxiliaryRest: {fileID: 3470895197314295743}
   clickableAnchor: {fileID: 0}
   clickableRestPoint: {fileID: 0}
+  canvasGroup: {fileID: 5168723302487450056}
 --- !u!223 &4105139824340520758
 Canvas:
   m_ObjectHideFlags: 0
@@ -278,6 +280,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &5168723302487450056
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557259434521244943}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &681626711228349359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,7 +2474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5078483394654639169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.299799, y: 7.060799, z: 38.666927}
+  m_LocalPosition: {x: 12.9296, y: 11, z: 50.78385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2488,8 +2502,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 5006152073128856756}
+  m_Follow: {fileID: 5006152073128856756}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 40
@@ -2598,7 +2612,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5078483394664759994}
-  m_LocalRotation: {x: 0.039896164, y: 0.9584632, z: -0.22626245, w: 0.16900286}
+  m_LocalRotation: {x: 0.021216903, y: 0.9774292, z: -0.12032704, w: 0.17234713}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2742,7 +2756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 5, z: -10}
+  m_FollowOffset: {x: 0, y: 5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2834,7 +2848,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5078483395111291188}
-  m_LocalRotation: {x: 0.03681548, y: 0.9624202, z: -0.20879106, w: 0.16970056}
+  m_LocalRotation: {x: 0.018078482, y: 0.9794561, z: -0.102528185, w: 0.17270449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2922,6 +2936,7 @@ Transform:
   - {fileID: 5078483394995569809}
   - {fileID: 5078483395967355528}
   - {fileID: 5078483394654639171}
+  - {fileID: 5006152073128856756}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3045,7 +3060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 5, z: -10}
+  m_FollowOffset: {x: 0, y: 5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3137,7 +3152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5078483396290247988}
-  m_LocalRotation: {x: 0.033730816, y: 0.9660496, z: -0.191297, w: 0.17034055}
+  m_LocalRotation: {x: 0.014942394, y: 0.981155, z: -0.084742546, w: 0.17300406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3250,7 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 5, z: -10}
+  m_FollowOffset: {x: 0, y: 5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4158,6 +4173,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &7248382101790390942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5006152073128856756}
+  m_Layer: 0
+  m_Name: Island Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5006152073128856756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248382101790390942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.77, y: 6, z: 31.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5078483395758354666}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7325727939531167986
 GameObject:
   m_ObjectHideFlags: 0

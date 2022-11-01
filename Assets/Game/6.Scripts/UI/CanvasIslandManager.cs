@@ -18,6 +18,8 @@ public class CanvasIslandManager : MonoBehaviour
 
     [HideInInspector] public ClickableOpenModal clickableAnchor;
     [HideInInspector] public ClickableOpenModal clickableRestPoint;
+    
+    [SerializeField] private CanvasGroup canvasGroup;
 
     private void Start()
     {
@@ -27,6 +29,11 @@ public class CanvasIslandManager : MonoBehaviour
 
     }
 
+    public void ShowHud(bool active)
+    {
+        canvasGroup.DOFade(active ? 1 : 0, .33f);
+    }
+    
     public void UpdateAuxiliaryButtons()
     {
 
