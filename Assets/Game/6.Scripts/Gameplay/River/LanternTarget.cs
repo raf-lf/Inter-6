@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using FMOD.Studio;
+using FMODUnity;
 
 public enum LanternTargetType
 {
@@ -72,9 +74,12 @@ public class LanternTarget : MonoBehaviour
                 break;
 
             case LanternTargetType.hiddenItem:
+                RuntimeManager.PlayOneShot("event:/SFX/PERSONAGEM/item_pickup");
                 break;
 
         }
+
+        RuntimeManager.PlayOneShot("event:/SFX/MOB/burst");
 
     }
 
