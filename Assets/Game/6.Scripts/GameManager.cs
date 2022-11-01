@@ -18,5 +18,6 @@ public static class GameManager
     public static Hud Hud;
     public static TaskManager TaskManager;
     public static GameplayManager GameplayManager;
+    public static GameObject soundTrackManager;
 
 }
