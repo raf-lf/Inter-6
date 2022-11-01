@@ -124,7 +124,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9139487917212677907}
-  - component: {fileID: 9139487917212677910}
   - component: {fileID: 9139487917212677909}
   - component: {fileID: 9139487917212677908}
   m_Layer: 0
@@ -150,20 +149,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &9139487917212677910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9139487917212677906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be963bfa61c9e954386a4773bcbee569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fogType: 0
-  fovModifier: 0.5
 --- !u!198 &9139487917212677909
 ParticleSystem:
   m_ObjectHideFlags: 0

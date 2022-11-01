@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogType: 0
   fovModifier: 0.75
+  fogParticles: {fileID: 1216143815491450329}
+  collider: {fileID: 1216143815473045889}
 --- !u!135 &1216143815473045889
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -109,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogType: 0
   fovModifier: 0.5
+  fogParticles: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!198 &1216143815491450329
 ParticleSystem:
   m_ObjectHideFlags: 0
