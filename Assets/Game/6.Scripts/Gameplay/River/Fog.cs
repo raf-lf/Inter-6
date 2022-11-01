@@ -8,6 +8,10 @@ public class Fog : MonoBehaviour
     private enum FogType { obscuring, ethereal}
     [SerializeField] private FogType fogType;
     [SerializeField] private float fovModifier;
+
+    [SerializeField] private ParticleSystem fogParticles;
+    [SerializeField] private Collider collider;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -25,6 +29,16 @@ public class Fog : MonoBehaviour
         CheckFog();
     }
 
+    public void ClearFog(bool suddenClear)
+    {
+        if(suddenClear)
+            gameObject.SetActive(false);
+        else
+        {
+            collider.enabled = false;
+            fogParticles.Stop();
+        }
+    }
     private void CheckFog()
     {
         if(GameManager.PlayerInstance.onFogModifier > 0)

@@ -9037,6 +9037,7 @@ GameObject:
   - component: {fileID: 602237488}
   - component: {fileID: 602237491}
   - component: {fileID: 602237490}
+  - component: {fileID: 602237492}
   m_Layer: 0
   m_Name: Briefing
   m_TagString: Untagged
@@ -9089,7 +9090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6c8778cc646234b9024de978fe24ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerType: 1
+  triggerType: 0
   delay: 0
   repeats: 0
   cinematicToPlayFlagCleared: {fileID: 602237491}
@@ -9109,6 +9110,19 @@ MonoBehaviour:
   CinematicMode: 1
   eventList: []
   currentEventIndex: 0
+--- !u!65 &602237492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602237487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 5, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &608994144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2479831893280833805, guid: d61c6660fb8954741b453010026b00fc,
@@ -29648,6 +29662,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogType: 0
   fovModifier: 0.5
+  fogParticles: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!198 &3358076182867591055
 ParticleSystem:
   m_ObjectHideFlags: 0
