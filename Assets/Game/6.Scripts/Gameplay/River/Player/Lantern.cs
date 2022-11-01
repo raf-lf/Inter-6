@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,9 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float AoeSizeIncrement;
     [SerializeField] private List<LanternTarget> targetsAffected = new List<LanternTarget>();
 
-    //FMOD.Studio.EventInstance lanterLightSfx;
 
-    private void Start()
-    {
-       /// lanterLightSfx = GameManager.PlayerInstance.playerSfx.lanternEvent;
-    }
+
+    bool sfxON;
 
     private void UseLantern(bool active)
     {
@@ -32,14 +30,19 @@ public class Lantern : MonoBehaviour
             GameManager.CameraManager.SwitchCamera(CameraType.Lantern);
             lanternAnimator.SetBool("focus", true);
             CheckLanternArea();
-          //  lanterLightSfx.start();
+            if (sfxON == false)
+            {
+                RuntimeManager.PlayOneShot(PlayerSfx.lanternEventPath, transform.position);
+                sfxON = true;
+            }
         }
         else
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, transform.parent.rotation, lerpTransitionSpeed);
             GameManager.CameraManager.SwitchCamera(CameraType.Ship);
             lanternAnimator.SetBool("focus", false);
-         //   lanterLightSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+            sfxON = false;
 
         }
     }
@@ -56,7 +59,7 @@ public class Lantern : MonoBehaviour
             {
                 if (item.collider.gameObject.GetComponentInChildren<LanternTarget>())
                 {
-                  //  lanterLightSfx.setParameterByName("alma", 1);
+                 
                     LanternTarget target = item.collider.gameObject.GetComponentInChildren<LanternTarget>();
                     if(!targetsAffected.Contains(target))
                         targetsAffected.Add(target);
@@ -70,10 +73,7 @@ public class Lantern : MonoBehaviour
             item.LanternGain(lanternPower);
         }
         
-        if(targetsAffected.Count == 0) 
-        {
-          //  lanterLightSfx.setParameterByName("alma", 0);
-        }
+      
     
     
     }

@@ -9,10 +9,15 @@ public class PlayerVfx : MonoBehaviour
     [SerializeField] private ParticleSystem vfxDamageHigh;
 
     FMOD.Studio.EventInstance collisionSFX;
-         
+
+
+
+
     private void Start()
     {
-        collisionSFX = GameManager.PlayerInstance.playerSfx.collisionEvent;
+        collisionSFX = PlayerSfx.collisionEvent; 
+
+
     }
 
     public void VfxDamageLow()
