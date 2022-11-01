@@ -13,4 +13,9 @@ public class Spirit : ScriptableObject
     public Dialogue dialogue;
 
 
+    public void FindSpirit()
+    {
+        found = true;
+        GameManager.CanvasManager.DisplaySpiritMessage(this);
+    }
 }

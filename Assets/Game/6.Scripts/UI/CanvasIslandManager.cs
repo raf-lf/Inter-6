@@ -31,7 +31,9 @@ public class CanvasIslandManager : MonoBehaviour
 
     public void ShowHud(bool active)
     {
-        canvasGroup.DOFade(active ? 1 : 0, .33f);
+        canvasGroup.DOFade(active ? 1 : 0, .33f).SetUpdate(true);
+        canvasGroup.interactable = active;
+        canvasGroup.blocksRaycasts = active;
     }
     
     public void UpdateAuxiliaryButtons()

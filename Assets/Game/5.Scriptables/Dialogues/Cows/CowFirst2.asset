@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
+  m_Name: CowFirst2
+  m_EditorClassIdentifier: 
+  lines:
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 0
+    portraitPosition: 1
+    line: Sabe, barqueiro? Sem minhas vaquinhas eu nunca teria sobrevivido.
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 0
+    portraitPosition: 1
+    line: "Elas s\xE3o meu ganha p\xE3o desde que minha fam\xEDlia morreu, entende?"
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: "Lembro at\xE9 hoje da minha m\xE3e ensinando a ordenhar... Boas mem\xF3rias!"
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Elas s\xE3o realmente importantes pra voc\xEA, n\xE3o \xE9, vaqueira?"
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: Claro! A Solange Maria aqui sempre esteve disposta para me ajudar na fazenda!
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: CONTINUA DEPOIS

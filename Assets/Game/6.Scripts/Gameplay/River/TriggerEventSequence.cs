@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TriggerType {OnEntry, OnStart}
+
 public class TriggerEventSequence : MonoBehaviour
 {
+    [SerializeField] private TriggerType triggerType = TriggerType.OnEntry;
+    [SerializeField] private float delay;
     [SerializeField] bool repeats;
     //THIS NEEDS TO BE A FLAG OR SOMETHING
     private bool disablePlaying;
@@ -16,27 +21,45 @@ public class TriggerEventSequence : MonoBehaviour
         flagLock = GetComponent<FlagLock>();
     }
 
+    private void Start()
+    {
+        if (triggerType != TriggerType.OnStart)
+            return;
+
+        AttemptPlayCinematic();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !disablePlaying)
-        {
-            if(!repeats)
-                disablePlaying = true;
-            AttemptPlayCinematic();
-        }
+        if (triggerType != TriggerType.OnEntry || !other.gameObject.CompareTag("Player"))
+            return;
+        
+        AttemptPlayCinematic();
     }
 
     public void AttemptPlayCinematic()
     {
+        if (disablePlaying)
+            return;
+        
+        if(!repeats)
+            disablePlaying = true;
+        
         if(flagLock != null)
         {
-            if(flagLock.FlagsCleared())
-                PlayCinematic(true);
+            if (flagLock.FlagsCleared())
+                StartCoroutine(DelayEvent(true));
             else
-                PlayCinematic(false);
+                StartCoroutine(DelayEvent(false));
         }
         else
-            PlayCinematic(true);
+            StartCoroutine(DelayEvent(true));
+    }
+
+    private IEnumerator DelayEvent(bool flagCleared)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayCinematic(flagCleared);
     }
 
     public void PlayCinematic(bool flagCleared)

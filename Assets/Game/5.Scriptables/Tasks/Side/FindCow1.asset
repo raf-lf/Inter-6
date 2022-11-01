@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2392653594fb34fb77d4188f0acc27, type: 3}
-  m_Name: Zombies Escape
+  m_Script: {fileID: 11500000, guid: 1dc36d8fdfad1ef41bffcbb9c28ccbf9, type: 3}
+  m_Name: FindCow1
   m_EditorClassIdentifier: 
-  logType: 2
-  logText: "Penados voltam ao reposo quando voc\xEA se afasta da \xE1rea onde os
-    encontrou."
+  taskState: 0
+  taskType: 1
+  taskDescription: "Encontrar a 1\xAA vaca."
+  taskIcon: {fileID: 21300000, guid: 63c7ffcde5db49247bf0d0dce1c8c259, type: 3}
+  flagsOnCompletion: []

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 
 public enum OverlayAnimation
@@ -27,7 +28,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI logTitle;
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private LogStyles logStyles;
-    [SerializeField] private ContentSizeFitter contentSizeFitterUpdate;
+    [SerializeField] private Log spiritTutorialLog;
 
     private void Awake()
     {
@@ -38,6 +39,9 @@ public class CanvasManager : MonoBehaviour
     public void ShowHud(bool active)
     {
         hudCanvasGroup.DOFade(active ? 1 : 0, .33f);
+        
+        if(FindObjectOfType<IslandManager>())
+            IslandManager.CurrentIslandManager.canvasIslandManager.ShowHud(!active);
     }
 
     public void AnimateOverlay(OverlayAnimation animation, float speed)
@@ -81,6 +85,22 @@ public class CanvasManager : MonoBehaviour
         
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));
+
+        if (!spiritTutorialLog.alreadyShown)
+            StartCoroutine(SpiritTutorialSequence());
+
+    }
+    
+    public void DisplaySpiritMessage(Spirit spirit)
+    {
+        logTitle.color = logStyles.ReturnLogInfo(LogTypes.Spirit).logColor;
+        logTitle.text = logStyles.ReturnLogInfo(LogTypes.Spirit).type.ToString();
+        
+        logText.text = "Espírito resgatado: " + spirit.spiritName;
+
+        
+        StopCoroutine(ShowLogSequence(2));
+        StartCoroutine(ShowLogSequence(2));
     }
 
     public IEnumerator ShowLogSequence(float duration)
@@ -90,5 +110,12 @@ public class CanvasManager : MonoBehaviour
         logGroup.DOFade(1, .5f);
         yield return new WaitForSeconds(duration);
         logGroup.DOFade(0, .5f);
+    }
+
+    private IEnumerator SpiritTutorialSequence()
+    {
+        yield return new WaitForSeconds(3);
+        spiritTutorialLog.PlayLog();
+
     }
 }

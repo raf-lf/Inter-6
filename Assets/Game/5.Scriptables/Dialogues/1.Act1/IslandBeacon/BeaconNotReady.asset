@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
+  m_Name: BeaconNotReady
+  m_EditorClassIdentifier: 
+  lines:
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 2
+    portraitPosition: 1
+    line: "N\xE3o tem madeira o suficiente pra acender essa fogueira."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 2
+    portraitPosition: 0
+    line: "N\xE3o tem outra maneira de limpar essa n\xE9voa. \xC9 melhor irmos encontrar
+      mais."

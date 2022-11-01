@@ -6,6 +6,7 @@ using UnityEngine;
 public enum LogTypes
 {
     Item,
+    Spirit,
     Info,
     Tutorial,
     Hint
@@ -22,13 +23,15 @@ public class LogStyles : ScriptableObject
         {
             case LogTypes.Item:
                 return logTypes[0];
-            case LogTypes.Info:
+            case LogTypes.Spirit:
                 return logTypes[1];
-            case LogTypes.Tutorial:
+            case LogTypes.Info:
                 return logTypes[2];
+            case LogTypes.Tutorial:
+                return logTypes[3];
             default:
             case LogTypes.Hint:
-                return logTypes[3];
+                return logTypes[4];
 ;        }
     }
 }

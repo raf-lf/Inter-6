@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class Inventory : MonoBehaviour
     [SerializeField] private SpiritUi spiritUi;
     [SerializeField] private bool inventoryOpen;
     [SerializeField] private CanvasGroup canvasGroup;
+
+    private CanvasIslandManager canvasIslandManager;
+
+    private void Awake()
+    {
+        canvasIslandManager = FindObjectOfType<CanvasIslandManager>();
+    }
 
     public void UpdateInventory()
     {
@@ -39,6 +47,9 @@ public class Inventory : MonoBehaviour
     }
     public void InventoryOpenClose(bool open)
     {
+        if(canvasIslandManager)
+            canvasIslandManager.ShowHud(!open);
+        
         Time.timeScale = open ? 0 : 1;
 
         inventoryOpen = open;

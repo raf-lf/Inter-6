@@ -39,9 +39,6 @@ public class DialogueSystem : MonoBehaviour
         float endValue = active ? 1 : 0;
         GameManager.CanvasManager.ShowHud(!active);
         
-        if(FindObjectOfType<IslandManager>())
-            IslandManager.CurrentIslandManager.canvasIslandManager.ShowHud(!active);
-
         canvasGroupBlinds.DOFade(endValue, .5f).SetUpdate(true);
 
     }
