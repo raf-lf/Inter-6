@@ -2,6 +2,7 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Lantern : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float lerpTransitionSpeed;
     [SerializeField] private Animator lanternAnimator;
     [HideInInspector] public bool usingLantern;
+    [SerializeField] private Renderer boatRenderer;
 
     [Header("AoE")]
     [SerializeField] private int AoeRepetitions;
@@ -45,6 +47,8 @@ public class Lantern : MonoBehaviour
             sfxON = false;
 
         }
+
+        boatRenderer.material.DOFloat(active ? 1.5f : 0, "_MaskRadius",.5f);
     }
 
     private void CheckLanternArea()

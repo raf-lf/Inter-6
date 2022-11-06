@@ -91,7 +91,7 @@ MonoBehaviour:
     Data3: 10987701
     Data4: -548689321
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
     Data3: -1650327159
     Data4: 105084388
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -126,26 +126,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-4143808827779230119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Users/RFARINHA/Desktop/Coisas do Inter/Brumadinho FMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638026920112890478
-  FileSizes:
-  - Name: Desktop
-    Value: 1896
-  Exists: 1
 --- !u!114 &-3476182228028533121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +145,7 @@ MonoBehaviour:
     Data3: -1061684808
     Data4: -724427497
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -192,7 +172,7 @@ MonoBehaviour:
     Data3: -1588724085
     Data4: 408095816
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -220,7 +200,7 @@ MonoBehaviour:
     Data3: 1313130660
     Data4: -2007957469
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -229,6 +209,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 109714
+--- !u!114 &-2435014281778710174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: "../../Users/raffa/OneDrive/Cael/UAM/6\xBA Semestre/INTER 6/FMOD Inter 6/New
+    folder/Brumadinho FMOD/Build/Desktop/Master.strings.bank"
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638019789460000000
+  FileSizes:
+  - Name: Desktop
+    Value: 1896
+  Exists: 1
 --- !u!114 &-1958464212064930920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +249,7 @@ MonoBehaviour:
     Data3: -423375210
     Data4: 132730182
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -299,7 +300,7 @@ MonoBehaviour:
     Data3: 1891519621
     Data4: 2013971034
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -321,8 +322,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -4143808827779230119}
-  - {fileID: 847320769500513702}
+  - {fileID: -2435014281778710174}
+  - {fileID: 1091324601505974810}
   EditorEvents:
   - {fileID: 6422845262981487398}
   - {fileID: -1958464212064930920}
@@ -338,31 +339,11 @@ MonoBehaviour:
   - {fileID: -566210754352315964}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   StringsBanks:
-  - {fileID: -4143808827779230119}
-  cacheTime: 638026920112890478
+  - {fileID: -2435014281778710174}
+  cacheTime: 638019789460000000
   cacheVersion: 131593
---- !u!114 &847320769500513702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Users/RFARINHA/Desktop/Coisas do Inter/Brumadinho FMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638026920112772721
-  FileSizes:
-  - Name: Desktop
-    Value: 6369536
-  Exists: 1
 --- !u!114 &909339873075320530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +367,27 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 0
   Labels: []
+  Exists: 1
+--- !u!114 &1091324601505974810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: "../../Users/raffa/OneDrive/Cael/UAM/6\xBA Semestre/INTER 6/FMOD Inter 6/New
+    folder/Brumadinho FMOD/Build/Desktop/Master.bank"
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638019789460000000
+  FileSizes:
+  - Name: Desktop
+    Value: 6369536
   Exists: 1
 --- !u!114 &3113768134508105389
 MonoBehaviour:
@@ -430,7 +432,7 @@ MonoBehaviour:
     Data3: -1384284233
     Data4: 909285379
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -458,7 +460,7 @@ MonoBehaviour:
     Data3: -601994623
     Data4: -1485996402
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -485,7 +487,7 @@ MonoBehaviour:
     Data3: 2024183198
     Data4: -1525107567
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -512,7 +514,7 @@ MonoBehaviour:
     Data3: 1206045824
     Data4: 1760848669
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -540,7 +542,7 @@ MonoBehaviour:
     Data3: -666429273
     Data4: 1711454569
   Banks:
-  - {fileID: 847320769500513702}
+  - {fileID: 1091324601505974810}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
