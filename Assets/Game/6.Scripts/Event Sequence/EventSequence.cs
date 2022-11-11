@@ -7,6 +7,8 @@ public class EventSequence : MonoBehaviour
     [SerializeField] private bool CinematicMode;
     [SerializeField] private List<ES_EventBase> eventList = new List<ES_EventBase>();
     [SerializeField] private int currentEventIndex;
+    [SerializeField] private bool repeats;
+
     private void Awake()
     {
         if(eventList.Count <= 0)
@@ -14,6 +16,15 @@ public class EventSequence : MonoBehaviour
     }
     public void StartCinematic()
     {
+        if (!repeats)
+        {
+            if (SaveSystem.Load(SaveableDataType.eventSequence, gameObject.name))
+                return;
+            else
+                SaveSystem.Save(SaveableDataType.eventSequence, gameObject.name, true);
+
+        }
+
         if (CinematicMode)
         {
             GameManager.DialogueSystem.CinematicMode(true);

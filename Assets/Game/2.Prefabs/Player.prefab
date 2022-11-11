@@ -43980,6 +43980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boatAnimator: {fileID: 4603877228805478935}
+  ferrymanAnimator: {fileID: 5244000281631929898}
   vfxDamageLow: {fileID: 5624520491882691661}
   vfxDamageHigh: {fileID: 8965958899065955567}
 --- !u!95 &4603877228805478935
@@ -84730,3 +84731,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ee2957c0c038a4290e1d085727ad5f, type: 3}
+--- !u!95 &5244000281631929898 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 768299518650795530, guid: 28ee2957c0c038a4290e1d085727ad5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4787293622941839392}
+  m_PrefabAsset: {fileID: 0}
