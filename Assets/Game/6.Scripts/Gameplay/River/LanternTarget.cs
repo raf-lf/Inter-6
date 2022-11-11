@@ -95,4 +95,8 @@ public class LanternTarget : MonoBehaviour
         UpdateBurnProgressVfx();
     }
 
+    public void ResetProgress()
+    {
+        lanternProgress = 0;
+    }
 }
