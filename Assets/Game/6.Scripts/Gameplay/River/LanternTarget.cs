@@ -17,7 +17,7 @@ public class LanternTarget : MonoBehaviour
     public float lanternProgress;
     public float targetThreshold;
     [SerializeField] protected float lanternRecovery;
-    [SerializeField] protected bool lanternImmune;
+    public bool lanternImmune;
     [SerializeField] private float lanternBuffer;
     [SerializeField] protected ParticleSystem vfxBurn;
     [SerializeField] protected ParticleSystem vfxDeath;
@@ -70,7 +70,7 @@ public class LanternTarget : MonoBehaviour
                 break;
             case LanternTargetType.spiritLock:
                 vfxDeath.Play();
-                GetComponent<SpiritLock>().OpenLock();
+                GetComponent<SpiritLock>().OpenLock(false);
                 break;
 
             case LanternTargetType.hiddenItem:

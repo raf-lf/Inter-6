@@ -28999,6 +28999,7 @@ GameObject:
   - component: {fileID: 7731918252100482203}
   - component: {fileID: 7731918252100482199}
   - component: {fileID: 7731918252100482202}
+  - component: {fileID: 5683447846985530336}
   - component: {fileID: 7731918252100482198}
   - component: {fileID: 7731918252100482196}
   m_Layer: 0
@@ -29062,6 +29063,19 @@ MonoBehaviour:
   vfxBurn: {fileID: 7731918251862048525}
   vfxDeath: {fileID: 7731918251052800934}
   renderer: {fileID: 0}
+--- !u!114 &5683447846985530336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731918252100482197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b3c8bb79ee44d4cbeacb145a8fdf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataType: 3
 --- !u!135 &7731918252100482198
 SphereCollider:
   m_ObjectHideFlags: 0

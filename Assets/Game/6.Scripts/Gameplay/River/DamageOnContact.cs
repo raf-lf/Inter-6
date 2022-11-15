@@ -14,7 +14,7 @@ public class DamageOnContact : MonoBehaviour
             id = Random.Range(0, 1000);
     }
 
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if(other.gameObject.GetComponentInChildren<PlayerAtributes>())
         {
