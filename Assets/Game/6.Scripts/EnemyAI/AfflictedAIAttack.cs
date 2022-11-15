@@ -7,7 +7,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 {
     private Enemy entity;
 
-    private Coroutine coroutine;
+    private Coroutine chargeAttackCoroutine;
 
     [SerializeField] private float chargeTimer;
     [SerializeField] private float attackTimer;
@@ -35,7 +35,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
         if (state == classState)
         {
             if (entity.canAttack && !entity.isAttacking)
-                coroutine = StartCoroutine(ChargeAttackTimer());
+                chargeAttackCoroutine = StartCoroutine(ChargeAttackTimer());
         }
         else
         {
@@ -47,7 +47,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
             if (entity.canAttack)
             {
-                StopCoroutine(coroutine);
+                StopCoroutine(chargeAttackCoroutine);
                 RestoreToDefault();
             }
             if (state == BehaviourState.Chase)
@@ -74,7 +74,6 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
     IEnumerator PrepareAttackTimer(int chooseTimeToAttack)
     {
-        Debug.Log("Preparing to Attack");
         entity.isAttacking = false;
         entity.canAttack = false;
         isPreparingAttack = true;
@@ -92,13 +91,11 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
     void SetAttackAnimation()
     {
-
-        //lanternTarget.ResetProgress();
+        entity.SetAnimationBool("isAttacking", entity.isAttacking);
     }    
     
     void SetChargingAnimation()
     {
-
-        //lanternTarget.ResetProgress();
+        entity.SetAnimationBool("canAttack", entity.canAttack);
     }
 }

@@ -39,7 +39,6 @@ public class Enemy : BehaviourManager
     {
         stateManager = gameObject.GetComponent<StateManager>();
         enemy = gameObject.GetComponent<IEnemy>();
-        animator = gameObject.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -99,12 +98,17 @@ public class Enemy : BehaviourManager
 
     public void SetAnimationBool(string state, bool condition)
     {
-        //animator.SetBool(state, condition);
+        animator.SetBool(state, condition);
+    }    
+    
+    public void PlayAnimation(string state)
+    {
+        animator.Play(state);
     }
 
     public void SetAnimationTrigger(string state)
     {
-        //animator.SetTrigger(state);
+        animator.SetTrigger(state);
     }
 }
 [System.Serializable]

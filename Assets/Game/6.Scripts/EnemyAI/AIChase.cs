@@ -36,7 +36,16 @@ public class AIChase : MonoBehaviour, IEnemy
         else
         {
             if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection)
+            {
                 entity.ChangeState(status, classState);
+                SetChaseAnimation();
+            }
         }
     }
+
+    void SetChaseAnimation()
+    {
+        entity.SetAnimationBool("isChasing", true);
+    }
+
 }

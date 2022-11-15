@@ -65,7 +65,7 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
             if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection && !entity.canAttack)
             {
                 entity.ChangeState(status, classState);
-                Debug.Log("HI");
+                SetChaseAnimation();
             }
         }
     }
@@ -99,6 +99,11 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
         entity.EnemyHolder.transform.rotation = Quaternion.LookRotation(position - entity.EnemyHolder.transform.position, GameManager.PlayerInstance == null ? Vector3.up : GameManager.PlayerInstance.transform.up);
 
         angle += Time.deltaTime* RotationSpeed * sign;
+    }
+
+    private void SetChaseAnimation()
+    {
+        entity.PlayAnimation("afflicted_chase");
     }
 
     private Vector3 GeneratePositionOffset(float a)
