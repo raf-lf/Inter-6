@@ -19632,6 +19632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8829612779332759878}
   - component: {fileID: 5046735644114256733}
+  - component: {fileID: 6780088134257360202}
   - component: {fileID: 8829612779332759872}
   m_Layer: 0
   m_Name: Hidden Item
@@ -19684,6 +19685,19 @@ MonoBehaviour:
   itemQuantity: 1
   itemMesh: {fileID: 4408014647260612511}
   pfxBubbles: {fileID: 8362510716592142973}
+--- !u!114 &6780088134257360202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829612779332759875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b3c8bb79ee44d4cbeacb145a8fdf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataType: 1
 --- !u!135 &8829612779332759872
 SphereCollider:
   m_ObjectHideFlags: 0

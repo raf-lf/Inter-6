@@ -16,15 +16,31 @@ public class SpiritLock : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void OpenLock()
+    public void OpenLock(bool skipSequence)
     {
         active = false;
         anim.SetBool("active", false);
-        StartCoroutine(connectedGate.OpenLockSequence(lockIndex));
+
+        StartCoroutine(connectedGate.OpenLockSequence(lockIndex, skipSequence));
+
+        if (skipSequence)
+            GetComponent<LanternTarget>().lanternImmune = true;
+
+        else
+        {
+            Saveable saveable = GetComponent<Saveable>();
+            if (saveable != null)
+                saveable.Save(true);
+        }
+
     }
 
     public void ResetLock()
     {
+        Saveable saveable = GetComponent<Saveable>();
+        if (saveable != null)
+            saveable.Save(false);
+
         active = true;
         anim.SetBool("active", true);
     }
