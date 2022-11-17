@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerVfx : MonoBehaviour
 {
     [SerializeField] public Animator boatAnimator;
+    [SerializeField] public Animator ferrymanAnimator;
     [SerializeField] private ParticleSystem vfxDamageLow;
     [SerializeField] private ParticleSystem vfxDamageHigh;
 
@@ -20,8 +21,15 @@ public class PlayerVfx : MonoBehaviour
 
     }
 
+    public void AnimateLantern(bool active)
+    {
+
+        ferrymanAnimator.SetBool("lantern", active);
+    }
+
     public void VfxDamageLow()
     {
+        ferrymanAnimator.SetTrigger("damageLow");
         boatAnimator.SetTrigger("damageLow");
         vfxDamageLow.Play();
 
@@ -31,6 +39,7 @@ public class PlayerVfx : MonoBehaviour
 
     public void VfxDamageHigh()
     { 
+        ferrymanAnimator.SetTrigger("damageLow");
         boatAnimator.SetTrigger("damageHigh");
         vfxDamageHigh.Play();
 
