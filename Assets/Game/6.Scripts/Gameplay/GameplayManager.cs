@@ -6,6 +6,7 @@ public class GameplayManager : MonoBehaviour
 {
     public GameData GameDataRef;
     public ScriptableManager ScriptableManagerRef;
+    public GameObject soundTrackManager;
 
     public static string currentIsland;
     private void Awake()
@@ -14,6 +15,7 @@ public class GameplayManager : MonoBehaviour
         GameManager.GameData = GameDataRef;
         GameManager.ScriptableManager = ScriptableManagerRef;
         GameManager.ScriptableManager.PopulateLists();
+        GameManager.soundTrackManager = soundTrackManager;
     }
 
     private void Start()

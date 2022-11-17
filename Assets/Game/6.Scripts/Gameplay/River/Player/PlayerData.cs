@@ -27,6 +27,7 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         GameManager.PlayerInstance = GetComponent<PlayerData>();
+
         atributes = gameObject.GetComponent<PlayerAtributes>();
         movement = gameObject.GetComponent<Movement>();
         playerSfx = gameObject.GetComponent<PlayerSfx>();
