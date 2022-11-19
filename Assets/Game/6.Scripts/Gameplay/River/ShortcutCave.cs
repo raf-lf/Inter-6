@@ -66,7 +66,7 @@ public class ShortcutCave : MonoBehaviour
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
 
         if (!connectedShortcut.shortCutOpen)
-            connectedShortcut.OpenShortcut();
+            connectedShortcut.BreakOpenShortcut();
 
         yield return MovePlayer(connectedShortcut.exitPoint2);
 
@@ -79,10 +79,19 @@ public class ShortcutCave : MonoBehaviour
 
     }
 
+    public void BreakOpenShortcut()
+    {
+        Saveable saveable = GetComponent<Saveable>();
+        if (saveable != null)
+            saveable.Save(true);
+
+        vfxDestruction.Play();
+        OpenShortcut();
+    }
+
     public void OpenShortcut()
     {
         shortCutOpen = true;
         animator.SetBool("open", true);
-        vfxDestruction.Play();
     }
 }

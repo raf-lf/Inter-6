@@ -20,27 +20,36 @@ public class SpiritGate : MonoBehaviour
             connectedLocks[i].connectedGate = this;
         }
     }
-    public IEnumerator OpenLockSequence(int lockIndex)
+    public IEnumerator OpenLockSequence(int lockIndex, bool skipSequence)
     {
-        GameManager.PlayerControl = false;
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
-        yield return new WaitForSeconds(.5f);
-        GameManager.CameraManager.brain.m_DefaultBlend.m_Time = 0;
-        focusCamera.enabled = true;
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
-        yield return new WaitForSeconds(1f);
-        lockParticles[lockIndex].Stop();
-        yield return new WaitForSeconds(.5f);
-        
-        yield return new WaitForSeconds(CheckLocks() <= 0 ? 5 : 2);
+        if (!skipSequence)
+        {
+            GameManager.PlayerControl = false;
+            GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
+            yield return new WaitForSeconds(.5f);
+            GameManager.CameraManager.brain.m_DefaultBlend.m_Time = 0;
+            focusCamera.enabled = true;
+            GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
+            yield return new WaitForSeconds(1f);
+            lockParticles[lockIndex].Stop();
+            yield return new WaitForSeconds(.5f);
 
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
-        yield return new WaitForSeconds(1f);
-        focusCamera.enabled = false;
-        yield return new WaitForEndOfFrame();
-        GameManager.CameraManager.brain.m_DefaultBlend.m_Time = GameManager.CameraManager.standardBlendTime;
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
-        GameManager.PlayerControl = true;
+            yield return new WaitForSeconds(CheckLocks() <= 0 ? 5 : 2);
+
+            GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
+            yield return new WaitForSeconds(1f);
+            focusCamera.enabled = false;
+            yield return new WaitForEndOfFrame();
+            GameManager.CameraManager.brain.m_DefaultBlend.m_Time = GameManager.CameraManager.standardBlendTime;
+            GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, .5f);
+            GameManager.PlayerControl = true;
+        }
+        else
+        {
+            lockParticles[lockIndex].Stop();
+            CheckLocks();
+        }
+
     }
 
     private int CheckLocks()

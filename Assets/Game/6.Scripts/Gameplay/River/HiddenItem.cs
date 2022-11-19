@@ -13,6 +13,10 @@ public class HiddenItem : LanternTarget
 
     public override void LanternEffect()
     {
+        Saveable saveable = GetComponent<Saveable>();
+        if (saveable != null)
+            saveable.Save(true);
+
         base.LanternEffect();
         itemMesh.transform.DOScale(0, .33f).SetEase(Ease.InBounce);
         pfxBubbles.Stop();

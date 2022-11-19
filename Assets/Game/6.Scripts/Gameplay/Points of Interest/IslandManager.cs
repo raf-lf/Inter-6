@@ -54,11 +54,16 @@ public class IslandManager : MonoBehaviour
                 Vector3.MoveTowards(GameManager.PlayerInstance.transform.position, position.position, islandSpeed * Time.deltaTime);
             yield return null;
         }
+        PlayerSfx.engineEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         GameManager.PlayerControl = true;
 
-        if (leaving)
+        if (leaving) 
+        {
             transition.StartSceneTransition();
+            Destroy(GameManager.soundTrackManager);
+        
+        }
         else
         {
             yield return new WaitForEndOfFrame();

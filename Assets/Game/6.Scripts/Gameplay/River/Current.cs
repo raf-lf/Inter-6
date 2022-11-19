@@ -18,11 +18,11 @@ public class Current : MonoBehaviour
 
     private void MoveWithCurrent(CharacterController controller)
     {
-        controller.Move(transform.forward * -currentSpeed * Time.deltaTime);
+        controller.Move(transform.forward * currentSpeed * Time.deltaTime);
     }
 
     private void Update()
     {
-        strip.material.SetVector("_UV_Time_Multiplier", transform.up * currentSpeed);
+        strip.material.SetVector("_UV_Time_Multiplier", transform.forward * new Vector2(0,currentSpeed));
     }
 }
