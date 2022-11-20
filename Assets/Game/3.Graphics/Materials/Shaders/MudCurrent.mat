@@ -43,17 +43,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Noise1: 3
-    - _Noise2: 1
+    - _Noise1: 20
+    - _Noise2: 25
     - _Normal_Intensity: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.243
+    - _Smoothness: 0.525
+    - _Speed: 1
     m_Colors:
     - _ColorBase: {r: 0.6981132, g: 0.37096077, b: 0.10866857, a: 1}
     - _ColorWave: {r: 0.16037735, g: 0.064690694, b: 0.012860449, a: 1}
     - _Remap_Values: {r: 0, g: 0, b: 0, a: 0}
-    - _UV_Time_Multiplier: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _UV_Time_Multiplier: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4843865187567448235
 MonoBehaviour:
