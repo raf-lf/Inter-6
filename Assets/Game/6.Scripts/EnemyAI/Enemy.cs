@@ -20,6 +20,7 @@ public class Enemy : BehaviourManager
 
 
     public float rangeDetection;
+    public float rangeLeash;
 
     [HideInInspector]
     public bool isBanished;
@@ -130,10 +131,23 @@ public class Enemy : BehaviourManager
 
     private void OnDrawGizmosSelected()
     {
-        if(encounterPoint != null) { 
-        Gizmos.color = new Color(1, 0, 0, 0.1f);
-        Gizmos.DrawSphere(encounterPoint.position, rangeDetection);
+
+        if (encounterPoint != null)
+        {
+            Gizmos.color = new Color(1, 0, 0, 0.1f);
+            Gizmos.DrawSphere(encounterPoint.position, rangeDetection);
+            Gizmos.color = new Color(1, 1, 0, 0.1f);
+            Gizmos.DrawSphere(encounterPoint.position, rangeLeash);
         }
+        else
+        {
+            Gizmos.color = new Color(1, 0, 0, 0.1f);
+            Gizmos.DrawSphere(transform.position, rangeDetection);
+            Gizmos.color = new Color(1, 1, 0, 0.1f);
+            Gizmos.DrawSphere(transform.position, rangeLeash);
+
+        }
+
     }
 }
 [System.Serializable]
