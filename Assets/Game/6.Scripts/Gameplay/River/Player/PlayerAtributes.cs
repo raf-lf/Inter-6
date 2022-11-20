@@ -66,6 +66,7 @@ public class PlayerAtributes : MonoBehaviour
     }
     public IEnumerator DeathSequence()
     {
+        Destroy(GameManager.soundTrackManager);
         GameManager.PlayerControl = false;
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 2);
         yield return new WaitForSeconds(2);

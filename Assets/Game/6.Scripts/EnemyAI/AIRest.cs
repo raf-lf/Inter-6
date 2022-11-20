@@ -7,8 +7,9 @@ using UnityEngine;
 public class AIRest : MonoBehaviour, IEnemy
 {
     private Enemy entity;
-    [SerializeField] private float rangeDetection;
-    [SerializeField] private float rangeLeash;
+
+    [SerializeField] ParticleSystem teleportParticle;
+
     [SerializeField] private float banishedTime;
     bool isWaiting;
     [SerializeField] private Vector3 startPosition;
@@ -47,9 +48,10 @@ public class AIRest : MonoBehaviour, IEnemy
             {
                 return;
             }
-            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > rangeLeash)
+            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > entity.rangeLeash)
             {
                 entity.ChangeState(status, classState);
+                teleportParticle.Play();
                 entity.EnemyHolder.transform.position = startPosition;
                 SetRestAnimation();
             }
@@ -60,6 +62,7 @@ public class AIRest : MonoBehaviour, IEnemy
     {
         entity.isBanished = true;
         SetRestAnimation();
+        teleportParticle.Play();
         entity.EnemyHolder.transform.position = startPosition;
         yield return new WaitForSeconds(banishedTime);
         entity.ChangeState(status, classState);
@@ -72,8 +75,18 @@ public class AIRest : MonoBehaviour, IEnemy
         entity.SetAnimationBool("canAttack", false);
         entity.SetAnimationBool("isAttacking", false);
         entity.SetAnimationBool("isTakingDamage", false);
+        entity.SetAnimationBool("isChasing", false);
         entity.PlayAnimation("afflicted_rest");
         lanternTarget.ResetProgress();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        //if(entity.encounterPoint != null && entity != null)
+        //{
+        //    Gizmos.color = new Color(1, 1, 0, 0.1f);
+        //    Gizmos.DrawSphere(entity.encounterPoint.position, rangeLeash);
+        //}
     }
 
 }
