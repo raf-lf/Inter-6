@@ -16,7 +16,7 @@ public class ClickableSpirit : PointClickTarget
     private void Awake()
     {
         if(spirit.found)
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         
     }
     
