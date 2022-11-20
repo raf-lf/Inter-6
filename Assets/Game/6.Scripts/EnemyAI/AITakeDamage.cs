@@ -40,7 +40,6 @@ public class AITakeDamage : MonoBehaviour, IEnemy
             if (lanternTarget.lanternProgress > 0 && !entity.canBanish)
             {
                 entity.ChangeState(status, classState);
-                StartBanishingAnimation();
             }
         }
     }
@@ -50,6 +49,7 @@ public class AITakeDamage : MonoBehaviour, IEnemy
         while (lanternTarget.lanternProgress > 0)
         {
             entity.isTakingDamage = true;
+            StartBanishingAnimation();
             if (lanternTarget.lanternProgress >= lanternTarget.targetThreshold)
             {
                 entity.canBanish = true;
@@ -57,11 +57,19 @@ public class AITakeDamage : MonoBehaviour, IEnemy
             yield return new WaitForSeconds(waitTime);
         }
         entity.isTakingDamage = false;
+        StopBanishingAnimation();
+    }
+
+    void StopBanishingAnimation()
+    {
+        entity.SetAnimationBool("isTakingDamage", false);
     }
 
     void StartBanishingAnimation()
     {
-        entity.SetAnimationBool("banishing", true);
+        entity.SetAnimationBool("isAttacking", false);
+        entity.SetAnimationBool("canAttack", false);
+        entity.SetAnimationBool("isTakingDamage", true);
     }
 
     void ResetDefault()

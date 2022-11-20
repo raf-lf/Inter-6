@@ -7,7 +7,9 @@ using UnityEngine;
 public class AIRest : MonoBehaviour, IEnemy
 {
     private Enemy entity;
-    [SerializeField] private float rangeDetection;
+
+    [SerializeField] ParticleSystem teleportParticle;
+
     [SerializeField] private float rangeLeash;
     [SerializeField] private float banishedTime;
     bool isWaiting;
@@ -47,9 +49,10 @@ public class AIRest : MonoBehaviour, IEnemy
             {
                 return;
             }
-            else if (Vector3.Distance(entity.EnemyHolder.transform.position, entity.encounterPoint.position) > rangeLeash)
+            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > rangeLeash)
             {
                 entity.ChangeState(status, classState);
+                teleportParticle.Play();
                 entity.EnemyHolder.transform.position = startPosition;
                 SetRestAnimation();
             }
@@ -59,8 +62,10 @@ public class AIRest : MonoBehaviour, IEnemy
     IEnumerator BackToRest()
     {
         entity.isBanished = true;
-        yield return new WaitForSeconds(banishedTime);
+        SetRestAnimation();
+        teleportParticle.Play();
         entity.EnemyHolder.transform.position = startPosition;
+        yield return new WaitForSeconds(banishedTime);
         entity.ChangeState(status, classState);
         entity.canBanish = false;
         entity.isBanished = false;
@@ -68,11 +73,21 @@ public class AIRest : MonoBehaviour, IEnemy
 
     void SetRestAnimation()
     {
-        entity.SetAnimationBool("chasing", false);
-        entity.SetAnimationBool("attacking", false);
-        entity.SetAnimationBool("banishing", false);
-        entity.SetAnimationTrigger("resting");
+        entity.SetAnimationBool("canAttack", false);
+        entity.SetAnimationBool("isAttacking", false);
+        entity.SetAnimationBool("isTakingDamage", false);
+        entity.SetAnimationBool("isChasing", false);
+        entity.PlayAnimation("afflicted_rest");
         lanternTarget.ResetProgress();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        //if(entity.encounterPoint != null && entity != null)
+        //{
+        //    Gizmos.color = new Color(1, 1, 0, 0.1f);
+        //    Gizmos.DrawSphere(entity.encounterPoint.position, rangeLeash);
+        //}
     }
 
 }

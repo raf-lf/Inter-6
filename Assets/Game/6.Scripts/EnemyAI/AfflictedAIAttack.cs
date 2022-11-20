@@ -7,13 +7,12 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 {
     private Enemy entity;
 
-    private Coroutine coroutine;
+    private Coroutine chargeAttackCoroutine;
+    private Coroutine prepareAttackCoroutine;
 
     [SerializeField] private float chargeTimer;
     [SerializeField] private float attackTimer;
     [SerializeField] private int[] timeToAttackRange = new int[2];
-
-    [SerializeField] private bool isPreparingAttack;
 
     private ActionStatus status;
     private BehaviourState classState = BehaviourState.Attack;
@@ -35,10 +34,20 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
         if (state == classState)
         {
             if (entity.canAttack && !entity.isAttacking)
-                coroutine = StartCoroutine(ChargeAttackTimer());
+                StartCoroutine(ChargeAttackTimer());
         }
         else
         {
+            if(state == BehaviourState.Rest)
+            {
+                if (entity.isPreparingAttack)
+                    StopCoroutine(PrepareAttackTimer(0));
+                if (entity.canAttack)
+                    StopCoroutine(ChargeAttackTimer());
+                RestoreToDefault();
+
+                return;
+            }
             if (entity.isTakingDamage)
             {
                 RestoreToDefault();
@@ -47,13 +56,16 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
             if (entity.canAttack)
             {
-                StopCoroutine(coroutine);
+                StopCoroutine(chargeAttackCoroutine);
                 RestoreToDefault();
+                return;
             }
             if (state == BehaviourState.Chase)
             {
-                if (!isPreparingAttack)
+                if (!entity.isPreparingAttack)
                 {
+                    ResetAnimation();
+                    RestoreToDefault();
                     int chooseTimeToAttack = Random.RandomRange(timeToAttackRange[0], timeToAttackRange[1]);
                     StartCoroutine(PrepareAttackTimer(chooseTimeToAttack));
                 }
@@ -63,6 +75,8 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
     IEnumerator ChargeAttackTimer()
     {
+        if(entity.GetActualState() != classState)
+            yield break;
         SetChargingAnimation();
         yield return new WaitForSeconds(chargeTimer);
         entity.isAttacking = true;
@@ -70,35 +84,41 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
         yield return new WaitForSeconds(attackTimer);
         entity.isAttacking = false;
         entity.canAttack = false;
+        RestoreToDefault();
     }
 
     IEnumerator PrepareAttackTimer(int chooseTimeToAttack)
     {
-        Debug.Log("Preparing to Attack");
         entity.isAttacking = false;
         entity.canAttack = false;
-        isPreparingAttack = true;
+        entity.isPreparingAttack = true;
         yield return new WaitForSeconds(chooseTimeToAttack);
+        if (entity.GetActualState() != BehaviourState.Chase)
+            yield break;
         entity.ChangeState(status, classState);
         entity.canAttack = true;
-        isPreparingAttack = false;
     }
     void RestoreToDefault()
     {
         entity.isAttacking = false;
         entity.canAttack = false;
-        isPreparingAttack = false;
+        entity.isPreparingAttack = false;
+        ResetAnimation();
     }
 
     void SetAttackAnimation()
     {
-
-        //lanternTarget.ResetProgress();
+        entity.SetAnimationBool("isAttacking", true);
     }    
     
     void SetChargingAnimation()
     {
+        entity.SetAnimationBool("canAttack", true);
+    }
 
-        //lanternTarget.ResetProgress();
+    void ResetAnimation()
+    {
+        entity.SetAnimationBool("canAttack", false);
+        entity.SetAnimationBool("isAttacking", false);
     }
 }
