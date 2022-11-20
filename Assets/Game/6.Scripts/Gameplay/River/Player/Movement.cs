@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
     {
         if (GameManager.PlayerControl) 
         {
-                if (Input.GetAxis("Vertical") > 0)
+                if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0)
             {
                 Acelerate();
                 if(energyDashing.dashing == false) sfxRPM = 1.3f;
