@@ -59,7 +59,7 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
             entity.EnemyHolder.transform.position = Vector3.Lerp(entity.EnemyHolder.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             entity.EnemyHolder.transform.rotation = Quaternion.LookRotation(position - entity.EnemyHolder.transform.position, GameManager.PlayerInstance == null ? Vector3.up : GameManager.PlayerInstance.transform.up);
         }
-        if (state == classState || state == BehaviourState.Attack && !entity.isAttacking && entity.isPreparingAttack && !entity.canAttack)
+        if (state == classState /*|| state == BehaviourState.Attack && !entity.isAttacking && entity.isPreparingAttack && !entity.canAttack*/)
         {
             RotationMovement();
         }
@@ -70,7 +70,7 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
             {
                 return;
             }
-            if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
+            if (Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
             {
                 Debug.Log("oi");
                 entity.ChangeState(status, classState);
@@ -95,13 +95,15 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
         //    sign *= -1;
         //}
 
-        if (Physics.Raycast(entity.EnemyHolder.transform.position, entity.EnemyHolder.transform.right, 4) && Mathf.Sign(sign) > 0)
+        if (Physics.Raycast(entity.EnemyHolder.transform.position, entity.EnemyHolder.transform.right, out hit, 4f) && Mathf.Sign(sign) > 0)
         {
-            sign *= -1;
+            if(hit.collider.CompareTag("Afflicted"))
+                sign *= -1;
         }
-        else if(Physics.Raycast(entity.EnemyHolder.transform.position, -entity.EnemyHolder.transform.right, 4) && Mathf.Sign(sign) < 0)
+        else if(Physics.Raycast(entity.EnemyHolder.transform.position, -entity.EnemyHolder.transform.right, out hit, 4) && Mathf.Sign(sign) < 0)
         {
-            sign *= -1;
+            if (hit.collider.CompareTag("Afflicted"))
+                sign *= -1;
         }
 
         entity.EnemyHolder.transform.position = Vector3.Lerp(entity.EnemyHolder.transform.position, targetPosition, moveSpeed * Time.deltaTime);
