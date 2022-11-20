@@ -7,12 +7,12 @@ public enum SaveableDataType {eventSequence, item, shortcut, spiritLock}
 
 public static class SaveSystem
 {
-    public static  Hashtable eventSequenceHash = new Hashtable();
+    public static  Hashtable saveableHashtable = new Hashtable();
 
     public static void Save(SaveableDataType type, string objectName, bool value)
     {
         string key = GetSaveString(type, objectName);
-        eventSequenceHash.Add(key, value);
+        saveableHashtable.Add(key, value);
         Debug.Log("Saved key | " + key + " | with value | " + value);
     }
 
@@ -20,11 +20,11 @@ public static class SaveSystem
     {
         string key = GetSaveString(type, objectName);
 
-        if (!eventSequenceHash.ContainsKey(key))
+        if (!saveableHashtable.ContainsKey(key))
             return false;
 
-        Debug.Log("Loaded key | " + key + " | with value | " + (bool)eventSequenceHash[key]);
-        return (bool)eventSequenceHash[key];
+        Debug.Log("Loaded key | " + key + " | with value | " + (bool)saveableHashtable[key]);
+        return (bool)saveableHashtable[key];
     }
 
     public static string GetSaveString(SaveableDataType type, string objectName)

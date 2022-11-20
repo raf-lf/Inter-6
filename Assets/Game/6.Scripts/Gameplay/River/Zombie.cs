@@ -27,9 +27,9 @@ public class Zombie : MonoBehaviour
 
         if (encounterPoint == null)
         {
-            var point = Instantiate(new GameObject());
+            var point = new GameObject();
             point.transform.position = transform.position;
-            point.name = "SelfEncounterPoint";
+            point.name = gameObject.name + " encounterPoint";
             encounterPoint = point.transform;
         }
 
