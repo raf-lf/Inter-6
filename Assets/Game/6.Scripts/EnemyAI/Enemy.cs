@@ -20,6 +20,7 @@ public class Enemy : BehaviourManager
 
 
     public float rangeDetection;
+    public float rangeLeash;
 
     [HideInInspector]
     public bool isBanished;

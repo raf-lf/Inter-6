@@ -10,7 +10,6 @@ public class AIRest : MonoBehaviour, IEnemy
 
     [SerializeField] ParticleSystem teleportParticle;
 
-    [SerializeField] private float rangeLeash;
     [SerializeField] private float banishedTime;
     bool isWaiting;
     [SerializeField] private Vector3 startPosition;
@@ -49,7 +48,7 @@ public class AIRest : MonoBehaviour, IEnemy
             {
                 return;
             }
-            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > rangeLeash)
+            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > entity.rangeLeash)
             {
                 entity.ChangeState(status, classState);
                 teleportParticle.Play();
