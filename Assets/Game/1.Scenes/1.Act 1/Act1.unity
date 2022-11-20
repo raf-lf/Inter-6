@@ -14231,6 +14231,7 @@ GameObject:
   - component: {fileID: 1462529431}
   - component: {fileID: 1462529430}
   - component: {fileID: 1462529429}
+  - component: {fileID: 1462529432}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -14302,6 +14303,21 @@ MonoBehaviour:
   eventList: []
   currentEventIndex: 0
   repeats: 0
+--- !u!114 &1462529432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462529427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff901b9dcd5e73c44bcbeed6079b1ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flagsToCheck:
+  - {fileID: 11400000, guid: 429a38f87c4578045beb9354a8e71a5e, type: 2}
+  checkType: 0
 --- !u!1001 &1466260715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15510,6 +15526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flagsToCheck:
   - {fileID: 11400000, guid: 6f80a0fdc23371542adf9e1481e99b83, type: 2}
+  - {fileID: 11400000, guid: 429a38f87c4578045beb9354a8e71a5e, type: 2}
   checkType: 0
 --- !u!135 &1583707509
 SphereCollider:
@@ -20008,6 +20025,7 @@ Transform:
   - {fileID: 1259642812}
   - {fileID: 1466260716}
   - {fileID: 1883895720}
+  - {fileID: 1882267443}
   - {fileID: 361470509}
   - {fileID: 1657488018}
   - {fileID: 1748539801}
@@ -20023,43 +20041,42 @@ Transform:
   - {fileID: 983615908}
   - {fileID: 940538273}
   - {fileID: 564081325}
+  - {fileID: 505837331}
   - {fileID: 1665926369}
   - {fileID: 362709281}
-  - {fileID: 809327656}
-  - {fileID: 350883049}
-  - {fileID: 646742953}
-  - {fileID: 195695394}
   - {fileID: 1194893996}
-  - {fileID: 1106333496}
-  - {fileID: 1882267443}
+  - {fileID: 646742953}
+  - {fileID: 350883049}
+  - {fileID: 1683688450}
+  - {fileID: 195695394}
   - {fileID: 1803521703}
-  - {fileID: 278378833}
+  - {fileID: 278974294}
+  - {fileID: 1373192093}
   - {fileID: 1929267136}
   - {fileID: 1999163114}
-  - {fileID: 278974294}
+  - {fileID: 809327656}
   - {fileID: 569214840}
-  - {fileID: 1967841118}
-  - {fileID: 267830430}
-  - {fileID: 559850932}
-  - {fileID: 568044}
-  - {fileID: 179585074}
-  - {fileID: 1373192093}
-  - {fileID: 505837331}
-  - {fileID: 1683688450}
-  - {fileID: 906820851}
   - {fileID: 253965572}
-  - {fileID: 1031974759}
+  - {fileID: 278378833}
+  - {fileID: 568044}
+  - {fileID: 267830430}
+  - {fileID: 641545289}
   - {fileID: 1960919656}
+  - {fileID: 191002202}
+  - {fileID: 906820851}
+  - {fileID: 1106333496}
+  - {fileID: 1031974759}
   - {fileID: 245917267}
   - {fileID: 324126467}
-  - {fileID: 641545289}
   - {fileID: 1383307841}
-  - {fileID: 191002202}
+  - {fileID: 559850932}
   - {fileID: 40540628}
   - {fileID: 2055558890}
   - {fileID: 1399856433}
   - {fileID: 1055897214}
+  - {fileID: 1967841118}
   - {fileID: 170809127}
+  - {fileID: 179585074}
   - {fileID: 129355052}
   - {fileID: 1849714267}
   - {fileID: 1538084240}
