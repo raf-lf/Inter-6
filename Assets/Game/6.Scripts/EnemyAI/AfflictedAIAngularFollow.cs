@@ -7,7 +7,6 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
 {
     private Enemy entity;
 
-    [SerializeField] private float rangeDetection;
     [SerializeField] private float moveSpeed;
 
 
@@ -52,18 +51,28 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
 
     public void AIActionExecuting(BehaviourState state)
     {
-
-        if (state == classState || state == BehaviourState.Attack && entity.canAttack)
+        if(state == BehaviourState.Attack && entity.canAttack)
+        {
+            Vector3 position = GameManager.PlayerInstance.transform.position;
+            Vector3 positionOffset = GeneratePositionOffset(angle);
+            targetPosition = position + positionOffset;
+            entity.EnemyHolder.transform.position = Vector3.Lerp(entity.EnemyHolder.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            entity.EnemyHolder.transform.rotation = Quaternion.LookRotation(position - entity.EnemyHolder.transform.position, GameManager.PlayerInstance == null ? Vector3.up : GameManager.PlayerInstance.transform.up);
+        }
+        if (state == classState || state == BehaviourState.Attack && !entity.isAttacking && entity.isPreparingAttack && !entity.canAttack)
         {
             RotationMovement();
         }
         else
         {
-            if (entity.isTakingDamage)
-                return;
-
-            if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection && !entity.canAttack)
+            ResetChaseAnimation();
+            if (entity.isTakingDamage || entity.canAttack || entity.isAttacking)
             {
+                return;
+            }
+            if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
+            {
+                Debug.Log("oi");
                 entity.ChangeState(status, classState);
                 SetChaseAnimation();
             }
@@ -101,9 +110,14 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
         angle += Time.deltaTime* RotationSpeed * sign;
     }
 
+    private void ResetChaseAnimation()
+    {
+        entity.SetAnimationBool("isChasing", false);
+    }
+
     private void SetChaseAnimation()
     {
-        entity.PlayAnimation("afflicted_chase");
+        entity.SetAnimationBool("isChasing", true);
     }
 
     private Vector3 GeneratePositionOffset(float a)

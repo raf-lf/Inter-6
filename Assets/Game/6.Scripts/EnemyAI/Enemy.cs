@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Action__;
+using DredgeAttack;
 
 public class Enemy : BehaviourManager
 {
@@ -17,13 +18,18 @@ public class Enemy : BehaviourManager
 
     public Transform encounterPoint;
 
+
+    public float rangeDetection;
+
     [HideInInspector]
     public bool isBanished;
     [HideInInspector]
+    public bool isPreparingAttack;
+    [HideInInspector]
     public bool canBanish;
-    [HideInInspector]
+    //[HideInInspector]
     public bool canAttack;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isAttacking;
     [HideInInspector]
     public bool isTakingDamage;
@@ -33,6 +39,7 @@ public class Enemy : BehaviourManager
     [Header("ActualActions")]
     [SerializeField]
     private BehaviourState ActualState = BehaviourState.Patrol;
+    private DredgeAttackVariations dredgeAttack = DredgeAttackVariations.Puke;
     //private BehaviourNodes ActualNode = BehaviourNodes.Wait;
 
     protected virtual void Awake()
@@ -49,7 +56,7 @@ public class Enemy : BehaviourManager
 
         if (encounterPoint == null)
         {
-            var point = Instantiate(new GameObject());
+            var point = new GameObject();
             point.transform.position = transform.position;
             point.name = "SelfEncounterPoint";
             encounterPoint = point.transform;
@@ -101,6 +108,11 @@ public class Enemy : BehaviourManager
         animator.SetBool(state, condition);
     }    
     
+    public BehaviourState GetActualState()
+    {
+        return ActualState;
+    }
+
     public void PlayAnimation(string state)
     {
         animator.Play(state);
@@ -109,6 +121,19 @@ public class Enemy : BehaviourManager
     public void SetAnimationTrigger(string state)
     {
         animator.SetTrigger(state);
+    }
+
+    public void SetDredgeAttack(DredgeAttackVariations _dredgeAttack)
+    {
+        dredgeAttack = _dredgeAttack;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(encounterPoint != null) { 
+        Gizmos.color = new Color(1, 0, 0, 0.1f);
+        Gizmos.DrawSphere(encounterPoint.position, rangeDetection);
+        }
     }
 }
 [System.Serializable]

@@ -8,7 +8,6 @@ public class AIChase : MonoBehaviour, IEnemy
     private Enemy entity;
 
     [SerializeField] private Transform encounterPoint;
-    [SerializeField] private float rangeDetection;
     [SerializeField] private float moveSpeed;
 
     private ActionStatus status;
@@ -35,7 +34,7 @@ public class AIChase : MonoBehaviour, IEnemy
         }
         else
         {
-            if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection)
+            if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
             {
                 entity.ChangeState(status, classState);
                 SetChaseAnimation();
@@ -45,7 +44,7 @@ public class AIChase : MonoBehaviour, IEnemy
 
     void SetChaseAnimation()
     {
-        entity.SetAnimationBool("isChasing", true);
+        entity.PlayAnimation("afflicted_chase");
     }
 
 }
