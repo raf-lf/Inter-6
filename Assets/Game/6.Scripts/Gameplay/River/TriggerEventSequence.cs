@@ -65,9 +65,15 @@ public class TriggerEventSequence : MonoBehaviour
     public void PlayCinematic(bool flagCleared)
     {
         if (flagCleared)
-            cinematicToPlayFlagCleared.StartCinematic();
+        {
+            if (cinematicToPlayFlagCleared != null)
+                cinematicToPlayFlagCleared.StartCinematic();
+        }
         else
-            cinematicToPlayFlagBlocked.StartCinematic();
+        {
+            if (cinematicToPlayFlagBlocked != null)
+                cinematicToPlayFlagBlocked.StartCinematic();
+        }
 
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SaveableDataType {eventSequence, item, shortcut, spiritLock}
+public enum SaveableDataType {eventSequence, item, shortcut, spiritLock, oneShot}
 
 public static class SaveSystem
 {
