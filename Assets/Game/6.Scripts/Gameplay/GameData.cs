@@ -23,10 +23,16 @@ public class GameData : ScriptableObject
     public float velocityHigh;
     public int damageLowVelocity;
     public int damageHighVelocity;
+    public int damageCommomHit;
 
     public void ResetValues()
     {
         currentHp = maxHp;
         currentGas = maxGas;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
     }
 }

@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,99 +5,160 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private CharacterController controller;
-    private EnergyDashing energyDashing;
-    public float movement;
+    Rigidbody rigidbody;
+
+    public float yPosition = 0f;
+
+    [Header("SpeedAtributes")]
+    private float acceleration = 0;
     public float movementSlowdown;
+    [SerializeField]
+    float actualSpeed = 0;
+    [SerializeField]
+    float speedForce = 0;
+    [SerializeField]
+    float actualMaxSpeed = 240f;
+    [SerializeField]
+    float maxCommonSpeed = 240f;
+    [SerializeField]
+    float dashMaxSpeedModfier = 40f;    
+    [SerializeField]
+    float minSpeed = -120f;
 
+    [Header("InputAtributes")]
+    [SerializeField]
+    float inputVertical;
+    [SerializeField]
+    float inputHorizontal;
 
+    [Header("RotationAtributes")]
+    [SerializeField]
+    float rotationSpeed = 10;
+    [SerializeField]
+    float gripForce;
+    [SerializeField]
+    float horizontalAngle;
+    [SerializeField]
+    float rotationAngle;
 
-    [Header("SfxRPM")]
-    float sfxRPM;
-    bool acelerating;
-  
-
-
-
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-
-        controller = GetComponent<CharacterController>();
-        energyDashing = GetComponent<EnergyDashing>();
-        PlayerSfx.engineEvent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
-        PlayerSfx.engineEvent.start();
-        PlayerSfx.engineEvent.setParameterByName("rpm",0.4f);
+        rigidbody = GetComponent<Rigidbody>();
+        acceleration = GameManager.GameData.GetMoveSpeed();
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        if (GameManager.PlayerControl) 
+        if (!GameManager.PlayerControl)
+            return;
+        rigidbody.angularVelocity = new Vector3(0, rigidbody.angularVelocity.y, rigidbody.angularVelocity.z);
+        rigidbody.AddForce(transform.forward * actualSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
+        RotationUpdate();
+    }
+    void Update()
+    {
+        if (!GameManager.PlayerControl)
+            return;
+#if UNITY_EDITOR
+        GameManager.GameData.currentGas = 100;
+#endif
+        CheckInput();
+        MovementUpdate();
+        transform.position = new Vector3 (transform.position.x, Mathf.MoveTowards(transform.position.y, yPosition, Time.deltaTime), transform.position.z);
+        //rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.angularVelocity.z);
+    }
+
+    public void ResetSpeed()
+    {
+        actualSpeed = actualSpeed*0.33f;
+    }
+
+    public float GetSpeed()
+    {
+        return actualSpeed;
+    }
+
+    void CheckInput()
+    {
+        inputHorizontal = Input.GetAxis("Horizontal");
+        inputVertical = Mathf.Clamp(Input.GetAxis("Vertical"), -0.5f, 1f);
+    }
+
+    bool CanApplyMovement()
+    {
+        if (inputVertical != 0)
+            return true;
+        else
+            return false;
+    }    
+
+    bool CanApplyRotation()
+    {
+        if (inputHorizontal != 0)
+            return true;
+        else
+            return false;
+    }
+
+    void MovementUpdate()
+    {
+        if (!CanApplyMovement() && actualSpeed != 0)
+            StopMovement();
+        else if (CanApplyMovement())
         {
-                if (Input.GetAxis("Vertical") > 0)
-            {
-                Acelerate();
-                if(energyDashing.dashing == false) sfxRPM = 1.3f;
-                else sfxRPM = 1.6f;
-
-            }
-            else 
-            {
-        
-                sfxRPM = 1;
-            }
-        
-        
-            if (Input.GetAxis("Horizontal") != 0) Yaw();
-        
+            SpeedUpdate();
         }
-        else   sfxRPM = 0.4f;
 
-        
-        
-        
-        PlayerSfx.engineEvent.setParameterByName("rpm",sfxRPM);
-        if(transform.position.y != 0)   controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
+
     public void MoveTo(Transform destination)
     {
         transform.position = Vector3.MoveTowards(transform.position, destination.position, GameManager.GameData.moveSpeed * Time.deltaTime);
-
     }
-    private void HigherEngineRPM() 
+
+    void SpeedUpdate()
     {
-        sfxRPM = Mathf.MoveTowards(1, 1.3f, 2* Time.deltaTime);
-        acelerating = true;
+        float speedModifier = GameManager.PlayerInstance.GetSpeedModifier();
+        actualMaxSpeed = GameManager.PlayerInstance.IsDashing() ? maxCommonSpeed + dashMaxSpeedModfier : maxCommonSpeed;
+        actualSpeed += actualSpeed > 0 && inputVertical < 0 || actualSpeed < 0 && inputVertical > 0  ? acceleration * gripForce * speedModifier * inputVertical * Time.deltaTime : acceleration * speedModifier * speedForce * inputVertical * Time.deltaTime;
+        actualSpeed *= (1 - movementSlowdown);
+        actualSpeed = Mathf.Clamp(actualSpeed, minSpeed, actualMaxSpeed);
     }
-    private void LowerEngineRPM() 
+
+    void StopMovement()
     {
-
-        sfxRPM = Mathf.MoveTowards(1.3f, 1, 2 * Time.deltaTime);
-        acelerating = false;
-
+        actualSpeed = Mathf.MoveTowards(actualSpeed, 0, Time.deltaTime * 30);
     }
-    private void Acelerate() 
-    {
-       
 
-        if(acelerating == false) 
+    void NormalizeSlopeAngle()
+    {
+        rotationAngle = Mathf.MoveTowards(rotationAngle, 0, Time.deltaTime * rotationSpeed);
+        transform.localRotation = Quaternion.Euler(0f, horizontalAngle * acceleration, rotationAngle);
+    }
+
+    void RotationUpdate()
+    {
+        if (!CanApplyRotation())
         {
-            HigherEngineRPM();
-        
+            NormalizeSlopeAngle();
         }
-        movement = 0;
-        movement = GameManager.GameData.moveSpeed * GameManager.PlayerInstance.GetSpeedModifier() * Input.GetAxis("Vertical") * Time.deltaTime;
-        movement *= 1 - movementSlowdown;
-        PlayerSfx.engineEvent.setParameterByName("rpm",sfxRPM);
-        controller.Move(movement * transform.forward);
-     }
-
-    private void Yaw()
-    {
-       
-        float rotateMove = GameManager.GameData.turnSpeed * Input.GetAxis("Horizontal");
-        transform.Rotate(new Vector3(0, rotateMove * Time.deltaTime, 0));
-
-
+        else if (CanApplyRotation() && actualSpeed != 0)
+        {
+            RotationAngleUpdate();
+            SlopeAngleUpdate();
+        }
+        transform.localRotation = Quaternion.Euler(0f, horizontalAngle * acceleration, rotationAngle);
     }
+
+    void SlopeAngleUpdate()
+    {
+        rotationAngle += rotationSpeed * inputHorizontal * Time.deltaTime;
+        rotationAngle = Mathf.Clamp(rotationAngle, -15 , 15);
+    }
+    void RotationAngleUpdate()
+    {
+        horizontalAngle += 20 * inputHorizontal * Time.deltaTime;
+    }
+
 }

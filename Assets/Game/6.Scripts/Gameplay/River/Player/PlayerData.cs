@@ -46,4 +46,8 @@ public class PlayerData : MonoBehaviour
 
         return modifier;
     }
+    public bool IsDashing()
+    {
+        return energyDashing.dashing;
+    }
 }

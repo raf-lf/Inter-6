@@ -27,7 +27,7 @@ public class EnergyDashing : MonoBehaviour
 
     private void TryDash()
     {
-        if (Input.GetKey(dashKey) && GameManager.PlayerInstance.movement.movement > 0)
+        if (Input.GetKey(dashKey) && GameManager.PlayerInstance.movement.GetSpeed() > 0)
         {
             if (Time.time < dashAttemptBufferTargetTime)
             {

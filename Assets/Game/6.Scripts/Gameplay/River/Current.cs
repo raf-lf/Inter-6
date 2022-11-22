@@ -12,9 +12,10 @@ public class Current : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<CharacterController>())
-            MoveWithCurrent(other.gameObject.GetComponent<CharacterController>());
-            
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddForce(-other.transform.forward * ((currentSpeed* speedModifier)*0.4f), ForceMode.Acceleration);
+        }
     }
 
     private void MoveWithCurrent(CharacterController controller)

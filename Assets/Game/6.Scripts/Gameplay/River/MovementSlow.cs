@@ -16,7 +16,6 @@ public class MovementSlow : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player"))
             return;
-
         playerMovement.movementSlowdown = Mathf.Clamp(movementSlow, .1f, 1);
 
 
