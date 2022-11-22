@@ -9,7 +9,7 @@ public class AIPatrol : MonoBehaviour
     ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Patrol;
 
-    private Transform[] patrolWaypoints;
+    [SerializeField] private Transform[] patrolWaypoints;
     private int waypointIndex;
 
     [SerializeField] private float moveSpeed;
@@ -34,12 +34,11 @@ public class AIPatrol : MonoBehaviour
         }
         else
         {
-            if (entity.isTakingDamage)
+            if (entity.GetActualState() == BehaviourState.Attack)
                 return;
 
             if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
             {
-                ResetPatrol();
                 entity.ChangeState(status, classState);
             }
         }
@@ -47,8 +46,16 @@ public class AIPatrol : MonoBehaviour
 
     void Patrol()
     {
+        if (patrolWaypoints.Length == 0)
+            return;
         transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
-        waypointIndex = waypointIndex + 1 % patrolWaypoints.Length;
+
+        Vector3 dir = patrolWaypoints[waypointIndex].transform.position - entity.transform.position;
+        Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, 100*Time.deltaTime);
+
+        if (Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) == 0)
+            waypointIndex = ((waypointIndex + 1) % patrolWaypoints.Length);
     }
 
     void ResetPatrol()

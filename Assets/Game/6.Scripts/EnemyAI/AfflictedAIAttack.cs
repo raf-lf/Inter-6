@@ -7,9 +7,6 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 {
     private Enemy entity;
 
-    private Coroutine chargeAttackCoroutine;
-    private Coroutine prepareAttackCoroutine;
-
     [SerializeField] private float chargeTimer;
     [SerializeField] private float attackTimer;
     [SerializeField] private int[] timeToAttackRange = new int[2];
@@ -56,7 +53,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
 
             if (entity.canAttack)
             {
-                StopCoroutine(chargeAttackCoroutine);
+                StopCoroutine(ChargeAttackTimer());
                 RestoreToDefault();
                 return;
             }
@@ -77,20 +74,19 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
     {
         if(entity.GetActualState() != classState)
             yield break;
+
         SetChargingAnimation();
         yield return new WaitForSeconds(chargeTimer);
+
         entity.isAttacking = true;
         SetAttackAnimation();
         yield return new WaitForSeconds(attackTimer);
-        entity.isAttacking = false;
-        entity.canAttack = false;
+
         RestoreToDefault();
     }
 
     IEnumerator PrepareAttackTimer(int chooseTimeToAttack)
     {
-        entity.isAttacking = false;
-        entity.canAttack = false;
         entity.isPreparingAttack = true;
         yield return new WaitForSeconds(chooseTimeToAttack);
         if (entity.GetActualState() != BehaviourState.Chase)
@@ -98,6 +94,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
         entity.ChangeState(status, classState);
         entity.canAttack = true;
     }
+
     void RestoreToDefault()
     {
         entity.isAttacking = false;

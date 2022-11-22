@@ -9,9 +9,8 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     Enemy entity;
     ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Observing;
-    [SerializeField] GameObject DredgeHead;
 
-    Coroutine observingPlayer;
+    [SerializeField] private float speedRotation;
 
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
@@ -34,14 +33,12 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         if (state == classState)
         {
             if(!isObserving)
-            observingPlayer = StartCoroutine(ObservingPlayer());
+            StartCoroutine(ObservingPlayer());
         }
         else
         {
-            if (entity.isTakingDamage)
-                return;
 
-            if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
+            if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 ResetObservingTimer();
                 entity.ChangeState(status, classState);
@@ -54,12 +51,13 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         isObserving = true;
         while (actualTimeObserving < observeTime)
         {
-            DredgeHead.transform.LookAt(GameManager.PlayerInstance.transform.position, transform.forward);
+            Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
+            Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
             actualTimeObserving = Mathf.MoveTowards(actualTimeObserving, observeTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         ChooseAttack();
-        isObserving = false;
     }
 
     void ChooseAttack()

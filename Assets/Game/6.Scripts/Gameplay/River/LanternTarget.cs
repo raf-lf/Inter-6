@@ -8,7 +8,7 @@ using FMODUnity;
 
 public enum LanternTargetType
 {
-    soul, spiritLock, hiddenItem
+    soul, spiritLock, hiddenItem, afflicted
 }
 
 public class LanternTarget : MonoBehaviour
@@ -75,6 +75,9 @@ public class LanternTarget : MonoBehaviour
 
             case LanternTargetType.hiddenItem:
                 RuntimeManager.PlayOneShot("event:/SFX/PERSONAGEM/item_pickup");
+                break;            
+            case LanternTargetType.afflicted:
+
                 break;
 
         }

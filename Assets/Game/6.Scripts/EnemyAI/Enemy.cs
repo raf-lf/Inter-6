@@ -40,6 +40,7 @@ public class Enemy : BehaviourManager
     [Header("ActualActions")]
     [SerializeField]
     private BehaviourState ActualState = BehaviourState.Patrol;
+    [SerializeField]
     private DredgeAttackVariations dredgeAttack = DredgeAttackVariations.Puke;
     //private BehaviourNodes ActualNode = BehaviourNodes.Wait;
 
@@ -53,7 +54,6 @@ public class Enemy : BehaviourManager
     protected override void Start()
     {
         base.Start();
-
 
         if (encounterPoint == null)
         {
@@ -122,6 +122,11 @@ public class Enemy : BehaviourManager
     public void SetAnimationTrigger(string state)
     {
         animator.SetTrigger(state);
+    }
+
+    public DredgeAttackVariations GetDredgeAttack()
+    {
+        return dredgeAttack;
     }
 
     public void SetDredgeAttack(DredgeAttackVariations _dredgeAttack)
