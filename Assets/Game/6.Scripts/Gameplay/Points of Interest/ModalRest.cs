@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using FMODUnity;
 
 public class ModalRest : IslandModal
 {
@@ -22,6 +23,7 @@ public class ModalRest : IslandModal
     {
         StopAllCoroutines();
         StartCoroutine(RestSequence(restItemIndex));
+        RuntimeManager.PlayOneShot("event:/UI/click");
     }
 
     public IEnumerator RestSequence(int restItemIndex)

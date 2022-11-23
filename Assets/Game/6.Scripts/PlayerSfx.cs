@@ -6,9 +6,9 @@ using FMOD;
 
 public class PlayerSfx : MonoBehaviour
 {
-    static string engineEventPath = "event:/SFX/PERSONAGEM/motor_barco";
-    static string collisionEventPath = "event:/SFX/PERSONAGEM/colisao_barco";
-    public static string lanternEventPath = "event:/SFX/PERSONAGEM/lanterna";
+    public static string engineEventPath = "event:/SFX/PLAYER/boat_engine";
+    public static string collisionEventPath = "event:/SFX/PLAYER/hit_boat";
+    public static string lanternEventPath = "event:/SFX/PLAYER/lamp";
 
     public static FMOD.Studio.EventInstance engineEvent;
     public static FMOD.Studio.EventInstance collisionEvent;

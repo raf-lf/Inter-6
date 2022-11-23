@@ -8,6 +8,11 @@ public class ModalExit : IslandModal
     {
         IslandManager.CurrentIslandManager.canvasIslandManager.OpenCloseModal(false, associatedModal);
         IslandManager.CurrentIslandManager.LeaveIsland();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/enter");
     }
 
+    public void PlayCancelSfx() 
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/back");
+    }
 }
