@@ -43897,15 +43897,15 @@ MonoBehaviour:
   yPosition: 0
   movementSlowdown: 0
   actualSpeed: 0
-  speedForce: 10
-  actualMaxSpeed: 240
-  maxCommonSpeed: 240
-  dashMaxSpeedModfier: 120
-  minSpeed: -120
+  speedForce: 200
+  actualMaxSpeed: 4800
+  maxCommonSpeed: 4800
+  dashMaxSpeedModfier: 1200
+  minSpeed: -1200
   inputVertical: 0
   inputHorizontal: 0
   rotationSpeed: 20
-  gripForce: 60
+  gripForce: 600
   horizontalAngle: 0
   rotationAngle: 0
 --- !u!114 &4603877228805479019
@@ -44042,7 +44042,7 @@ Rigidbody:
   m_AngularDrag: 20
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4479534631931567954

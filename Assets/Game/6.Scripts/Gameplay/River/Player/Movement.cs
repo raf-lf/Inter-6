@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
 #endif
         CheckInput();
         MovementUpdate();
-        transform.position = new Vector3 (transform.position.x, Mathf.MoveTowards(transform.position.y, yPosition, Time.deltaTime), transform.position.z);
+        transform.position = new Vector3 (transform.position.x, Mathf.MoveTowards(transform.position.y, yPosition, 100*Time.deltaTime), transform.position.z);
         //rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.angularVelocity.z);
     }
 
