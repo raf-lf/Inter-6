@@ -8,39 +8,22 @@ public class Movement : MonoBehaviour
     Rigidbody rigidbody;
 
     public float yPosition = 0f;
+    GameData playerAtributes;
 
     [Header("SpeedAtributes")]
     private float acceleration = 0;
     public float movementSlowdown;
-    [SerializeField]
-    float actualSpeed = 0;
-    [SerializeField]
-    float speedForce = 0;
-    [SerializeField]
     float actualMaxSpeed = 240f;
     [SerializeField]
-    float maxCommonSpeed = 240f;
-    [SerializeField]
-    float dashMaxSpeedModfier = 40f;    
-    [SerializeField]
-    float minSpeed = -120f;
+    float actualSpeed = 0;
 
-    [Header("InputAtributes")]
-    [SerializeField]
+
     float inputVertical;
-    [SerializeField]
     float inputHorizontal;
 
-    [Header("RotationAtributes")]
-    [SerializeField]
-    float slopeSpeed = 10;
-    [SerializeField]
-    float rotationSpeed = 10;
-    [SerializeField]
-    float gripForce;
-    [SerializeField]
+
+
     float horizontalAngle;
-    [SerializeField]
     float rotationAngle;
 
     // Start is called before the first frame update
@@ -48,6 +31,7 @@ public class Movement : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         acceleration = GameManager.GameData.GetMoveSpeed();
+        playerAtributes = GameManager.GameData;
     }
 
     void FixedUpdate()
@@ -122,20 +106,20 @@ public class Movement : MonoBehaviour
     void SpeedUpdate()
     {
         float speedModifier = GameManager.PlayerInstance.GetSpeedModifier();
-        actualMaxSpeed = GameManager.PlayerInstance.IsDashing() ? maxCommonSpeed + dashMaxSpeedModfier : maxCommonSpeed;
-        actualSpeed += actualSpeed > 0 && inputVertical < 0 || actualSpeed < 0 && inputVertical > 0  ? acceleration * gripForce * speedModifier * inputVertical * Time.deltaTime : acceleration * speedModifier * speedForce * inputVertical * Time.deltaTime;
+        actualMaxSpeed = GameManager.PlayerInstance.IsDashing() ? playerAtributes.maxCommonSpeed + playerAtributes.dashMaxSpeedModfier : playerAtributes.maxCommonSpeed;
+        actualSpeed += actualSpeed > 0 && inputVertical < 0 || actualSpeed < 0 && inputVertical > 0  ? acceleration * playerAtributes.gripForce * speedModifier * inputVertical * Time.deltaTime : acceleration * speedModifier * playerAtributes.speedForce * inputVertical * Time.deltaTime;
         actualSpeed *= (1 - movementSlowdown);
-        actualSpeed = Mathf.Clamp(actualSpeed, minSpeed, actualMaxSpeed);
+        actualSpeed = Mathf.Clamp(actualSpeed, playerAtributes.minSpeed, actualMaxSpeed);
     }
 
     void StopMovement()
     {
-        actualSpeed = Mathf.MoveTowards(actualSpeed, 0, Time.deltaTime * 30);
+        actualSpeed = Mathf.MoveTowards(actualSpeed, 0, Time.deltaTime * playerAtributes.gripForce);
     }
 
     void NormalizeSlopeAngle()
     {
-        rotationAngle = Mathf.MoveTowards(rotationAngle, 0, Time.deltaTime * rotationSpeed);
+        rotationAngle = Mathf.MoveTowards(rotationAngle, 0, Time.deltaTime * playerAtributes.rotationSpeed);
         transform.localRotation = Quaternion.Euler(0f, horizontalAngle * acceleration, rotationAngle);
     }
 
@@ -155,12 +139,12 @@ public class Movement : MonoBehaviour
 
     void SlopeAngleUpdate()
     {
-        rotationAngle += slopeSpeed * inputHorizontal * Time.deltaTime;
+        rotationAngle += playerAtributes.slopeSpeed * inputHorizontal * Time.deltaTime;
         rotationAngle = Mathf.Clamp(rotationAngle, -15 , 15);
     }
     void RotationAngleUpdate()
     {
-        horizontalAngle += rotationSpeed * inputHorizontal * Time.deltaTime;
+        horizontalAngle += playerAtributes.rotationSpeed * inputHorizontal * Time.deltaTime;
     }
 
 }

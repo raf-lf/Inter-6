@@ -43901,11 +43901,12 @@ MonoBehaviour:
   actualMaxSpeed: 3600
   maxCommonSpeed: 3600
   dashMaxSpeedModfier: 1200
-  minSpeed: -1200
+  minSpeed: -400
   inputVertical: 0
   inputHorizontal: 0
-  rotationSpeed: 20
-  gripForce: 600
+  slopeSpeed: 10
+  rotationSpeed: 10
+  gripForce: 1200
   horizontalAngle: 0
   rotationAngle: 0
 --- !u!114 &4603877228805479019

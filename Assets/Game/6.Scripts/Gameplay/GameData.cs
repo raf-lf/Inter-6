@@ -18,6 +18,17 @@ public class GameData : ScriptableObject
     public float multiplierDashing;
     public float turnSpeed;
 
+    [Header("SpeedAtributes")]
+    public float speedForce = 0;
+    public float maxCommonSpeed = 240f;
+    public float dashMaxSpeedModfier = 40f;
+    public float minSpeed = -120f;
+
+    [Header("RotationAtributes")]
+    public float slopeSpeed = 10;
+    public float rotationSpeed = 10;
+    public float gripForce;
+
     [Header("Collision")]
     public float velocityLow;
     public float velocityHigh;
