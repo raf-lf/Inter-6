@@ -11,18 +11,18 @@ public class PlayerAtributes : MonoBehaviour
 
     public void Damage(int value, int attackId)
     {
-        if (!dead)
+        if (dead || !GameManager.PlayerControl)
+            return;
+        
+        if (attacksImmuneTo.Contains(attackId) == false)
         {
-            if (attacksImmuneTo.Contains(attackId) == false)
-            {
-                if(value >= damageThresholdHigh)
-                    GameManager.PlayerInstance.playerVfx.VfxDamageHigh();
-                else
-                    GameManager.PlayerInstance.playerVfx.VfxDamageLow();
+            if(value >= damageThresholdHigh)
+                GameManager.PlayerInstance.playerVfx.VfxDamageHigh();
+            else
+                GameManager.PlayerInstance.playerVfx.VfxDamageLow();
 
-                HpChange(-value);
-                StartCoroutine(Iframes(attackId));
-            }
+            HpChange(-value);
+            StartCoroutine(Iframes(attackId));
         }
     }
 
