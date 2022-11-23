@@ -42,6 +42,9 @@ public class PointClickTarget : MonoBehaviour
 
         if (focusCamera != null)
             GameManager.CameraManager.FocusCamera(focusCamera);
+
+        if (GetComponent<Saveable>())
+            GetComponent<Saveable>().Save(true);
     }
     
     public void ResetCameraFocus()
