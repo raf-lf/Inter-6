@@ -19361,7 +19361,7 @@ GameObject:
   - component: {fileID: 4620747326684195216}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Afflicted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19478,6 +19478,7 @@ MonoBehaviour:
   isAttacking: 0
   isTakingDamage: 0
   ActualState: 4
+  dredgeAttack: 2
 --- !u!114 &4620747326692877410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19491,7 +19492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportParticle: {fileID: 3926705785351294082}
-  rangeLeash: 30
   banishedTime: 10
   startPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &4620747326692877409
