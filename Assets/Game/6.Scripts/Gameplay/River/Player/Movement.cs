@@ -33,6 +33,8 @@ public class Movement : MonoBehaviour
 
     [Header("RotationAtributes")]
     [SerializeField]
+    float slopeSpeed = 10;
+    [SerializeField]
     float rotationSpeed = 10;
     [SerializeField]
     float gripForce;
@@ -153,12 +155,12 @@ public class Movement : MonoBehaviour
 
     void SlopeAngleUpdate()
     {
-        rotationAngle += rotationSpeed * inputHorizontal * Time.deltaTime;
+        rotationAngle += slopeSpeed * inputHorizontal * Time.deltaTime;
         rotationAngle = Mathf.Clamp(rotationAngle, -15 , 15);
     }
     void RotationAngleUpdate()
     {
-        horizontalAngle += 20 * inputHorizontal * Time.deltaTime;
+        horizontalAngle += rotationSpeed * inputHorizontal * Time.deltaTime;
     }
 
 }
