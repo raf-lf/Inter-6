@@ -131,7 +131,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         float ai = Mathf.Sin(dist * 9.81f / vel * vel);
 
         float teta = Mathf.Asin(ai) /2f;
-        Debug.Log(" vel" + vel);
         //Debug.Log(" distY" + distY);
         //Debug.Log("teta" + teta);
         //DredgeHeadPuke.transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternionLook, speedRotation * Time.deltaTime);
