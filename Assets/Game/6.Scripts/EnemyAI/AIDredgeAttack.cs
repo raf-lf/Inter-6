@@ -11,6 +11,8 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Attack;
     [SerializeField] ParticleSystem pukeParticle;
+    [SerializeField] GameObject DredgeHead;
+    [SerializeField] GameObject DredgeHeadPuke;
     [SerializeField] DredgeAttackVariations actualAttack;
     [SerializeField] private float speedRotation;
 
@@ -48,7 +50,10 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         else
         {
             if (entity.GetDredgeAttack() != DredgeAttackVariations.Noone)
+            {
+                ResetAttackVar();
                 entity.ChangeState(status, classState);
+            }
         }
     }
 
@@ -102,7 +107,8 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         if(pukeParticle.isPlaying)
             pukeParticle.Stop();
         actualPukeTime = 0;
-        ResetAttackVar();
+        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
+        //ResetAttackVar();
     }
 
     IEnumerator HungryAttack()
@@ -113,8 +119,24 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     private void UpdateRotation()
     {
         Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
+        Vector3 dirPuke = dir;
+        dir.y = 0;
+        float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.EnemyHolder.transform.position);
+        float distY = GameManager.PlayerInstance.transform.position.y - entity.EnemyHolder.transform.position.y;
         Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
+        Quaternion quaternionLook = Quaternion.LookRotation(dirPuke, Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
+        float vel = Mathf.Sqrt(dist * 9.81f);
+        pukeParticle.startSpeed = vel; 
+        float ai = Mathf.Sin(dist * 9.81f / vel * vel);
+
+        float teta = Mathf.Asin(ai) /2f;
+        Debug.Log(" vel" + vel);
+        //Debug.Log(" distY" + distY);
+        //Debug.Log("teta" + teta);
+        //DredgeHeadPuke.transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternionLook, speedRotation * Time.deltaTime);
+        DredgeHeadPuke.transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*teta, quaternionLook.eulerAngles.y, quaternionLook.eulerAngles.z);
+
     }
 
     private void ResetAttackVar()
@@ -123,7 +145,13 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.isPreparingAttack = false;
         entity.canAttack = false; 
         entity.isAttacking = false;
-        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.EnemyHolder.transform.position));
+    }
+
 
 }

@@ -34,7 +34,7 @@ public class AIPatrol : MonoBehaviour
         }
         else
         {
-            if (entity.GetActualState() == BehaviourState.Attack)
+            if (entity.GetActualState() == BehaviourState.Attack && entity.GetDredgeAttack() != DredgeAttack.DredgeAttackVariations.Noone)
                 return;
 
             if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
