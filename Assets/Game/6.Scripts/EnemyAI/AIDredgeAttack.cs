@@ -23,6 +23,9 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] private float hungryPreparationTime;
     [SerializeField] private float actualTimeObserving;
 
+    public Transform rotatingBone;
+    public Vector3 vectorOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,15 +94,19 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     IEnumerator PukeAttack()
     {
         Debug.Log("Puke");
+        entity.SetAnimationTrigger("triggerAttack");
         while (actualPukeTime < pukeAttackTime)
         {
+            //rotatingBone.LookAt(GameManager.PlayerInstance.transform.position, vectorOffset);
             if (!pukeParticle.isPlaying)
                 pukeParticle.Play();
             actualPukeTime = Mathf.MoveTowards(actualPukeTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
-        if(pukeParticle.isPlaying)
+        entity.SetAnimationBool("attackingPurge", false);
+
+        if (pukeParticle.isPlaying)
             pukeParticle.Stop();
         actualPukeTime = 0;
         ResetAttackVar();
