@@ -74,4 +74,12 @@ public class PlayerAtributes : MonoBehaviour
         GameManager.GameData.ResetValues();
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+
+    public void Update()
+    {
+#if UNITY_EDITOR
+        if (Input.GetKeyUp(KeyCode.Z))
+            GameManager.GameData.currentHp = GameManager.GameData.maxHp;
+#endif
+    }
 }
