@@ -95,7 +95,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     }
     IEnumerator PukeAttack()
     {
-        Debug.Log("Puke");
         while (actualPukeTime < pukeAttackTime)
         {
             if (!pukeParticle.isPlaying)

@@ -72,7 +72,6 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
             }
             if (Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
             {
-                Debug.Log("oi");
                 entity.ChangeState(status, classState);
                 SetChaseAnimation();
             }
