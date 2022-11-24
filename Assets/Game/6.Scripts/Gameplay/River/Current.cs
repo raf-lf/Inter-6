@@ -14,7 +14,7 @@ public class Current : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(-other.transform.forward * ((currentSpeed* speedModifier)*0.4f), ForceMode.Acceleration);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * ((currentSpeed* speedModifier)*0.4f), ForceMode.Acceleration);
         }
     }
 
