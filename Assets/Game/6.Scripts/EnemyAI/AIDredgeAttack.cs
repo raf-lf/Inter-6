@@ -131,15 +131,15 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
         Quaternion quaternionLook = Quaternion.LookRotation(dirPuke, Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
-        float vel = Mathf.Sqrt(dist * 9.81f);
-        pukeParticle.startSpeed = vel; 
-        float ai = Mathf.Sin(dist * 9.81f / vel * vel);
+        //float vel = Mathf.Sqrt(dist * 9.81f);
+        //pukeParticle.startSpeed = vel; 
+        //float ai = Mathf.Sin(dist * 9.81f / vel * vel);
 
-        float teta = Mathf.Asin(ai) /2f;
-        //Debug.Log(" distY" + distY);
-        //Debug.Log("teta" + teta);
-        //DredgeHeadPuke.transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternionLook, speedRotation * Time.deltaTime);
-        DredgeHeadPuke.transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*teta, quaternionLook.eulerAngles.y, quaternionLook.eulerAngles.z);
+        //float teta = Mathf.Asin(ai) /2f;
+        ////Debug.Log(" distY" + distY);
+        ////Debug.Log("teta" + teta);
+        ////DredgeHeadPuke.transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternionLook, speedRotation * Time.deltaTime);
+        //DredgeHeadPuke.transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*teta, quaternionLook.eulerAngles.y, quaternionLook.eulerAngles.z);
 
     }
 
