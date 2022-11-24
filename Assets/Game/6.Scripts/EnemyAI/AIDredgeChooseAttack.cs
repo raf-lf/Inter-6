@@ -50,6 +50,9 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     IEnumerator ObservingPlayer()
     {
         isObserving = true;
+
+        entity.SetAnimationBool("attackingPurge", true);
+
         while (actualTimeObserving < observeTime)
         {
             Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
