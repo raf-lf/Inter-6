@@ -11,6 +11,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     BehaviourState classState = BehaviourState.Observing;
 
     [SerializeField] private float speedRotation;
+    [SerializeField] private float DredgeHead;
 
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
