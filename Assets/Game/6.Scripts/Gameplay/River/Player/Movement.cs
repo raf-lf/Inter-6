@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
+        RpmUpdate();
         if (!GameManager.PlayerControl)
             return;
         Debug.Log("hi");
@@ -103,6 +104,11 @@ public class Movement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, destination.position, GameManager.GameData.moveSpeed * Time.deltaTime);
     }
 
+    void RpmUpdate()
+    {
+
+    }
+
     void SpeedUpdate()
     {
         float speedModifier = GameManager.PlayerInstance.GetSpeedModifier();
@@ -144,7 +150,7 @@ public class Movement : MonoBehaviour
     }
     void RotationAngleUpdate()
     {
-        horizontalAngle += GameManager.GameData.rotationSpeed * inputHorizontal * Time.deltaTime;
+        horizontalAngle += inputVertical < 0 ? GameManager.GameData.rotationSpeed *0.2f * inputHorizontal * Time.deltaTime : GameManager.GameData.rotationSpeed * inputHorizontal * Time.deltaTime;
     }
 
 }
