@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pukeParticle: {fileID: 4975291977051496239}
+  DredgeHead: {fileID: 0}
+  DredgeHeadPuke: {fileID: 4975291977051496237}
   actualAttack: 0
   speedRotation: 100
   actualPreparationTime: 0
@@ -113,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRotation: 100
+  DredgeHead: 0
   isObserving: 0
   observeTime: 3
   actualTimeObserving: 0
@@ -941,6 +944,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a3419812fa42744fa505ae0022f6f61, type: 3}
+--- !u!1 &4975291977051496237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8507769371345813044, guid: 6a3419812fa42744fa505ae0022f6f61,
+    type: 3}
+  m_PrefabInstance: {fileID: 3682364066006999321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4975291977051496239 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8507769371345813046, guid: 6a3419812fa42744fa505ae0022f6f61,
