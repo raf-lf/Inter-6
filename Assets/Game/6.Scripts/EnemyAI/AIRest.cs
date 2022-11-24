@@ -11,7 +11,7 @@ public class AIRest : MonoBehaviour, IEnemy
     [SerializeField] ParticleSystem teleportParticle;
 
     [SerializeField] private float banishedTime;
-    bool isWaiting;
+    [SerializeField] private float timeToTeleport;
     [SerializeField] private Vector3 startPosition;
 
     private LanternTarget lanternTarget;
@@ -54,20 +54,26 @@ public class AIRest : MonoBehaviour, IEnemy
                 teleportParticle.Play();
                 entity.EnemyHolder.transform.position = startPosition;
                 SetRestAnimation();
+                lanternTarget.ResetProgress();
             }
         }
     }
 
     IEnumerator BackToRest()
     {
+        StartCoroutine(StartBanish());
+        yield return new WaitForSeconds(banishedTime);
+        entity.ChangeState(status, classState);
+        ResetToDefault();
+    }
+
+    IEnumerator StartBanish()
+    {
         entity.isBanished = true;
         SetRestAnimation();
         teleportParticle.Play();
+        yield return new WaitForSeconds(timeToTeleport);
         entity.EnemyHolder.transform.position = startPosition;
-        yield return new WaitForSeconds(banishedTime);
-        entity.ChangeState(status, classState);
-        entity.canBanish = false;
-        entity.isBanished = false;
     }
 
     void SetRestAnimation()
@@ -77,7 +83,14 @@ public class AIRest : MonoBehaviour, IEnemy
         entity.SetAnimationBool("isTakingDamage", false);
         entity.SetAnimationBool("isChasing", false);
         entity.PlayAnimation("afflicted_rest");
+    }
+
+    void ResetToDefault()
+    {
         lanternTarget.ResetProgress();
+        lanternTarget.lanternImmune = false;
+        entity.canBanish = false;
+        entity.isBanished = false;
     }
 
     private void OnDrawGizmosSelected()

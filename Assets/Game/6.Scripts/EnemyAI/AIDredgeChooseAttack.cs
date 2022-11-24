@@ -11,6 +11,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     BehaviourState classState = BehaviourState.Observing;
 
     [SerializeField] private float speedRotation;
+    [SerializeField] private float DredgeHead;
 
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
@@ -49,6 +50,9 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     IEnumerator ObservingPlayer()
     {
         isObserving = true;
+
+        entity.SetAnimationBool("attackingPurge", true);
+
         while (actualTimeObserving < observeTime)
         {
             Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
