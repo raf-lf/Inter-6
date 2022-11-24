@@ -65,12 +65,13 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
         }
         else
         {
+            float dist = Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position);
             ResetChaseAnimation();
             if (entity.isTakingDamage || entity.canAttack || entity.isAttacking)
             {
                 return;
             }
-            if (Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
+            if (dist <= entity.rangeDetection && state == BehaviourState.Rest || dist <= entity.rangeLeash && state != BehaviourState.Rest)
             {
                 entity.ChangeState(status, classState);
                 SetChaseAnimation();
