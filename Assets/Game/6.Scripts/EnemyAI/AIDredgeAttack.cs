@@ -129,7 +129,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.SetAnimationTrigger("triggerTackle");
         while (actualPukeTime < tackleAttackTime)
         {
-            actualPukeTime = Mathf.MoveTowards(actualPukeTime, pukeAttackTime, Time.deltaTime);
+            actualPukeTime = Mathf.MoveTowards(actualPukeTime, tackleAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
     }
