@@ -52,7 +52,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     {
         isObserving = true;
 
-        entity.SetAnimationBool("attackingPurge", true);
+        entity.SetAnimationBool("alert", true);
 
         while (actualTimeObserving < observeTime)
         {

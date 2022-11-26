@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e22d29ffcf7b74787f00ca306eda00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pukeParticle: {fileID: 0}
+  pukeParticle: {fileID: 5787359085321766221}
   DredgeHead: {fileID: 0}
   DredgeHeadPuke: {fileID: 0}
   actualAttack: 0
@@ -116,8 +116,9 @@ MonoBehaviour:
   actualPreparationTime: 0
   actualPukeTime: 0
   pukeAttackTime: 8
+  distanceToStopPuke: 0
+  tackleAttackTime: 0
   pukePreparationTime: 3
-  hungryPreparationTime: 0
   actualTimeObserving: 0
   vectorOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5685379587511835947
@@ -151,6 +152,7 @@ MonoBehaviour:
   isObserving: 0
   observeTime: 3
   actualTimeObserving: 0
+  maxDistanceToTackle: 0
 --- !u!114 &5685379587511835944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1191,12 @@ PrefabInstance:
 --- !u!4 &5787359085321766220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8507769371345813047, guid: 6a3419812fa42744fa505ae0022f6f61,
+    type: 3}
+  m_PrefabInstance: {fileID: 2756624386327329659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5787359085321766221 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8507769371345813046, guid: 6a3419812fa42744fa505ae0022f6f61,
     type: 3}
   m_PrefabInstance: {fileID: 2756624386327329659}
   m_PrefabAsset: {fileID: 0}

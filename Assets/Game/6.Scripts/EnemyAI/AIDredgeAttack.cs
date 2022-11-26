@@ -95,7 +95,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     IEnumerator PukeAttack()
     {
         yield return StartCoroutine(AttackPreparation(pukePreparationTime));
-        entity.SetAnimationTrigger("triggerAttack");
+        entity.SetAnimationTrigger("attack");
         
         while (actualPukeTime < pukeAttackTime)
         {
@@ -118,7 +118,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     void ResetPukeAttack()
     {
         actualPukeTime = 0;
-        entity.SetAnimationBool("attackingPurge", false);
+        entity.SetAnimationBool("alert", false);
         entity.SetDredgeAttack(DredgeAttackVariations.Noone);
         if (pukeParticle.isPlaying)
             pukeParticle.Stop();
