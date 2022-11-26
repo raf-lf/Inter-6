@@ -20,6 +20,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 
     [SerializeField] private float actualPukeTime;
     [SerializeField] private float pukeAttackTime;
+    [SerializeField] private float distanceToStopPuke;
     [SerializeField] private float tackleAttackTime;
 
     [SerializeField] private float pukePreparationTime;
@@ -100,6 +101,14 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         {
             if (!pukeParticle.isPlaying)
                 pukeParticle.Play();
+            else
+            {
+                if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < distanceToStopPuke)
+                {
+                    ResetPukeAttack();
+                    yield break;
+                }
+            }
             actualPukeTime = Mathf.MoveTowards(actualPukeTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
