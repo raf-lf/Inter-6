@@ -20,9 +20,10 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 
     [SerializeField] private float actualPukeTime;
     [SerializeField] private float pukeAttackTime;
+    [SerializeField] private float distanceToStopPuke;
+    [SerializeField] private float tackleAttackTime;
 
     [SerializeField] private float pukePreparationTime;
-    [SerializeField] private float hungryPreparationTime;
     [SerializeField] private float actualTimeObserving;
 
     public Vector3 vectorOffset;
@@ -65,60 +66,73 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             return;
         actualAttack = entity.GetDredgeAttack();
         entity.isPreparingAttack = true;
+        AttackToStart();
+    }
+
+    void AttackToStart()
+    {
         switch (actualAttack)
         {
-            case DredgeAttackVariations.Hungry:
-                StartCoroutine(HungryAttackPreparation());
+            case DredgeAttackVariations.Puke:
+                StartCoroutine(PukeAttack());
                 break;
-            case DredgeAttackVariations.Puke:  
-                StartCoroutine(PukeAttackPreparation());
+            case DredgeAttackVariations.Tackle:
+                StartCoroutine(TackleAttack());
                 break;
         }
     }
 
-    IEnumerator PukeAttackPreparation()
+    IEnumerator AttackPreparation(float timeToAchieve)
     {
-        while (actualPreparationTime < pukePreparationTime)
+        while (actualPreparationTime < timeToAchieve)
         {
-            actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, pukePreparationTime, Time.deltaTime);
+            actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, timeToAchieve, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(PukeAttack());
     }    
-    
-    IEnumerator HungryAttackPreparation()
-    {
-        while (actualPreparationTime < hungryPreparationTime)
-        {
-            actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, hungryPreparationTime, Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
-        StartCoroutine(HungryAttack());
-    }
+
+
     IEnumerator PukeAttack()
     {
+        yield return StartCoroutine(AttackPreparation(pukePreparationTime));
         entity.SetAnimationTrigger("triggerAttack");
-
+        
         while (actualPukeTime < pukeAttackTime)
         {
             if (!pukeParticle.isPlaying)
                 pukeParticle.Play();
+            else
+            {
+                if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < distanceToStopPuke)
+                {
+                    ResetPukeAttack();
+                    yield break;
+                }
+            }
             actualPukeTime = Mathf.MoveTowards(actualPukeTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-
-        entity.SetAnimationBool("attackingPurge", false);
-
-        if (pukeParticle.isPlaying)
-            pukeParticle.Stop();
-        actualPukeTime = 0;
-        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
-        //ResetAttackVar();
+        ResetPukeAttack();
     }
 
-    IEnumerator HungryAttack()
+    void ResetPukeAttack()
     {
-        yield return new WaitForEndOfFrame();
+        actualPukeTime = 0;
+        entity.SetAnimationBool("attackingPurge", false);
+        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
+        if (pukeParticle.isPlaying)
+            pukeParticle.Stop();
+    }
+
+    IEnumerator TackleAttack()
+    {
+        entity.SetAnimationTrigger("triggerTackle");
+        while (actualPukeTime < tackleAttackTime)
+        {
+            actualPukeTime = Mathf.MoveTowards(actualPukeTime, tackleAttackTime, Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        ResetPukeAttack();
     }
 
     private void UpdateRotation()

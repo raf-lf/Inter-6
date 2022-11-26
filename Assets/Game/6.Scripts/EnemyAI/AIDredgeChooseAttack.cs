@@ -16,6 +16,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
     [SerializeField] private float actualTimeObserving;
+    [SerializeField] private float maxDistanceToTackle;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +67,11 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 
     void ChooseAttack()
     {
-        entity.SetDredgeAttack(DredgeAttackVariations.Puke);
+        float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position);
+        if(dist <= maxDistanceToTackle)
+            entity.SetDredgeAttack(DredgeAttackVariations.Tackle);
+        else
+            entity.SetDredgeAttack(DredgeAttackVariations.Puke);
     }
 
     void ResetObservingTimer()

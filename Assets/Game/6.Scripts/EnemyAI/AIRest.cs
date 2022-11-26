@@ -39,6 +39,14 @@ public class AIRest : MonoBehaviour, IEnemy
         }
         else
         {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("canAttack" + entity.canAttack);
+                Debug.Log("isPreparingAttack" + entity.isPreparingAttack);
+                Debug.Log("isAttacking" + entity.isAttacking);
+                Debug.Log("Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position)" + Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position));
+            }
+            float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position);
             if (state == BehaviourState.Banished)
             {
                 if (!entity.isBanished)
@@ -48,7 +56,7 @@ public class AIRest : MonoBehaviour, IEnemy
             {
                 return;
             }
-            else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position) > entity.rangeLeash)
+            else if (dist > entity.rangeLeash )
             {
                 entity.ChangeState(status, classState);
                 teleportParticle.Play();
