@@ -59,10 +59,10 @@ public class AIPatrol : MonoBehaviour
 
         if (Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) == 0)
         {
-            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Circular ? waypointIndex + sign : waypointIndex + sign & patrolWaypoints.Length, 0, patrolWaypoints.Length);
+            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : waypointIndex + sign & patrolWaypoints.Length, 0, patrolWaypoints.Length);
 
             if (waypointIndex == patrolWaypoints.Length || waypointIndex == 0)
-                sign *= actualBehaviour == PatrolBehaviour.Circular ? -1 : 1;
+                sign *= actualBehaviour == PatrolBehaviour.Sequential ? -1 : 1;
             //waypointIndex = ((waypointIndex + 1) % patrolWaypoints.Length);
         }
     }
