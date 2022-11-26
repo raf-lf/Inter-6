@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
     FMOD.Studio.VCA soundScapeVCA;
 
 
+
+    
+
+
+
     public Slider sfxSlider;
     public Slider mSlider;
 
@@ -85,34 +90,50 @@ public class MainMenu : MonoBehaviour
 
 
 
-    void GoToGame() {SceneManager.LoadScene("Tutorial");}
+    void GoToGame() 
+    {
+        SceneManager.LoadScene("Tutorial");
+        RuntimeManager.PlayOneShot("event:/UI/click");
+    
+    }
 
 
     public void ChangeStage(int x) 
     {
-        if(stage == 0) pressAnyKey.gameObject.SetActive(false);
+        bool firstOpen = false;
+
+        if (stage == 0)
+        {
+            firstOpen = true;
+            pressAnyKey.gameObject.SetActive(false);
+            RuntimeManager.PlayOneShot("event:/UI/click");
+            
+        }
+            
         stage += x;
         
     
         if(stage == 1) 
         {
             OpenButtons(true);
-
+            
+            if(firstOpen == true) RuntimeManager.PlayOneShot("event:/UI/click");
+                else RuntimeManager.PlayOneShot("event:/UI/back");
 
         }
+
         else if (stage == 2) 
         {
             settingsWindow.SetActive(true);
             OpenButtons(false);
-        
-
-
+            RuntimeManager.PlayOneShot("event:/UI/click");
         }
+
         else if (stage == 3)
         {
             creditsWindow.SetActive(true);
+            RuntimeManager.PlayOneShot("event:/UI/click");
             OpenButtons(false);
-
         }
                 
                 
@@ -130,6 +151,7 @@ public class MainMenu : MonoBehaviour
             creditsWindow.SetActive(false);
 
         }
+    
 
     }
    

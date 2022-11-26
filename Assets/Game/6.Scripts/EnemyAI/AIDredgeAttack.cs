@@ -95,6 +95,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         yield return StartCoroutine(AttackPreparation(pukePreparationTime));
         entity.SetAnimationTrigger("triggerAttack");
+        
         while (actualPukeTime < pukeAttackTime)
         {
             if (!pukeParticle.isPlaying)

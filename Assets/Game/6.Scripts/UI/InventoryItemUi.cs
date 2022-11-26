@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using FMODUnity;
 
 public class InventoryItemUi : InventoryElement
 {
@@ -39,6 +40,7 @@ public class InventoryItemUi : InventoryElement
         tween = seq;
         tween.SetUpdate(true);
         tween.Play();
+        RuntimeManager.PlayOneShot("event:/UI/hover");
     }
 
     public void CloseDescription()
