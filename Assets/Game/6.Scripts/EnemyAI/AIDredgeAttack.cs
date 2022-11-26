@@ -132,6 +132,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             actualPukeTime = Mathf.MoveTowards(actualPukeTime, tackleAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        ResetPukeAttack();
     }
 
     private void UpdateRotation()
