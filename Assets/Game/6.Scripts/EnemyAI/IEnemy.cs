@@ -5,7 +5,7 @@ using Action__;
 
 namespace DredgeAttack
 {
-    public enum DredgeAttackVariations{ Noone, Waves, Puke, Hungry };
+    public enum DredgeAttackVariations{ Noone, Puke, Tackle };
 }
 
 namespace Action__
