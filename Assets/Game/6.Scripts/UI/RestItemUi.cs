@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using FMODUnity;
 
 public class RestItemUi : InventoryElement
 {
@@ -21,6 +22,7 @@ public class RestItemUi : InventoryElement
             restManager.UpdateDescription(null, true);
 
         restManager.UpdateDescription(inventoryItem, false);
+        RuntimeManager.PlayOneShot("event:/UI/hover");
     }
 
     public override void OnPointerExit(PointerEventData eventData)

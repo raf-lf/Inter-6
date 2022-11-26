@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using FMODUnity;
 
 public enum IslandModalType { exit, rest, investigation}
 public class CanvasIslandManager : MonoBehaviour
@@ -53,6 +54,7 @@ public class CanvasIslandManager : MonoBehaviour
             modalRest.Cancel();
         clickableAnchor.Click();
         UpdateAuxiliaryButtons();
+        RuntimeManager.PlayOneShot("event:/UI/click");
     }
 
     public void ButtonRest()
@@ -61,6 +63,7 @@ public class CanvasIslandManager : MonoBehaviour
             modalExit.Cancel();
         clickableRestPoint.Click();
         UpdateAuxiliaryButtons();
+        RuntimeManager.PlayOneShot("event:/UI/click");
     }
 
     private void ActivateModalOverlay(bool active)

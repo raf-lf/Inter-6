@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using FMODUnity;
 
 public enum PortraitPosition { left, right }
 
@@ -78,6 +79,11 @@ public class DialogueSystem : MonoBehaviour
             PlayDialogue();
         else
             lineEnded = true;
+
+        RuntimeManager.PlayOneShot("event:/UI/hover");
+
+
+
     }
 
     public void EndDialogue()
