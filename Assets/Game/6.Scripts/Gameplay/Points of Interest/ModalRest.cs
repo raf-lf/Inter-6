@@ -88,7 +88,7 @@ public class ModalRest : IslandModal
         {
             nameText.text = "Sem Item";
             descriptionText.text = "Descansar sem um item de descanso recupera apenas a matade de sua integridade.";
-            flavorText.text = "A vida no rio São Francisco é difícil. Muitas vezes, a escassez é apenas o padrão.";
+            flavorText.text = "A vida no rio São Francisco é difícil. Muitas vezes, a escassez é o padrão.";
         }
         else if(item == null)
         {

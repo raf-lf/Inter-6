@@ -20,8 +20,9 @@ public class RestItemUi : InventoryElement
 
         if(noItemOption)
             restManager.UpdateDescription(null, true);
+        else
+            restManager.UpdateDescription(inventoryItem, false);
 
-        restManager.UpdateDescription(inventoryItem, false);
         RuntimeManager.PlayOneShot("event:/UI/hover");
     }
 
