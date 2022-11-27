@@ -25,6 +25,9 @@ public class GameplayManager : MonoBehaviour
 
     private void SetPlayerStartPosition()
     {
+        if (!FindObjectOfType<Interactable_Island>())
+            return;
+
         foreach (var item in FindObjectsOfType<Interactable_Island>())
         {
             if (item.islandConnected == currentIsland)
