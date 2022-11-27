@@ -27,6 +27,7 @@ public class EventSequence : MonoBehaviour
 
         if (CinematicMode)
         {
+            SoundManager.OpenCloseSnapshot(true);
             GameManager.DialogueSystem.CinematicMode(true);
             GameManager.CanvasManager.ShowHud(false);
             GameManager.PlayerControl = false;
@@ -55,7 +56,7 @@ public class EventSequence : MonoBehaviour
     {
         if (CinematicMode)
         {
-
+            SoundManager.OpenCloseSnapshot(false);
             GameManager.DialogueSystem.CinematicMode(false);
             GameManager.CanvasManager.ShowHud(true);
             GameManager.PlayerControl = true;

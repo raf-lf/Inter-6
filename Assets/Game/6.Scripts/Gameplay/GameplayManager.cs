@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,17 @@ public class GameplayManager : MonoBehaviour
 {
     public GameData GameDataRef;
     public ScriptableManager ScriptableManagerRef;
-    public GameObject soundTrackManager;
-
+    
     public static string currentIsland;
+
+
+
     private void Awake()
     {
         GameManager.GameplayManager = this;
         GameManager.GameData = GameDataRef;
         GameManager.ScriptableManager = ScriptableManagerRef;
         GameManager.ScriptableManager.PopulateLists();
-        GameManager.soundTrackManager = soundTrackManager;
     }
 
     private void Start()
@@ -25,6 +27,7 @@ public class GameplayManager : MonoBehaviour
         SetPlayerStartPosition();
         Invoke(nameof(DelayedClearOverlay), 1);
     }
+
 
     public void ConfigureCursor()
     {
@@ -54,11 +57,11 @@ public class GameplayManager : MonoBehaviour
             return;
 
     }
-
     private void DelayedClearOverlay()
     {
         //After 1s has passed, this clears the overlay if the player has control, which doesn't happen if you're in a cutscene.
         if (GameManager.PlayerControl)
             GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 1);
     }
+
 }

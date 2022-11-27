@@ -59,8 +59,16 @@ public class Inventory : MonoBehaviour
 
         inventoryOpen = open;
 
-        if(open)
+        if (open) 
+        {
+            SoundManager.OpenCloseSnapshot(true);
             UpdateInventory();
+        
+        }
+        else
+        {
+            SoundManager.OpenCloseSnapshot(false);
+        }
 
         canvasGroup.DOFade(open ? 1 : 0, .5f).SetUpdate(true);
 

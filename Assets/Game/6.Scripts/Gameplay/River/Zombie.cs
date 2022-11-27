@@ -63,6 +63,8 @@ public class Zombie : MonoBehaviour
         if (Vector3.Distance(transform.position, encounterPoint.position) > rangeLeash)
         {
             ChangeState(StateZombie.resting);
+            SoundManager.hazardNumber--;
+            if (SoundManager.hazardNumber == 0) SoundManager.HazardOnOff(false);
             transform.position = startPosition;
         }
     }
@@ -75,6 +77,10 @@ public class Zombie : MonoBehaviour
             {
                 ChangeState(StateZombie.banished);
                 banished = true;
+               
+                SoundManager.hazardNumber--;
+                if(SoundManager.hazardNumber == 0)  SoundManager.HazardOnOff(false);
+                
                 return;
             }
 
@@ -88,8 +94,13 @@ public class Zombie : MonoBehaviour
         switch (currentState)
         {
             case StateZombie.resting:
-                if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection)
+                if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection) 
+                {
+                    SoundManager.hazardNumber++;
+                    SoundManager.HazardOnOff(true);
                     ChangeState(StateZombie.chasing);
+                
+                }
                 break;
 
             case StateZombie.chasing:
@@ -113,8 +124,6 @@ public class Zombie : MonoBehaviour
                 }
                 break;
 
-            case StateZombie.banished:
-                break;
         }
     }
 
