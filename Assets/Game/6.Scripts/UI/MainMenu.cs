@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     public Button buttonExit;
 
     private bool pastTitle;
+    private float startTargetTime;
 
     [Header("Audio")]
     FMOD.Studio.VCA sfxVCA;
@@ -91,6 +92,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        startTargetTime = Time.time + 5;
 
         buttonNewGame.onClick.AddListener(delegate
         {
@@ -149,6 +151,8 @@ public class MainMenu : MonoBehaviour
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 2);
         yield return new WaitForSeconds(2);
         titleCG.DOFade(1, 2);
+        yield return new WaitForSeconds(2);
+        OpenScreen(screens[0]);
     }
 
     private IEnumerator GameSequence()
@@ -184,7 +188,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown && !pastTitle)
+        if (Input.anyKeyDown && !pastTitle && Time.time >= startTargetTime)
         {
             RuntimeManager.PlayOneShot("event:/UI/click");
             OpenScreen(screens[1]);

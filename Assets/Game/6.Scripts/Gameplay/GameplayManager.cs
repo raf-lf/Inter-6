@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -20,9 +21,21 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
+        ConfigureCursor();
         SetPlayerStartPosition();
+        Invoke(nameof(DelayedClearOverlay), 1);
     }
 
+    public void ConfigureCursor()
+    {
+        //Cursor.lockState = CursorLockMode.Confined;
+
+        if (FindObjectOfType<IslandManager>() || SceneManager.GetActiveScene().name == "Menu")
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
+
+    }
     private void SetPlayerStartPosition()
     {
         if (!FindObjectOfType<Interactable_Island>())
@@ -40,5 +53,12 @@ public class GameplayManager : MonoBehaviour
         if (currentIsland == null)
             return;
 
+    }
+
+    private void DelayedClearOverlay()
+    {
+        //After 1s has passed, this clears the overlay if the player has control, which doesn't happen if you're in a cutscene.
+        if (GameManager.PlayerControl)
+            GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 1);
     }
 }

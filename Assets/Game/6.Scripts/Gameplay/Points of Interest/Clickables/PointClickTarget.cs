@@ -30,7 +30,7 @@ public class PointClickTarget : MonoBehaviour
             return;
         }
 
-        if (mouseOver && GameManager.PlayerControl && Input.GetMouseButtonDown(0))
+        if (mouseOver && GameManager.PlayerControl && Input.GetMouseButtonDown(0) && !GameManager.CanvasManager.inventory.inventoryOpen)
             Click();
     }
 
@@ -65,7 +65,7 @@ public class PointClickTarget : MonoBehaviour
     
     private void MouseOver(bool active)
     {
-        if (!GameManager.PlayerControl || !GameManager.PlayerClickControl || !interactable)
+        if (!GameManager.PlayerControl || !GameManager.PlayerClickControl || !interactable )
             return;
         
         mouseOver = active;

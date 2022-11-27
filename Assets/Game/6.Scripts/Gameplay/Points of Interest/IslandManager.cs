@@ -27,7 +27,7 @@ public class IslandManager : MonoBehaviour
     private void Start()
     {
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 0);
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 1);
+        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 2);
 
         StopAllCoroutines();
         StartCoroutine(PlayerEntryExit(pointEntry, false));

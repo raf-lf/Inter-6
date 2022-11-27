@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventoryItemUi inventoryItemUi;
     [SerializeField] private Transform spiritParent;
     [SerializeField] private SpiritUi spiritUi;
-    [SerializeField] private bool inventoryOpen;
+    public bool inventoryOpen;
     [SerializeField] private CanvasGroup canvasGroup;
 
     private CanvasIslandManager canvasIslandManager;
@@ -47,7 +47,12 @@ public class Inventory : MonoBehaviour
     }
     public void InventoryOpenClose(bool open)
     {
-        if(canvasIslandManager)
+        if(open)
+            Cursor.visible = open;
+        else
+            GameManager.GameplayManager.ConfigureCursor();
+
+        if (canvasIslandManager)
             canvasIslandManager.ShowHud(!open);
         
         Time.timeScale = open ? 0 : 1;

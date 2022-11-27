@@ -41,7 +41,7 @@ public class CanvasManager : MonoBehaviour
         hudCanvasGroup.DOFade(active ? 1 : 0, .33f);
         
         if(FindObjectOfType<IslandManager>())
-            IslandManager.CurrentIslandManager.canvasIslandManager.ShowHud(!active);
+            IslandManager.CurrentIslandManager.canvasIslandManager.ShowHud(active);
     }
 
     public void AnimateOverlay(OverlayAnimation animation, float speed)

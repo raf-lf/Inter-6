@@ -70,7 +70,10 @@ public class SpiritUi : InventoryElement
 
         CloseDescription();
 
-        eventSequence.StartCinematic();
+        if (GameManager.CanvasManager.inventory.inventoryOpen)
+            GameManager.CanvasManager.inventory.InventoryOpenClose(false);
+
+            eventSequence.StartCinematic();
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
