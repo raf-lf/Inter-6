@@ -55,8 +55,12 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         }
         else
         {
-            if (entity.isTeleporting)
+            if (state == BehaviourState.Teleport)
+            {
+                if (isSubmerging)
+                    StopCoroutine(SubmergeToAttack());
                 return;
+            }
 
             if (entity.GetDredgeAttack() != DredgeAttackVariations.Noone)
             {
@@ -105,29 +109,32 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     IEnumerator PukeAttack()
     {
         yield return StartCoroutine(AttackPreparation(pukePreparationTime));
+        if (entity.isTeleporting)
+            yield break;
         entity.SetAnimationTrigger("attack");
-        
+        entity.SetAnimationBool("purge", true);
         while (actualAttackTime < pukeAttackTime)
         {
             if (!pukeParticle.isPlaying)
                 pukeParticle.Play();
             else
             {
-                if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < minDistanceToPuke)
-                {
-                    if (!isSubmerging) 
-                    {
-                        ResetPukeAttack();
-                        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
-                        StartCoroutine(SubmergeToAttack());
-                    }
-                    yield break;
-                }
-                else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) > maxDistanceToPuke)
-                {
-                    ResetPukeAttack();
-                    entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
-                }
+                //if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < minDistanceToPuke)
+                //{
+                //    if (!isSubmerging) 
+                //    {
+                //        ResetPukeAttack();
+                //        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+                //        StartCoroutine(SubmergeToAttack());
+                //    }
+                //    yield break;
+                //}
+                //else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) > maxDistanceToPuke)
+                //{
+                //    ResetPukeAttack();
+                //    entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+                //    yield break;
+                //}
             }
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
@@ -142,13 +149,15 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     void ResetPukeAttack()
     {
         actualAttackTime = 0;
-        entity.SetAnimationBool("alert", false);
+        entity.SetAnimationBool("purge", false);
         if (pukeParticle.isPlaying)
             pukeParticle.Stop();
     }
 
     IEnumerator SubmergeToAttack()
     {
+        if (entity.isTeleporting)
+            yield break;
         isSubmerging = true;
         entity.SetAnimationBool("submerge", true);
         yield return new WaitForSeconds(submergeTime);
@@ -161,6 +170,8 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 
     IEnumerator ChompChargeAttack()
     {
+        if (entity.isTeleporting)
+            yield break;
         actualPreparationTime = 0;
         while(actualPreparationTime < chompChargeTime)
         {
@@ -175,9 +186,13 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 
     IEnumerator ChompAttack()
     {
+        if (entity.isTeleporting)
+            yield break;
         entity.SetAnimationTrigger("attack");
         while (actualAttackTime < chompAttackTime)
         {
+            if(actualAttackTime <= chompAttackTime*0.2f)
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, chompAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }

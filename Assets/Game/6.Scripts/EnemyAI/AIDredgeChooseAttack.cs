@@ -10,12 +10,11 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     BehaviourState classState = BehaviourState.Observing;
 
     [SerializeField] private float speedRotation;
-    [SerializeField] private float DredgeHead;
 
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
     [SerializeField] private float actualTimeObserving;
-    [SerializeField] private float maxDistanceToTackle;
+    [SerializeField] private float stopObservingDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +39,10 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         {
             if (entity.isTeleporting)
                 return;
-            if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
+            if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 ResetObservingTimer();
-                entity.ChangeState( classState);
+                entity.ChangeState(classState);
             }
         }
     }
@@ -53,10 +52,16 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         isObserving = true;
 
         entity.SetAnimationBool("alert", true);
+        entity.SetAnimationBool("isObserving", true);
 
         while (actualTimeObserving < observeTime)
         {
-            Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
+            if(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
+            {
+                ResetObservingTimer();
+                yield break;
+            }
+            Vector3 dir = GameManager.PlayerInstance.transform.position - entity.transform.position;
             Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
             actualTimeObserving = Mathf.MoveTowards(actualTimeObserving, observeTime, Time.deltaTime);

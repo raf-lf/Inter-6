@@ -38,11 +38,12 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {
         if(state == actualState)
         {
-            if (!entity.isTeleporting)
+            if (!entity.isTeleporting && Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
                 StartCoroutine(Teleport());
         }
         else
         {
+            if(state == BehaviourState.Patrol)
             CheckNeededTeleport();
         }
     }
@@ -57,6 +58,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
                 {
                     actualEncounterIndex = i;
                     entity.ChangeState(actualState);
+                    Debug.Log("CheckNeededTeleport");
                     break;
                 }
             }
@@ -68,9 +70,9 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {
         StartTeleporting();yield return new WaitForSeconds(4);
         patrol.CheckNearestPatrolWaypoint();
-        while (Vector3.Distance(entity.transform.position, new Vector3(dredgeEncounterPoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[patrol.waypointIndex].transform.position.z)) > 0)
+        while (Vector3.Distance(entity.transform.position, new Vector3(dredgeEncounterPoints[actualEncounterIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[actualEncounterIndex].transform.position.z)) != 0)
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(dredgeEncounterPoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[patrol.waypointIndex].transform.position.z), moveSpeed * Time.deltaTime);
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(dredgeEncounterPoints[actualEncounterIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[actualEncounterIndex].transform.position.z), moveSpeed * Time.deltaTime);
             actualTeleportTime = Mathf.MoveTowards(actualTeleportTime, teleportTimer, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
@@ -81,6 +83,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
 
     void StartTeleporting()
     {
+        Debug.Log("TESTE");
         entity.isTeleporting = true;
         entity.SetAnimationBool("submerge", true);
     }
@@ -88,6 +91,9 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {
         entity.isTeleporting = false;
         entity.SetAnimationBool("submerge", false);
+        entity.SetAnimationBool("alert", false);
+        entity.SetDredgeAttack(DredgeAttack.DredgeAttackVariations.Noone);
+        entity.attackSequenceCount = 1;
     }
 
     private void OnDrawGizmosSelected()

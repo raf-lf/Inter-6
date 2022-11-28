@@ -64,6 +64,8 @@ public class Enemy : BehaviourManager
     {
         if (!isBanished)
             EnemyActions?.Invoke(ActualState);
+        attackSequenceCount = Mathf.Clamp(attackSequenceCount, 1, maxAttackCombo);
+
     }
 
     public override void ActionToExecute(BehaviourState state)

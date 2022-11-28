@@ -16,6 +16,7 @@ public class AIPatrol : MonoBehaviour
 
     [SerializeField] private bool isMovingToNearestWaypoint;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float rotationSpeed;
     private int sign =  1;
 
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class AIPatrol : MonoBehaviour
         else
         {
 
-            if (!isMovingToNearestWaypoint && entity.GetDredgeAttack() == DredgeAttackVariations.Hide)
+            if (!isMovingToNearestWaypoint && entity.GetDredgeAttack() == DredgeAttackVariations.Hide && !entity.isTeleporting)
             {
                 StartCoroutine(GoToNearestWaypoint());
                 return;
@@ -48,7 +49,7 @@ public class AIPatrol : MonoBehaviour
             if (entity.GetActualState() == BehaviourState.Attack && entity.GetDredgeAttack() != DredgeAttackVariations.Noone || entity.isTeleporting)
                 return;
 
-            if (Vector3.Distance(entity.encounterPoint.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
+            if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 CheckNearestPatrolWaypoint();
                 entity.ChangeState(classState);
@@ -79,22 +80,25 @@ public class AIPatrol : MonoBehaviour
         isMovingToNearestWaypoint = false;
         entity.SetDredgeAttack(DredgeAttackVariations.Noone);
         entity.SetAnimationBool("submerge", false);
+        entity.attackSequenceCount = 1;
     }
 
     void Patrol()
     {
         if (patrolWaypoints.Length == 0)
             return;
+        entity.SetAnimationBool("alert", false);
+        entity.SetAnimationBool("isObserving", false);
         transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
 
         Vector3 dir = patrolWaypoints[waypointIndex].transform.position - entity.transform.position;
         Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, 100*Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, rotationSpeed*Time.deltaTime);
 
         if (Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) == 0)
         {
-            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Length, 0, patrolWaypoints.Length);
-            if (waypointIndex == patrolWaypoints.Length || waypointIndex == 0)
+            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Length, 0, patrolWaypoints.Length -1);
+            if (waypointIndex == patrolWaypoints.Length - 1 || waypointIndex == 0)
                 sign *= actualBehaviour == PatrolBehaviour.Sequential ? -1 : 1;
             //waypointIndex = ((waypointIndex + 1) % patrolWaypoints.Length);
         }
