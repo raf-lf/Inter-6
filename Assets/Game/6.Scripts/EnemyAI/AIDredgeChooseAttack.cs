@@ -7,7 +7,6 @@ using DredgeAttack;
 public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 {
     Enemy entity;
-    ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Observing;
 
     [SerializeField] private float speedRotation;
@@ -39,11 +38,12 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         }
         else
         {
-
+            if (entity.isTeleporting)
+                return;
             if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 ResetObservingTimer();
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
             }
         }
     }
@@ -67,11 +67,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 
     void ChooseAttack()
     {
-        float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position);
-        if(dist <= maxDistanceToTackle)
-            entity.SetDredgeAttack(DredgeAttackVariations.Tackle);
-        else
-            entity.SetDredgeAttack(DredgeAttackVariations.Puke);
+        entity.SetDredgeAttack(DredgeAttackVariations.Puke);
     }
 
     void ResetObservingTimer()

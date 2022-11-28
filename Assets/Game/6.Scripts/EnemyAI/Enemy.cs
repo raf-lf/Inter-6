@@ -6,34 +6,26 @@ using DredgeAttack;
 
 public class Enemy : BehaviourManager
 {
-    public IEnemy enemy;
-    //[SerializeField]
-    //List<EnemyBehaviour> enemyBehaviour = new List<EnemyBehaviour>();
-    //Dictionary<string, EnemyInterchangeState> enemyActions;
-
-
     public Transform EnemyHolder;
     [SerializeField]
     private Animator animator;
 
     public Transform encounterPoint;
 
+    public int attackSequenceCount = 1;
+    [SerializeField] int maxAttackCombo;
 
     public float rangeDetection;
     public float rangeLeash;
 
-    [HideInInspector]
-    public bool isBanished;
-    [HideInInspector]
-    public bool isPreparingAttack;
-    [HideInInspector]
-    public bool canBanish;
-    //[HideInInspector]
-    public bool canAttack;
-    //[HideInInspector]
-    public bool isAttacking;
-    [HideInInspector]
-    public bool isTakingDamage;
+
+    /*[HideInInspector]*/ public bool isTeleporting;
+    [HideInInspector] public bool isBanished;
+    [HideInInspector] public bool isPreparingAttack;
+    [HideInInspector] public bool canBanish;
+    [HideInInspector] public bool canAttack;
+    [HideInInspector] public bool isAttacking;
+    [HideInInspector] public bool isTakingDamage;
 
     public Action<BehaviourState> EnemyActions;
 
@@ -42,12 +34,10 @@ public class Enemy : BehaviourManager
     private BehaviourState ActualState = BehaviourState.Patrol;
     [SerializeField]
     private DredgeAttackVariations dredgeAttack = DredgeAttackVariations.Puke;
-    //private BehaviourNodes ActualNode = BehaviourNodes.Wait;
 
     protected virtual void Awake()
     {
         stateManager = gameObject.GetComponent<StateManager>();
-        enemy = gameObject.GetComponent<IEnemy>();
     }
 
     // Start is called before the first frame update
@@ -62,11 +52,6 @@ public class Enemy : BehaviourManager
             point.name = "SelfEncounterPoint";
             encounterPoint = point.transform;
         }
-        //enemyActions = new Dictionary<string, EnemyInterchangeState>();
-        //for (int index = 0; index < enemyBehaviour.Count; index++)
-        //{
-        //    enemyActions.Add(enemyBehaviour[index].ActualState.ToString(), enemyBehaviour[index].NextActions);
-        //}
     }
 
     protected override void OnDestroy()
@@ -81,26 +66,14 @@ public class Enemy : BehaviourManager
             EnemyActions?.Invoke(ActualState);
     }
 
-    public override void ActionToExecute(ActionStatus status, BehaviourState state)
+    public override void ActionToExecute(BehaviourState state)
     {
-        //if (enemyActions.ContainsKey(state.ToString()))
-        //{
-        //    if (ActualState == state)
-        //        ChangeNode(status, state);
-        //    else
-        //        ChangeState(status, state);
-        //}
-    }
-    public void ChangeState(ActionStatus status, BehaviourState state)
-    {
-        ActualState = state;
-        //ActualState = enemyActions[state.ToString()].GetNextState(status);
-        //ActualNode = enemyActions[state.ToString()].ResetNodesIndex();
+
     }
 
-    public void ChangeNode(ActionStatus status, BehaviourState state)
+    public void ChangeState(BehaviourState state)
     {
-        //ActualNode = enemyActions[state.ToString()].GetNextNode(status);
+        ActualState = state;
     }
 
 
@@ -113,6 +86,11 @@ public class Enemy : BehaviourManager
     {
         return ActualState;
     }
+    
+    public int GetMaxComboSequence()
+    {
+        return maxAttackCombo;
+    }
 
     public void PlayAnimation(string state)
     {
@@ -122,6 +100,11 @@ public class Enemy : BehaviourManager
     public void SetAnimationTrigger(string state)
     {
         animator.SetTrigger(state);
+    }   
+    
+    public bool GetAnimationStatus(string state)
+    {
+        return animator.GetBool(state);
     }
 
     public DredgeAttackVariations GetDredgeAttack()
@@ -154,12 +137,4 @@ public class Enemy : BehaviourManager
         }
 
     }
-}
-[System.Serializable]
-[RequireComponent(typeof(EnemyInterchangeState))]
-public class EnemyBehaviour
-{
-    public BehaviourState ActualState;
-    public EnemyInterchangeState NextActions;
-
 }

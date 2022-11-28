@@ -15,7 +15,6 @@ public class AIRest : MonoBehaviour, IEnemy
     [SerializeField] private Vector3 startPosition;
 
     private LanternTarget lanternTarget;
-    private ActionStatus status;
     private BehaviourState classState = BehaviourState.Rest;
     // Start is called before the first frame update
     void Start()
@@ -58,7 +57,7 @@ public class AIRest : MonoBehaviour, IEnemy
             }
             else if (dist > entity.rangeLeash )
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
                 teleportParticle.Play();
                 entity.EnemyHolder.transform.position = startPosition;
                 SetRestAnimation();
@@ -71,7 +70,7 @@ public class AIRest : MonoBehaviour, IEnemy
     {
         StartCoroutine(StartBanish());
         yield return new WaitForSeconds(banishedTime);
-        entity.ChangeState(status, classState);
+        entity.ChangeState( classState);
         ResetToDefault();
     }
 

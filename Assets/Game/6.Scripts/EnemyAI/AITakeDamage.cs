@@ -7,11 +7,9 @@ public class AITakeDamage : MonoBehaviour, IEnemy
 {
     private Enemy entity;
     private LanternTarget lanternTarget;
-    private ActionStatus status;
     private BehaviourState classState = BehaviourState.Banishing;
     [SerializeField]
     private float timeToBeBanished;
-    private float actualTimeBeingBanished;
     private float waitTime = 1;
 
     // Start is called before the first frame update
@@ -39,7 +37,7 @@ public class AITakeDamage : MonoBehaviour, IEnemy
             ResetDefault();
             if (lanternTarget.lanternProgress > 0 && !entity.canBanish)
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
             }
         }
     }

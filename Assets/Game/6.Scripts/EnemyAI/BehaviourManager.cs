@@ -18,7 +18,7 @@ public abstract class BehaviourManager : MonoBehaviour
         stateManager.StateChange -= ActionToExecute;
     }
 
-    public virtual void ActionToExecute(ActionStatus action, BehaviourState state)
+    public virtual void ActionToExecute(BehaviourState state)
     {
 
     }

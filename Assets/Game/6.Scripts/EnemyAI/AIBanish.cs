@@ -6,7 +6,6 @@ using Action__;
 public class AIBanish : MonoBehaviour, IEnemy
 {
     Enemy entity;
-    ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Banished;
     private LanternTarget lanternTarget;
     // Start is called before the first frame update
@@ -32,7 +31,7 @@ public class AIBanish : MonoBehaviour, IEnemy
         {
             if (entity.canBanish && !entity.isBanished)
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
             }
         }
     }

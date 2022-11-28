@@ -8,8 +8,6 @@ public class AIAttack : MonoBehaviour, IEnemy
 {
 
     private Enemy entity;
-    [SerializeField]
-    public ActionStatus status = ActionStatus.Running;
     public BehaviourState classState = BehaviourState.Attack;
 
     [SerializeField] private float attackRange;
@@ -41,7 +39,7 @@ public class AIAttack : MonoBehaviour, IEnemy
         {
             if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) <= attackRange && !entity.isTakingDamage)
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
                 StartAttackAnimation();
             }
             else

@@ -10,7 +10,6 @@ public class AIChase : MonoBehaviour, IEnemy
     [SerializeField] private Transform encounterPoint;
     [SerializeField] private float moveSpeed;
 
-    private ActionStatus status;
     private BehaviourState classState = BehaviourState.Rest;
 
     // Start is called before the first frame update
@@ -36,7 +35,7 @@ public class AIChase : MonoBehaviour, IEnemy
         {
             if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection)
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
                 SetChaseAnimation();
             }
         }
