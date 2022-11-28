@@ -33,14 +33,17 @@ public class EnergyDashing : MonoBehaviour
             {
                 dashing = false;
             }
-            else if (GameManager.GameData.currentGas > 0)
+            else if (GameManager.GameData.currentGas > 0 || Cheats.cheatInfiniteEnergy)
             {
                 dashing = true;
 
-                if(PlayerData.buffEfficiency)
-                    GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime/2);
-                else
-                    GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime);
+                if (!Cheats.cheatInfiniteEnergy)
+                {
+                    if (PlayerData.buffEfficiency)
+                        GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime / 2);
+                    else
+                        GameManager.PlayerInstance.atributes.EnergyChange(-Time.deltaTime);
+                }
             }
             else
             {

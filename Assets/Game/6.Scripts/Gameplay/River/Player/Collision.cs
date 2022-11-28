@@ -20,20 +20,12 @@ public class Collision : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
-        if(velocity > GameManager.GameData.velocityHigh)
-        {
-
-            if (!PlayerData.buffResistance)
-                playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
-        }
-        else if(velocity > GameManager.GameData.velocityLow)
-        {
-
-
-            if (!PlayerData.buffResistance)
-                playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
-        }
+        if(PlayerData.buffResistance)
+            playerHp.Damage(0, -1);
+        else if (velocity > GameManager.GameData.velocityHigh)
+            playerHp.Damage(GameManager.GameData.damageHighVelocity, -1);
+        else if (velocity > GameManager.GameData.velocityLow)
+            playerHp.Damage(GameManager.GameData.damageLowVelocity, -1);
     }
 
 }

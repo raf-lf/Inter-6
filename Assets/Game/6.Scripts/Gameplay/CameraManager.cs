@@ -13,12 +13,14 @@ public enum OverlayEffectType { None, Pause, Fog, Ethereal}
 public class CameraManager : MonoBehaviour
 {
     public CinemachineVirtualCameraBase ShipCamera;
-    private CinemachineFreeLook shipCamFreeLook;
+    public CinemachineFreeLook shipCamFreeLook;
     public CinemachineVirtualCameraBase LanternCamera;
-    public CinemachineBrain brain;
+    public CinemachineFreeLook lanternFreeLook;
+    [HideInInspector] public CinemachineBrain brain;
     public float standardBlendTime = .5f;
     private float memoryFov;
     public CinemachineVirtualCameraBase overridingCamera;
+    private bool setRotationDirtyFlag = true;
 
     [Header ("Overlay Effects")]
     [SerializeField] private OverlayEffect[] overlayEffects = new OverlayEffect[0];
@@ -35,6 +37,10 @@ public class CameraManager : MonoBehaviour
         ShipCamera.LookAt = GameManager.PlayerInstance.cameraTargetPlayer;
         LanternCamera.Follow = GameManager.PlayerInstance.cameraTargetLantern;
         LanternCamera.LookAt = GameManager.PlayerInstance.cameraTargetLantern;
+        shipCamFreeLook.m_XAxis.Value = 0f;
+        shipCamFreeLook.m_YAxis.Value = .66f;
+        lanternFreeLook.m_XAxis.Value = shipCamFreeLook.m_XAxis.Value;
+        lanternFreeLook.m_YAxis.Value = shipCamFreeLook.m_YAxis.Value;
         shipCamFreeLook = ShipCamera.GetComponent<CinemachineFreeLook>();
         memoryFov = shipCamFreeLook.m_Lens.FieldOfView;
     }
@@ -52,9 +58,16 @@ public class CameraManager : MonoBehaviour
         {
             case CameraType.Ship:
                 chosenCam = ShipCamera;
+                setRotationDirtyFlag = true;
                 break;
             case CameraType.Lantern:
                 chosenCam = LanternCamera;
+                if(setRotationDirtyFlag)
+                {
+                    lanternFreeLook.m_XAxis.Value = shipCamFreeLook.m_XAxis.Value;
+                    lanternFreeLook.m_YAxis.Value = shipCamFreeLook.m_YAxis.Value;
+                    setRotationDirtyFlag = false;
+                }
                 break;
         }
 

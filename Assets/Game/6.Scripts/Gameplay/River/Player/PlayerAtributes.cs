@@ -18,10 +18,13 @@ public class PlayerAtributes : MonoBehaviour
         {
             if(value >= damageThresholdHigh)
                 GameManager.PlayerInstance.playerVfx.VfxDamageHigh();
-            else
+            else if (value > 0)
                 GameManager.PlayerInstance.playerVfx.VfxDamageLow();
+            else if (value == 0)
+                GameManager.PlayerInstance.playerVfx.VfxInvulnerability();
 
             HpChange(-value);
+
             StartCoroutine(Iframes(attackId));
         }
     }
@@ -35,6 +38,9 @@ public class PlayerAtributes : MonoBehaviour
 
     public void HpChange(float value)
     {
+        if (value < 0 && Cheats.cheatInvulnerability)
+            return;
+
         GameManager.GameData.currentHp = Mathf.Clamp(GameManager.GameData.currentHp + value, 0, GameManager.GameData.maxHp);
         GameManager.Hud.UpdateHp(value);
 
@@ -75,11 +81,4 @@ public class PlayerAtributes : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void Update()
-    {
-#if UNITY_EDITOR
-        if (Input.GetKeyUp(KeyCode.Z))
-            GameManager.GameData.currentHp = GameManager.GameData.maxHp;
-#endif
-    }
 }

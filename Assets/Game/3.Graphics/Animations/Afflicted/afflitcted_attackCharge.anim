@@ -22,25 +22,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: EmissionModule.enabled
-    path: Body/Vfx Spirit/Charging
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: 3
         inSlope: 0
         outSlope: 0
@@ -98,25 +79,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: simulationSpeed
-    path: Body/Vfx Spirit/Ball
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -150,6 +112,120 @@ AnimationClip:
     path: Body/Vfx Spirit/Attack Indicator
     classID: 198
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: simulationSpeed
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: InitialModule.startSize.minScalar
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: InitialModule.startSize.scalar
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.enabled
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.enabled
+    path: Body/Vfx Spirit/HandsGrasping
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Body/Vfx Spirit/Spot
+    classID: 198
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -159,14 +235,21 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1392805160
+      path: 1249987953
       attribute: 1087013301
       script: {fileID: 0}
       typeID: 198
       customType: 27
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1249987953
+      path: 3464808500
+      attribute: 1087013301
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1773665665
       attribute: 1087013301
       script: {fileID: 0}
       typeID: 198
@@ -194,15 +277,36 @@ AnimationClip:
       customType: 27
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3105280502
+      path: 359669119
+      attribute: 3063797154
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3464808500
       attribute: 1451932078
       script: {fileID: 0}
       typeID: 198
       customType: 27
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 359669119
-      attribute: 3063797154
+      path: 3464808500
+      attribute: 4239144919
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3464808500
+      attribute: 3638086055
+      script: {fileID: 0}
+      typeID: 198
+      customType: 27
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1947657182
+      attribute: 2883525743
       script: {fileID: 0}
       typeID: 198
       customType: 27
@@ -234,25 +338,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: EmissionModule.enabled
-    path: Body/Vfx Spirit/Charging
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: 3
         inSlope: 0
         outSlope: 0
@@ -310,25 +395,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: simulationSpeed
-    path: Body/Vfx Spirit/Ball
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -360,6 +426,120 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: EmissionModule.enabled
     path: Body/Vfx Spirit/Attack Indicator
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: simulationSpeed
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: InitialModule.startSize.minScalar
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: InitialModule.startSize.scalar
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.enabled
+    path: Body/Vfx Spirit/Hands
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.enabled
+    path: Body/Vfx Spirit/HandsGrasping
+    classID: 198
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: EmissionModule.rateOverTime.scalar
+    path: Body/Vfx Spirit/Spot
     classID: 198
     script: {fileID: 0}
   m_EulerEditorCurves: []

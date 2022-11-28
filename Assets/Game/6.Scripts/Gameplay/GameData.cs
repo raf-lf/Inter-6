@@ -27,6 +27,6 @@ public class GameData : ScriptableObject
     public void ResetValues()
     {
         currentHp = maxHp;
-        currentGas = maxGas;
+        currentGas = 0;
     }
 }

@@ -9,6 +9,7 @@ public class PointClickTarget : MonoBehaviour
     [SerializeField] private ParticleSystem vfxMouseClick;
     private ParticleSystem.EmissionModule mouseOverEm;
     [SerializeField] protected Renderer renderer;
+    [SerializeField] protected GameObject visualElementParent;
 
     [SerializeField] public CinemachineVirtualCameraBase focusCamera;
 
@@ -75,5 +76,16 @@ public class PointClickTarget : MonoBehaviour
         if(renderer)
             renderer.material.SetFloat("_BlinkIntensity", value);
     }
-    
+
+    public void HideElement()
+    {
+        interactable = false;
+
+        if(renderer != null)
+            renderer.enabled = false;
+
+        if (visualElementParent != null)
+            visualElementParent.SetActive(false);
+    }
+
 }
