@@ -64,6 +64,7 @@ public class Inventory : MonoBehaviour
 
         canvasGroup.DOFade(open ? 1 : 0, .5f).SetUpdate(true);
         canvasGroup.blocksRaycasts = open;
+        canvasGroup.interactable = open;
 
         GameManager.CameraManager.ChangeOverlayEffect( open ? OverlayEffectType.Pause : OverlayEffectType.None);
     }

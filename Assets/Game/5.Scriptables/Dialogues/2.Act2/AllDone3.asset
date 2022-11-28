@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: AllDone3
   m_EditorClassIdentifier: 
   lines:
+  - actor: {fileID: 11400000, guid: 9331254e55403b64f8ac268a14d90c43, type: 2}
+    emotion: 4
+    portraitPosition: 1
+    line: "Eu vim daquele lado, ent\xE3o aquela coisa ainda deve ta la!"
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
     emotion: 4
     portraitPosition: 1
-    line: "N\xE3o se preocupe, meu amor. Voc\xEA pode ter imaginado coisas?"
+    line: "N\xE3o se preocupe, meu amor. Voc\xEA pode ter imaginado coisas..."
   - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
     emotion: 2
     portraitPosition: 0
@@ -25,5 +29,9 @@ MonoBehaviour:
   - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
     emotion: 0
     portraitPosition: 0
-    line: "Precisamos seguir viajem e chegar at\xE9 as instala\xE7\xF5es da mineradora,
-      mas todo cuidado vai ser pouco..."
+    line: "N\xE3o temos outra escolha... A \xFAnica passagem at\xE9 a barragem \xE9
+      subindo o vale."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Preparem-se. N\xE3o sabemos o que vamos encontrar."

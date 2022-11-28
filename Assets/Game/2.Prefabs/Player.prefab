@@ -48798,6 +48798,7 @@ MonoBehaviour:
   ferrymanAnimator: {fileID: 5244000281631929898}
   vfxDamageLow: {fileID: 5624520491882691661}
   vfxDamageHigh: {fileID: 8965958899065955567}
+  vfxImmune: {fileID: 892247231023540625}
 --- !u!95 &4603877228805478935
 Animator:
   serializedVersion: 4
@@ -68447,7 +68448,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

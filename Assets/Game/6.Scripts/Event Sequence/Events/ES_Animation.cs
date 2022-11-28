@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ES_Animation : ES_EventBase
 {
-    public enum AnimationType { Trigger, Boolean, Integer, Float }
+    public enum AnimationType { Trigger, Boolean, Integer, Float, Play}
     public AnimationType type;
     public Animator animator;
     public string parameter;
@@ -28,6 +28,11 @@ public class ES_Animation : ES_EventBase
             case AnimationType.Float:
                 animator.SetFloat(parameter, valueNumeric);
                 break;
+            case AnimationType.Play:
+                animator.Play(parameter);
+                break;
         }
+
+        StartCoroutine(NextEvent());
     }
 }

@@ -8,6 +8,7 @@ public class PlayerVfx : MonoBehaviour
     [SerializeField] public Animator ferrymanAnimator;
     [SerializeField] private ParticleSystem vfxDamageLow;
     [SerializeField] private ParticleSystem vfxDamageHigh;
+    [SerializeField] private ParticleSystem vfxImmune;
 
     FMOD.Studio.EventInstance collisionSFX;
 
@@ -25,6 +26,15 @@ public class PlayerVfx : MonoBehaviour
     {
 
         ferrymanAnimator.SetBool("lantern", active);
+    }
+
+    public void VfxInvulnerability()
+    {
+        boatAnimator.SetTrigger("damageLow");
+        vfxImmune.Play();
+
+        collisionSFX.setParameterByName("rpm", 0);
+        collisionSFX.start();
     }
 
     public void VfxDamageLow()

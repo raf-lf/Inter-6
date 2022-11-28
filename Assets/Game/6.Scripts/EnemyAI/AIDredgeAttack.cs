@@ -215,12 +215,13 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.canAttack = false; 
         entity.isAttacking = false;
     }
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position));
     }
+    */
 
 
 }
