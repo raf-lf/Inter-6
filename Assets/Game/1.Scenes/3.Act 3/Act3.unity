@@ -5458,6 +5458,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 543126507}
     m_Modifications:
+    - target: {fileID: -1782587680846639626, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
+        type: 3}
+      propertyPath: dredgeEncounterPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1782587680846639626, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
+        type: 3}
+      propertyPath: dredgeEncounterPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 872490126}
+    - target: {fileID: -1782587680846639626, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
+        type: 3}
+      propertyPath: dredgeEncounterPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1315952227}
+    - target: {fileID: -1782587680846639626, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
+        type: 3}
+      propertyPath: dredgeEncounterPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1822738402}
+    - target: {fileID: -1782587680846639626, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
+        type: 3}
+      propertyPath: dredgeEncounterPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1072974796}
     - target: {fileID: 193100494408323185, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6188,56 +6213,6 @@ PrefabInstance:
       propertyPath: rangeDetection
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 430956792}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 262316220}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1013231819}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 1906872522}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1414027891}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 530942480}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[6]
-      value: 
-      objectReference: {fileID: 574486410}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[7]
-      value: 
-      objectReference: {fileID: 1152134440}
-    - target: {fileID: 5685379587511835947, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
-        type: 3}
-      propertyPath: patrolWaypoints.Array.data[8]
-      value: 
-      objectReference: {fileID: 596448637}
     - target: {fileID: 5787359085321766220, guid: 758c5baa9d3eead4aa5acca49bc85dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21724,7 +21699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6c8778cc646234b9024de978fe24ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerType: 1
+  triggerType: 0
   delay: 0
   repeats: 0
   cinematicToPlayFlagCleared: {fileID: 1730985015}
