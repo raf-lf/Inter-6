@@ -19,6 +19,7 @@ public class Enemy : BehaviourManager
     public float rangeLeash;
     public bool inCombat;
 
+    /*[HideInInspector]*/ public bool Stop;
     /*[HideInInspector]*/ public bool isTeleporting;
     [HideInInspector] public bool isBanished;
     [HideInInspector] public bool isPreparingAttack;
@@ -62,6 +63,8 @@ public class Enemy : BehaviourManager
     // Update is called once per frame
     void Update()
     {
+        if (Stop)
+            return;
         if (!isBanished)
             EnemyActions?.Invoke(ActualState);
         attackSequenceCount = Mathf.Clamp(attackSequenceCount, 1, maxAttackCombo);
