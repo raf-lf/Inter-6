@@ -19,7 +19,7 @@ public class Enemy : BehaviourManager
     public float rangeLeash;
 
 
-    /*[HideInInspector]*/ public bool Stop;
+    /*[HideInInspector]*/ public static bool Stop;
     /*[HideInInspector]*/ public bool isTeleporting;
     [HideInInspector] public bool isBanished;
     [HideInInspector] public bool isPreparingAttack;
