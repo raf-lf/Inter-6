@@ -11,7 +11,7 @@ public class AIPatrol : MonoBehaviour
     enum PatrolBehaviour { Circular, Sequential }
     [SerializeField] PatrolBehaviour actualBehaviour;
 
-    public Transform[] patrolWaypoints;
+    public List <Transform> patrolWaypoints;
     public int waypointIndex;
 
     [SerializeField] private bool isMovingToNearestWaypoint;
@@ -59,9 +59,9 @@ public class AIPatrol : MonoBehaviour
 
     public void CheckNearestPatrolWaypoint()
     {
-        for (int i = 0; i < patrolWaypoints.Length; i++)
+        for (int i = 0; i < patrolWaypoints.Count; i++)
         {
-            float[] dist = new float [patrolWaypoints.Length];
+            float[] dist = new float [patrolWaypoints.Count];
                dist[i] = Vector3.Distance(patrolWaypoints[i].transform.position, GameManager.PlayerInstance.transform.position);
             if (i == 0 || dist[i] < dist[i-1])
                 waypointIndex = i;
@@ -85,7 +85,7 @@ public class AIPatrol : MonoBehaviour
 
     void Patrol()
     {
-        if (patrolWaypoints.Length == 0)
+        if (patrolWaypoints.Count == 0)
             return;
         entity.SetAnimationBool("alert", false);
         entity.SetAnimationBool("isObserving", false);
@@ -97,8 +97,8 @@ public class AIPatrol : MonoBehaviour
 
         if (Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) == 0)
         {
-            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Length, 0, patrolWaypoints.Length -1);
-            if (waypointIndex == patrolWaypoints.Length - 1 || waypointIndex == 0)
+            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Count, 0, patrolWaypoints.Count -1);
+            if (waypointIndex == patrolWaypoints.Count - 1 || waypointIndex == 0)
                 sign *= actualBehaviour == PatrolBehaviour.Sequential ? -1 : 1;
             //waypointIndex = ((waypointIndex + 1) % patrolWaypoints.Length);
         }

@@ -25,7 +25,8 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     void Start()
     {
         patrol = GetComponent<AIPatrol>();
-        patrol.patrolWaypoints = dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>();
+        patrol.patrolWaypoints.AddRange(dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.RemoveAt(0);
         entity.EnemyActions += AIActionExecuting;
     }
 
@@ -76,7 +77,9 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
             actualTeleportTime = Mathf.MoveTowards(actualTeleportTime, teleportTimer, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        patrol.patrolWaypoints = dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>();
+        patrol.patrolWaypoints.Clear();
+        patrol.patrolWaypoints.AddRange(dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.RemoveAt(0);
         entity.encounterPoint = dredgeEncounterPoints[actualEncounterIndex];
         ResetTeleporting();
     }
