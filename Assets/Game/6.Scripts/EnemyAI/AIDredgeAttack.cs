@@ -24,7 +24,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] private float chompAttackTime;
 
     [SerializeField] private float minDistanceToPuke;
-    [SerializeField] private float maxDistanceToPuke;
 
     [SerializeField] private float pukePreparationTime;
     [SerializeField] private float actualTimeObserving;
@@ -119,20 +118,22 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
                 pukeParticle.Play();
             else
             {
-                //if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < minDistanceToPuke)
-                //{
-                //    if (!isSubmerging) 
-                //    {
-                //        ResetPukeAttack();
-                //        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
-                //        StartCoroutine(SubmergeToAttack());
-                //    }
-                //    yield break;
-                //}
-                //else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) > maxDistanceToPuke)
+                float dist = Vector3.Distance(new Vector3(GameManager.PlayerInstance.transform.position.x, 0, GameManager.PlayerInstance.transform.position.z), new Vector3 (entity.transform.position.x, 0, entity.transform.position.z));
+                if (dist < minDistanceToPuke)
+                {
+                    Debug.Log("Hi");
+                    if (!isSubmerging)
+                    {
+                        ResetPukeAttack();
+                        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+                        StartCoroutine(SubmergeToAttack());
+                    }
+                    yield break;
+                }
+                //else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) > entity.rangeDetection)
                 //{
                 //    ResetPukeAttack();
-                //    entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+                //    entity.SetDredgeAttack(DredgeAttackVariations.Hide);
                 //    yield break;
                 //}
             }
