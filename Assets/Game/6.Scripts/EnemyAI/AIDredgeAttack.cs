@@ -130,12 +130,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
                     }
                     yield break;
                 }
-                //else if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) > entity.rangeDetection)
-                //{
-                //    ResetPukeAttack();
-                //    entity.SetDredgeAttack(DredgeAttackVariations.Hide);
-                //    yield break;
-                //}
             }
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
