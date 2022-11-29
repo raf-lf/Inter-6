@@ -1,7 +1,9 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 [RequireComponent(typeof(LanternTarget))]
 public class Zombie : MonoBehaviour
@@ -17,6 +19,8 @@ public class Zombie : MonoBehaviour
     private CharacterController controller;
     private LanternTarget lanternTarget;
     private bool banished;
+
+    FMOD.Studio.EventInstance soundsFX;
 
     public enum StateZombie { resting, chasing, attacking, banishing, banished  }
     public StateZombie currentState;
@@ -37,6 +41,8 @@ public class Zombie : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         lanternTarget = GetComponent<LanternTarget>();
+        soundsFX = RuntimeManager.CreateInstance("event:/SFX/MOB/zombies");
+
 
         if (PlayerData.buffStealth)
             rangeDetection /= 2;
@@ -137,14 +143,20 @@ public class Zombie : MonoBehaviour
                 animator.SetBool("banishing", false);
                 animator.SetTrigger("resting");
                 lanternTarget.lanternProgress = 0;
+                soundsFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 break;
             case StateZombie.chasing:
+                SoundManager.soundTrackEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                soundsFX.start();
                 animator.SetBool("chasing", true);
                 animator.SetBool("attacking", false);
                 animator.SetBool("banishing", false);
+
                 break;
             case StateZombie.attacking:
+                soundsFX.setParameterByName("attack",1);
                 animator.SetBool("attacking", true);
+                
                 break;
             case StateZombie.banishing:
                 animator.SetBool("banishing", true);
