@@ -4,5 +4,5 @@ using System;
 
 public class StateManager : MonoBehaviour
 {
-    public Action<ActionStatus, BehaviourState> StateChange;
+    public Action<BehaviourState> StateChange;
 }

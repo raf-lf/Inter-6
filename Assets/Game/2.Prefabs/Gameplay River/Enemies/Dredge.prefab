@@ -19588,6 +19588,7 @@ GameObject:
   - component: {fileID: 5685379587511835924}
   - component: {fileID: 5685379587511835947}
   - component: {fileID: 5685379587511835946}
+  - component: {fileID: -1782587680846639626}
   - component: {fileID: 5685379587511835944}
   - component: {fileID: 7265687039060378782}
   - component: {fileID: 6298377791703365953}
@@ -19632,8 +19633,11 @@ MonoBehaviour:
   EnemyHolder: {fileID: 1360377396966023359}
   animator: {fileID: 7265687039060378782}
   encounterPoint: {fileID: 5290673901819488839}
-  rangeDetection: 30
-  rangeLeash: 0
+  attackSequenceCount: 1
+  maxAttackCombo: 3
+  rangeDetection: 25
+  rangeLeash: 30
+  isTeleporting: 0
   isBanished: 0
   isPreparingAttack: 0
   canBanish: 0
@@ -19655,15 +19659,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pukeParticle: {fileID: 5787359085321766221}
-  DredgeHead: {fileID: 0}
-  DredgeHeadPuke: {fileID: 0}
   actualAttack: 0
   speedRotation: 100
+  moveSpeed: 10
+  isSubmerging: 0
   actualPreparationTime: 0
-  actualPukeTime: 0
+  submergeTime: 4
+  chompChargeTime: 4
+  actualAttackTime: 0
   pukeAttackTime: 8
-  distanceToStopPuke: 0
-  tackleAttackTime: 0
+  chompAttackTime: 6
+  minDistanceToPuke: 10
   pukePreparationTime: 3
   actualTimeObserving: 0
   vectorOffset: {x: 0, y: 0, z: 0}
@@ -19679,8 +19685,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c1a0563afeb654fa326c5e28b25363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualBehaviour: 1
   patrolWaypoints: []
-  moveSpeed: 10
+  waypointIndex: 0
+  isMovingToNearestWaypoint: 0
+  moveSpeed: 20
+  rotationSpeed: 400
 --- !u!114 &5685379587511835946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19694,11 +19704,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRotation: 100
-  DredgeHead: 0
   isObserving: 0
   observeTime: 3
   actualTimeObserving: 0
-  maxDistanceToTackle: 0
+  stopObservingDistance: 15
+--- !u!114 &-1782587680846639626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767041846579900669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1e25dde7c8cf74191ceb8855a32250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dredgeEncounterPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  actualEncounterIndex: 0
+  moveSpeed: 30
+  actualTeleportTime: 0
+  teleportTimer: 6
 --- !u!114 &5685379587511835944
 MonoBehaviour:
   m_ObjectHideFlags: 0

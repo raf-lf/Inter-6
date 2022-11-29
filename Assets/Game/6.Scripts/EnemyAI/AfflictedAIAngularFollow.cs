@@ -34,7 +34,6 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
     }
 
 
-    private ActionStatus status;
     private BehaviourState classState = BehaviourState.Chase;
 
     // Start is called before the first frame update
@@ -73,7 +72,7 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
             }
             if (dist <= entity.rangeDetection && state == BehaviourState.Rest || dist <= entity.rangeLeash && state != BehaviourState.Rest)
             {
-                entity.ChangeState(status, classState);
+                entity.ChangeState( classState);
                 SetChaseAnimation();
             }
         }

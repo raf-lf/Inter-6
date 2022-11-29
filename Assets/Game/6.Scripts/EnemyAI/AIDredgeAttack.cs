@@ -8,20 +8,22 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 {
 
     Enemy entity;
-    ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Attack;
     [SerializeField] ParticleSystem pukeParticle;
-    [SerializeField] GameObject DredgeHead;
-    [SerializeField] GameObject DredgeHeadPuke;
     [SerializeField] DredgeAttackVariations actualAttack;
     [SerializeField] private float speedRotation;
+    [SerializeField] private float moveSpeed;
 
+    [SerializeField] private bool isSubmerging;
     [SerializeField] private float actualPreparationTime;
 
-    [SerializeField] private float actualPukeTime;
+    [SerializeField] private float submergeTime;
+    [SerializeField] private float chompChargeTime;
+    [SerializeField] private float actualAttackTime;
     [SerializeField] private float pukeAttackTime;
-    [SerializeField] private float distanceToStopPuke;
-    [SerializeField] private float tackleAttackTime;
+    [SerializeField] private float chompAttackTime;
+
+    [SerializeField] private float minDistanceToPuke;
 
     [SerializeField] private float pukePreparationTime;
     [SerializeField] private float actualTimeObserving;
@@ -52,10 +54,17 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         }
         else
         {
+            if (state == BehaviourState.Teleport)
+            {
+                if (isSubmerging)
+                    StopCoroutine(SubmergeToAttack());
+                return;
+            }
+
             if (entity.GetDredgeAttack() != DredgeAttackVariations.Noone)
             {
                 ResetAttackVar();
-                entity.ChangeState(status, classState);
+                entity.ChangeState(classState);
             }
         }
     }
@@ -74,13 +83,17 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         switch (actualAttack)
         {
             case DredgeAttackVariations.Puke:
-                StartCoroutine(PukeAttack());
-                break;
-            case DredgeAttackVariations.Tackle:
-                StartCoroutine(TackleAttack());
+                    StartCoroutine(PukeAttack());
                 break;
         }
     }
+
+    //bool CanAttack()
+    //{
+    //    if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.transform.position) > entity.rangeLeash)
+    //        return false;
+    //    else return true;
+    //}
 
     IEnumerator AttackPreparation(float timeToAchieve)
     {
@@ -95,71 +108,119 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     IEnumerator PukeAttack()
     {
         yield return StartCoroutine(AttackPreparation(pukePreparationTime));
+        if (entity.isTeleporting)
+            yield break;
         entity.SetAnimationTrigger("attack");
-        
-        while (actualPukeTime < pukeAttackTime)
+        entity.SetAnimationBool("purge", true);
+        while (actualAttackTime < pukeAttackTime)
         {
             if (!pukeParticle.isPlaying)
                 pukeParticle.Play();
             else
             {
-                if(Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position) < distanceToStopPuke)
+                float dist = Vector3.Distance(new Vector3(GameManager.PlayerInstance.transform.position.x, 0, GameManager.PlayerInstance.transform.position.z), new Vector3 (entity.transform.position.x, 0, entity.transform.position.z));
+                if (dist < minDistanceToPuke)
                 {
-                    ResetPukeAttack();
+                    Debug.Log("Hi");
+                    if (!isSubmerging)
+                    {
+                        ResetPukeAttack();
+                        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+                        StartCoroutine(SubmergeToAttack());
+                    }
                     yield break;
                 }
             }
-            actualPukeTime = Mathf.MoveTowards(actualPukeTime, pukeAttackTime, Time.deltaTime);
+            actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         ResetPukeAttack();
+        entity.SetDredgeAttack(entity.attackSequenceCount == entity.GetMaxComboSequence() ? DredgeAttackVariations.Submerge : DredgeAttackVariations.Noone);
+        if(entity.attackSequenceCount == entity.GetMaxComboSequence())
+            StartCoroutine(SubmergeToAttack());
+        entity.attackSequenceCount += 1;
     }
 
     void ResetPukeAttack()
     {
-        actualPukeTime = 0;
-        entity.SetAnimationBool("alert", false);
-        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
+        actualAttackTime = 0;
+        entity.SetAnimationBool("purge", false);
         if (pukeParticle.isPlaying)
             pukeParticle.Stop();
     }
 
-    IEnumerator TackleAttack()
+    IEnumerator SubmergeToAttack()
     {
-        entity.SetAnimationTrigger("triggerTackle");
-        while (actualPukeTime < tackleAttackTime)
+        if (entity.isTeleporting)
+            yield break;
+        isSubmerging = true;
+        entity.SetAnimationBool("submerge", true);
+        yield return new WaitForSeconds(submergeTime);
+
+        isSubmerging = false;
+        entity.SetDredgeAttack(DredgeAttackVariations.Chomp);
+        StartCoroutine(ChompChargeAttack());
+        entity.attackSequenceCount = 1;
+    }
+
+    IEnumerator ChompChargeAttack()
+    {
+        if (entity.isTeleporting)
+            yield break;
+        actualPreparationTime = 0;
+        while(actualPreparationTime < chompChargeTime)
         {
-            actualPukeTime = Mathf.MoveTowards(actualPukeTime, tackleAttackTime, Time.deltaTime);
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
+            actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, chompChargeTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        ResetPukeAttack();
+
+        StartCoroutine(ChompAttack());
+
+    }
+
+    IEnumerator ChompAttack()
+    {
+        if (entity.isTeleporting)
+            yield break;
+        entity.SetAnimationTrigger("attack");
+        while (actualAttackTime < chompAttackTime)
+        {
+            if(actualAttackTime <= chompAttackTime*0.2f)
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
+            actualAttackTime = Mathf.MoveTowards(actualAttackTime, chompAttackTime, Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("ChompFinish");
+        if(entity.attackSequenceCount == entity.GetMaxComboSequence())
+        {
+            entity.attackSequenceCount  = 1;
+            actualAttackTime = 0;
+            entity.SetDredgeAttack(DredgeAttackVariations.Hide);
+            entity.SetAnimationBool("submerge", true);
+            yield break;
+        }
+        else
+        {
+            StartCoroutine(ChompChargeAttack());
+        }
+        actualAttackTime = 0;
+        entity.attackSequenceCount += 1;
     }
 
     private void UpdateRotation()
     {
         Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
-        Vector3 dirPuke = dir;
         dir.y = 0;
-        float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.EnemyHolder.transform.position);
-        float distY = GameManager.PlayerInstance.transform.position.y - entity.EnemyHolder.transform.position.y;
         Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
-        Quaternion quaternionLook = Quaternion.LookRotation(dirPuke, Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
-        //float vel = Mathf.Sqrt(dist * 9.81f);
-        //pukeParticle.startSpeed = vel; 
-        //float ai = Mathf.Sin(dist * 9.81f / vel * vel);
-
-        //float teta = Mathf.Asin(ai) /2f;
-        ////Debug.Log(" distY" + distY);
-        ////Debug.Log("teta" + teta);
-        ////DredgeHeadPuke.transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternionLook, speedRotation * Time.deltaTime);
-        //DredgeHeadPuke.transform.rotation = Quaternion.Euler(Mathf.Rad2Deg*teta, quaternionLook.eulerAngles.y, quaternionLook.eulerAngles.z);
 
     }
 
     private void ResetAttackVar()
     {
         actualPreparationTime = 0;
+        isSubmerging = false;
         entity.isPreparingAttack = false;
         entity.canAttack = false; 
         entity.isAttacking = false;
@@ -168,7 +229,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.EnemyHolder.transform.position));
+        Gizmos.DrawSphere(transform.position, Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position));
     }
     */
 

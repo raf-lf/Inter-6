@@ -11,7 +11,6 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
     [SerializeField] private float attackTimer;
     [SerializeField] private int[] timeToAttackRange = new int[2];
 
-    private ActionStatus status;
     private BehaviourState classState = BehaviourState.Attack;
 
     // Start is called before the first frame update
@@ -91,7 +90,7 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
         yield return new WaitForSeconds(chooseTimeToAttack);
         if (entity.GetActualState() != BehaviourState.Chase)
             yield break;
-        entity.ChangeState(status, classState);
+        entity.ChangeState( classState);
         entity.canAttack = true;
     }
 

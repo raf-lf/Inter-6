@@ -7,16 +7,14 @@ using DredgeAttack;
 public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 {
     Enemy entity;
-    ActionStatus status = ActionStatus.Running;
     BehaviourState classState = BehaviourState.Observing;
 
     [SerializeField] private float speedRotation;
-    [SerializeField] private float DredgeHead;
 
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
     [SerializeField] private float actualTimeObserving;
-    [SerializeField] private float maxDistanceToTackle;
+    [SerializeField] private float stopObservingDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +37,12 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         }
         else
         {
-
-            if (Vector3.Distance(entity.EnemyHolder.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
+            if (entity.isTeleporting)
+                return;
+            if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 ResetObservingTimer();
-                entity.ChangeState(status, classState);
+                entity.ChangeState(classState);
             }
         }
     }
@@ -53,10 +52,16 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
         isObserving = true;
 
         entity.SetAnimationBool("alert", true);
+        entity.SetAnimationBool("isObserving", true);
 
         while (actualTimeObserving < observeTime)
         {
-            Vector3 dir = GameManager.PlayerInstance.transform.position - entity.EnemyHolder.transform.position;
+            if(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
+            {
+                ResetObservingTimer();
+                yield break;
+            }
+            Vector3 dir = GameManager.PlayerInstance.transform.position - entity.transform.position;
             Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, speedRotation * Time.deltaTime);
             actualTimeObserving = Mathf.MoveTowards(actualTimeObserving, observeTime, Time.deltaTime);
@@ -67,11 +72,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 
     void ChooseAttack()
     {
-        float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.transform.position);
-        if(dist <= maxDistanceToTackle)
-            entity.SetDredgeAttack(DredgeAttackVariations.Tackle);
-        else
-            entity.SetDredgeAttack(DredgeAttackVariations.Puke);
+        entity.SetDredgeAttack(DredgeAttackVariations.Puke);
     }
 
     void ResetObservingTimer()
