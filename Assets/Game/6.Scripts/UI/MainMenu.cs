@@ -159,6 +159,7 @@ public class MainMenu : MonoBehaviour
     {
         RuntimeManager.PlayOneShot("event:/UI/enter");
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 2);
+        GameManager.ScriptableManager.ResetAll();
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Tutorial");
 
