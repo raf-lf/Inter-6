@@ -66,6 +66,7 @@ public class PlayerAtributes : MonoBehaviour
 
     public void Death()
     {
+        GameManager.PlayerInstance.playerVfx.VfxDeath();
         dead = true;
         StartCoroutine(DeathSequence());
 

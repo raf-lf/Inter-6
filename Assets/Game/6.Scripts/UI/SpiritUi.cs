@@ -65,7 +65,7 @@ public class SpiritUi : InventoryElement
     }
     public void Click()
     {
-        if (!GameManager.PlayerClickControl)
+        if (!GameManager.PlayerClickControl || !associatedSpirit.found)
             return;
 
         CloseDescription();

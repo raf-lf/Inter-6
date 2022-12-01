@@ -8,16 +8,19 @@ public class PlayerVfx : MonoBehaviour
     [SerializeField] public Animator ferrymanAnimator;
     [SerializeField] private ParticleSystem vfxDamageLow;
     [SerializeField] private ParticleSystem vfxDamageHigh;
+    [SerializeField] private ParticleSystem vfxDeath;
     [SerializeField] private ParticleSystem vfxImmune;
 
     FMOD.Studio.EventInstance collisionSFX;
+    FMOD.Studio.EventInstance explosionSFX;
 
 
 
 
     private void Start()
     {
-        collisionSFX = PlayerSfx.collisionEvent; 
+        collisionSFX = PlayerSfx.collisionEvent;
+        explosionSFX = PlayerSfx.explosionEvent; 
 
 
     }
@@ -55,6 +58,15 @@ public class PlayerVfx : MonoBehaviour
 
         collisionSFX.setParameterByName("rpm", 1.6f);
         collisionSFX.start();
+    }
+
+    public void VfxDeath()
+    {
+        ferrymanAnimator.SetTrigger("death");
+        boatAnimator.SetTrigger("death");
+        vfxDeath.Play();
+
+        explosionSFX.start();
     }
 
 }

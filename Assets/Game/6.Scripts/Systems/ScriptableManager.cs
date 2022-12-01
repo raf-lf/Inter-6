@@ -24,6 +24,9 @@ public class ScriptableManager : ScriptableObject
     }
     public void ResetAll()
     {
+
+        SaveSystem.saveableHashtable.Clear();
+
         foreach (var item in allItems)
         {
             item.quantity = 0;
@@ -40,5 +43,9 @@ public class ScriptableManager : ScriptableObject
         {
             item.ChangeTaskState(TaskState.notStarted);
         }
+
+        GameManager.GameData.ResetValues();
+
+        Debug.Log("Everything Reseted!");
     }
 }

@@ -26,9 +26,9 @@ public class TaskManager : MonoBehaviour
     {
         foreach (var item in GameManager.ScriptableManager.allTasks)
         {
-            if (item.taskState == TaskState.acquired || item.taskState == TaskState.completed)
+            if (item.taskState != TaskState.notStarted)
             {
-                CreateTask(item);
+               CreateTask(item);
             }
         }
 
@@ -86,10 +86,8 @@ public class TaskManager : MonoBehaviour
         }
         taskUiElements.Clear();
 
-        foreach (var item in GameManager.ScriptableManager.allTasks)
-        {
-            CreateTask(item);
-        }
+        PopulateTaskList();
+
         ShowHideTaskList();
     }
 }

@@ -38714,6 +38714,7 @@ MonoBehaviour:
   vfxMouseOver: {fileID: 5366486468386368258}
   vfxMouseClick: {fileID: 5366486469773814428}
   renderer: {fileID: 4850794605458683562}
+  visualElementParent: {fileID: 0}
   focusCamera: {fileID: 0}
   ClickEvent:
     m_PersistentCalls:
@@ -38863,7 +38864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextEventDelay: 0
-  logToShow: {fileID: 11400000, guid: 8f057bbc4779c084ea7763d0b9438bbc, type: 2}
+  logToShow: {fileID: 11400000, guid: ba7ae10fc28bd3c4f902daee1fca8046, type: 2}
 --- !u!1 &6626514853019497601
 GameObject:
   m_ObjectHideFlags: 0
@@ -38912,6 +38913,7 @@ MonoBehaviour:
   CinematicMode: 0
   eventList: []
   currentEventIndex: 0
+  repeats: 1
 --- !u!1001 &5774242076644187782
 PrefabInstance:
   m_ObjectHideFlags: 0

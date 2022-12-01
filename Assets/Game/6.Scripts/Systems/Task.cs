@@ -27,7 +27,8 @@ public class Task : ScriptableObject
             
         }
 
-        GameManager.TaskManager.ShowHideTaskList();
+        if(GameManager.TaskManager)
+            GameManager.TaskManager.ShowHideTaskList();
     }
     public void CompleteTask()
     {

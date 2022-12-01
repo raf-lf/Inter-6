@@ -61,4 +61,9 @@ public class GameplayManager : MonoBehaviour
         if (GameManager.PlayerControl)
             GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Off, 1);
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Backspace))
+            GameManager.ScriptableManager.ResetAll();
+    }
 }
