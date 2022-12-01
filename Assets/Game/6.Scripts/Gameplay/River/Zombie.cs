@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 [RequireComponent(typeof(LanternTarget))]
 public class Zombie : MonoBehaviour
@@ -12,11 +13,14 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float rangeLeash;
     [SerializeField] private float rangeAttack;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private StudioEventEmitter sfxEmitter;
+
     private Vector3 startPosition;
     private Animator animator;
     private CharacterController controller;
     private LanternTarget lanternTarget;
     private bool banished;
+    private bool inCombat;
 
     public enum StateZombie { resting, chasing, attacking, banishing, banished  }
     public StateZombie currentState;
@@ -75,6 +79,14 @@ public class Zombie : MonoBehaviour
             {
                 ChangeState(StateZombie.banished);
                 banished = true;
+                sfxEmitter.Stop();
+
+                if (inCombat)
+                {
+                    inCombat = false;
+                    GameManager.CombatState.ChangeCombatants(-1);
+                }
+
                 return;
             }
 
@@ -88,11 +100,25 @@ public class Zombie : MonoBehaviour
         switch (currentState)
         {
             case StateZombie.resting:
+
+                if (inCombat)
+                {
+                    inCombat = false;
+                    GameManager.CombatState.ChangeCombatants(-1);
+                }
+
                 if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection)
                     ChangeState(StateZombie.chasing);
                 break;
 
             case StateZombie.chasing:
+
+                if (!inCombat)
+                {
+                    inCombat = true;
+                    GameManager.CombatState.ChangeCombatants(1);
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) <= rangeAttack)
@@ -107,6 +133,13 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.banishing:
+
+                if (!inCombat)
+                {
+                    inCombat = true;
+                    GameManager.CombatState.ChangeCombatants(1);
+                }
+
                 if (lanternTarget.lanternProgress <= 0)
                 {
                     ChangeState(StateZombie.chasing);
@@ -114,10 +147,10 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.banished:
+
                 break;
         }
     }
-
     public void ChangeState(StateZombie state)
     {
         switch (state)

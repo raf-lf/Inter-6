@@ -22,7 +22,7 @@ public class LanternTarget : MonoBehaviour
     [SerializeField] protected ParticleSystem vfxBurn;
     [SerializeField] protected ParticleSystem vfxDeath;
     [SerializeField] private Renderer renderer;
-
+    [SerializeField] private StudioEventEmitter sfxEmitter;
 
     public void LanternGain(float effect)
     {
@@ -37,6 +37,12 @@ public class LanternTarget : MonoBehaviour
         {
             LanternEffect();
         }
+
+        if (!sfxEmitter)
+            return;
+
+        if (!sfxEmitter.IsPlaying())
+            sfxEmitter.Play();
     }
 
     private void LanternLoss()
@@ -53,31 +59,30 @@ public class LanternTarget : MonoBehaviour
             lanternProgress = Mathf.Clamp(lanternProgress - (lanternRecovery * Time.deltaTime), 0, targetThreshold);
             return;
         }
+
     }
 
     public virtual void LanternEffect()
     {
         lanternImmune = true;
+        if (vfxDeath)
+            vfxDeath.Play();
 
         switch (targetType)
         {
             case LanternTargetType.soul:
-                vfxDeath.Play();
-
                 if(renderer)
                     renderer.material.DOFloat(1,"_Fade", 1);
-
                 break;
             case LanternTargetType.spiritLock:
-                vfxDeath.Play();
                 GetComponent<SpiritLock>().OpenLock(false);
                 break;
 
             case LanternTargetType.hiddenItem:
                 RuntimeManager.PlayOneShot("event:/SFX/PERSONAGEM/item_pickup");
                 break;            
-            case LanternTargetType.afflicted:
 
+            case LanternTargetType.afflicted:
                 break;
 
         }
@@ -96,6 +101,19 @@ public class LanternTarget : MonoBehaviour
     {
         LanternLoss();
         UpdateBurnProgressVfx();
+
+        if (!sfxEmitter)
+            return;
+
+        if (sfxEmitter.IsPlaying())
+        {
+            if(!lanternImmune)
+                sfxEmitter.SetParameter("luz", lanternProgress / targetThreshold);
+
+            if (lanternProgress <= 0 || lanternImmune)
+                sfxEmitter.Stop();
+        }
+
     }
 
     public void ResetProgress()

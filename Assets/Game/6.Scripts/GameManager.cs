@@ -19,5 +19,6 @@ public static class GameManager
     public static TaskManager TaskManager;
     public static GameplayManager GameplayManager;
     public static GameObject soundTrackManager;
+    public static CombatState CombatState;
 
 }

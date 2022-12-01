@@ -18,9 +18,8 @@ public class Lantern : MonoBehaviour
     [SerializeField] private float AoeSizeIncrement;
     [SerializeField] private List<LanternTarget> targetsAffected = new List<LanternTarget>();
 
-
-
-    bool sfxON;
+    [Header("Components")]
+    [SerializeField] private StudioEventEmitter sfxLantern;
 
     private void UseLantern(bool active)
     {
@@ -32,11 +31,10 @@ public class Lantern : MonoBehaviour
             GameManager.CameraManager.SwitchCamera(CameraType.Lantern);
             lanternAnimator.SetBool("focus", true);
             CheckLanternArea();
-            if (sfxON == false)
-            {
-                RuntimeManager.PlayOneShot(PlayerSfx.lanternEventPath, transform.position);
-                sfxON = true;
-            }
+
+            if(!sfxLantern.IsPlaying())
+                sfxLantern.Play();
+        
         }
         else
         {
@@ -44,8 +42,9 @@ public class Lantern : MonoBehaviour
             GameManager.CameraManager.SwitchCamera(CameraType.Ship);
             lanternAnimator.SetBool("focus", false);
 
-            sfxON = false;
-
+            if (sfxLantern.IsPlaying())
+                sfxLantern.Stop();
+        
         }
 
         boatRenderer.material.DOFloat(active ? 1.5f : 0, "_MaskRadius",.5f);
@@ -90,7 +89,7 @@ public class Lantern : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Space))
             UseLantern(true);
         else
             UseLantern(false);

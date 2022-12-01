@@ -75,6 +75,7 @@ public class PlayerAtributes : MonoBehaviour
     {
         Destroy(GameManager.soundTrackManager);
         GameManager.PlayerControl = false;
+        yield return new WaitForSeconds(2);
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 2);
         yield return new WaitForSeconds(2);
         GameManager.PlayerControl = true;
