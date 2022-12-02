@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
+  m_Name: OfficeTalk10
+  m_EditorClassIdentifier: 
+  lines:
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 4
+    portraitPosition: 0
+    line: "Pode n\xE3o parecer, engenheiro, mas a neglig\xEAncia que matou as pessoas
+      desse vale n\xE3o foi apenas sua."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Muitas outras pessoas foram respons\xE1veis. A corrup\xE7\xE3o nessa sua
+      mineradora era algo bem difundido."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 2
+    portraitPosition: 0
+    line: "Temos a draga como exemplo disso, um monstro criado a partir da ganancia
+      e neglig\xEAncia de muitas pessoas."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 2
+    portraitPosition: 0
+    line: "Mas tem algo que voc\xEA ainda pode fazer."
+  - actor: {fileID: 11400000, guid: 04bd7f072305717489d093bf8a9beead, type: 2}
+    emotion: 0
+    portraitPosition: 1
+    line: "Diga! Fa\xE7o qualquer coisa..."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 2
+    portraitPosition: 0
+    line: "A barragem possui uma sirene de alerta, n\xE3o?"
+  - actor: {fileID: 11400000, guid: 04bd7f072305717489d093bf8a9beead, type: 2}
+    emotion: 0
+    portraitPosition: 1
+    line: Sim... Ela deveria ser ativada no caso de um desastre...
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 3
+    portraitPosition: 0
+    line: "O que tamb\xE9m nunca aconteceu!"

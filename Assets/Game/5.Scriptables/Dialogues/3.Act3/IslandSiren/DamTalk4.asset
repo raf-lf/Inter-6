@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
+  m_Name: DamTalk4
+  m_EditorClassIdentifier: 
+  lines:
+  - actor: {fileID: 11400000, guid: 04bd7f072305717489d093bf8a9beead, type: 2}
+    emotion: 2
+    portraitPosition: 1
+    line: "Eu preciso me redimir, barqueiro. N\xE3o importa o que aconte\xE7a comigo
+      depois."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Eu entendo. Uma vez que voc\xEA ativar a sirene, todas as almas desse
+      vale responder\xE3o o chamado."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 2
+    portraitPosition: 0
+    line: "Mas tome essa decis\xE3o com cuidado. O que acontece depois s\xF3 depende
+      de voc\xEA engenheiro."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Uma vez que ela for tocada, n\xE3o vamos mais voltar."
+  - actor: {fileID: 11400000, guid: 04bd7f072305717489d093bf8a9beead, type: 2}
+    emotion: 0
+    portraitPosition: 1
+    line: "Eu entendo. Precisamos ter certeza de que estamos prontos para o que vem
+      a\xED..."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: Ainda temos tempo. Pense com cuidado.

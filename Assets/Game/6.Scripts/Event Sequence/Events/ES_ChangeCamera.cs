@@ -9,7 +9,7 @@ public class ES_ChangeCamera : ES_EventBase
     [SerializeField] private CinemachineVirtualCameraBase changingCamera;
     [SerializeField] private bool activeCam = true;
     [SerializeField] private float blendTime = 1;
-
+    public static CinemachineVirtualCameraBase lastCamera;
     public override void Play(EventSequence cine)
     {
         base.Play(cine);
@@ -17,6 +17,10 @@ public class ES_ChangeCamera : ES_EventBase
         GameManager.CameraManager.EnableDisableBaseCams(!activeCam);
         changingCamera.enabled = activeCam;
 
+        if(lastCamera != null)
+            lastCamera.enabled = false;
+
+        lastCamera = changingCamera;
         StartCoroutine(DelayBlendChange());
         StartCoroutine(NextEvent());
     }

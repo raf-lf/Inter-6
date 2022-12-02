@@ -33,10 +33,13 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        ShipCamera.Follow = GameManager.PlayerInstance.cameraTargetPlayer;
-        ShipCamera.LookAt = GameManager.PlayerInstance.cameraTargetPlayer;
-        LanternCamera.Follow = GameManager.PlayerInstance.cameraTargetLantern;
-        LanternCamera.LookAt = GameManager.PlayerInstance.cameraTargetLantern;
+        if (GameManager.PlayerInstance)
+        {
+            ShipCamera.Follow = GameManager.PlayerInstance.cameraTargetPlayer;
+            ShipCamera.LookAt = GameManager.PlayerInstance.cameraTargetPlayer;
+            LanternCamera.Follow = GameManager.PlayerInstance.cameraTargetLantern;
+            LanternCamera.LookAt = GameManager.PlayerInstance.cameraTargetLantern;
+        }
         shipCamFreeLook.m_XAxis.Value = 0f;
         shipCamFreeLook.m_YAxis.Value = .66f;
         lanternFreeLook.m_XAxis.Value = shipCamFreeLook.m_XAxis.Value;

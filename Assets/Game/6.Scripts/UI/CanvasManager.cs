@@ -38,7 +38,7 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowHud(bool active)
     {
-        hudCanvasGroup.DOFade(active ? 1 : 0, .33f);
+        hudCanvasGroup.DOFade(active ? 1 : 0, .33f).SetUpdate(true); ;
         
         if(FindObjectOfType<IslandManager>())
             IslandManager.CurrentIslandManager.canvasIslandManager.ShowHud(active);
@@ -49,15 +49,15 @@ public class CanvasManager : MonoBehaviour
         switch (animation)
         {
             case OverlayAnimation.Off:
-                overlay.DOFade(0, speed);
+                overlay.DOFade(0, speed).SetUpdate(true); ;
                 break;
             case OverlayAnimation.Black:
-                overlay.DOFade(1, speed);
-                overlayImage.DOColor(Color.black, speed);
+                overlay.DOFade(1, speed).SetUpdate(true); ;
+                overlayImage.DOColor(Color.black, speed).SetUpdate(true); ;
                 break;
             case OverlayAnimation.White:
-                overlay.DOFade(1, speed);
-                overlayImage.DOColor(Color.white, speed);
+                overlay.DOFade(1, speed).SetUpdate(true);
+                overlayImage.DOColor(Color.white, speed).SetUpdate(true); ;
                 break;
 
         }

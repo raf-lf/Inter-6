@@ -11,16 +11,10 @@ public class Movement : MonoBehaviour
     public float movement;
     public float movementSlowdown;
 
-
-
     [Header("SfxRPM")]
     float sfxRPM;
     bool acelerating;
   
-
-
-
-
     private void Awake()
     {
 
@@ -44,7 +38,6 @@ public class Movement : MonoBehaviour
             }
             else 
             {
-        
                 sfxRPM = 1;
             }
         
