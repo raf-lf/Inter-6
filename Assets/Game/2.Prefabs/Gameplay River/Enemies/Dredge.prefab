@@ -19637,7 +19637,6 @@ MonoBehaviour:
   maxAttackCombo: 3
   rangeDetection: 25
   rangeLeash: 30
-  inCombat: 0
   isTeleporting: 0
   isBanished: 0
   isPreparingAttack: 0
@@ -19663,6 +19662,7 @@ MonoBehaviour:
   actualAttack: 0
   speedRotation: 100
   moveSpeed: 7
+  speedMultiplier: 3
   isSubmerging: 0
   actualPreparationTime: 0
   submergeTime: 4
@@ -19691,6 +19691,7 @@ MonoBehaviour:
   waypointIndex: 0
   isMovingToNearestWaypoint: 0
   moveSpeed: 10
+  speedDistanceMultiplier: 3
   rotationSpeed: 400
 --- !u!114 &5685379587511835946
 MonoBehaviour:

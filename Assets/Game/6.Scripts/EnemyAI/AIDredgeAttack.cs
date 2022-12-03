@@ -13,6 +13,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] DredgeAttackVariations actualAttack;
     [SerializeField] private float speedRotation;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float speedMultiplier;
 
     [SerializeField] private bool isSubmerging;
     [SerializeField] private float actualPreparationTime;
@@ -121,7 +122,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
                 float dist = Vector3.Distance(new Vector3(GameManager.PlayerInstance.transform.position.x, 0, GameManager.PlayerInstance.transform.position.z), new Vector3 (entity.transform.position.x, 0, entity.transform.position.z));
                 if (dist < minDistanceToPuke)
                 {
-                    Debug.Log("Hi");
                     if (!isSubmerging)
                     {
                         ResetPukeAttack();
@@ -170,7 +170,9 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         actualPreparationTime = 0;
         while(actualPreparationTime < chompChargeTime)
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
+            float multiplier = Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeDetection ? speedMultiplier : 1;
+
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * multiplier * Time.deltaTime);
             actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, chompChargeTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }

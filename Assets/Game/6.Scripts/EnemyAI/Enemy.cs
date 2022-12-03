@@ -17,9 +17,8 @@ public class Enemy : BehaviourManager
 
     public float rangeDetection;
     public float rangeLeash;
-    public bool inCombat;
+    public static bool isInCombat;
 
-    /*[HideInInspector]*/ public static bool Stop;
     /*[HideInInspector]*/ public bool isTeleporting;
     [HideInInspector] public bool isBanished;
     [HideInInspector] public bool isPreparingAttack;
@@ -63,7 +62,7 @@ public class Enemy : BehaviourManager
     // Update is called once per frame
     void Update()
     {
-        if (Stop)
+        if (isInCombat)
             return;
         if (!isBanished)
             EnemyActions?.Invoke(ActualState);
