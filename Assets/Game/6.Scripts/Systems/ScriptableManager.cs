@@ -9,6 +9,7 @@ public class ScriptableManager : ScriptableObject
     public List<Spirit> allSpirits = new List<Spirit>();
     public List<Flag> allFlags = new List<Flag>();
     public List<Task> allTasks = new List<Task>();
+    public List<Questline> allQuestlines = new List<Questline>();
 
     public void PopulateLists()
     {
@@ -20,6 +21,8 @@ public class ScriptableManager : ScriptableObject
             allFlags.AddRange(Resources.FindObjectsOfTypeAll<Flag>());
         if (allTasks.Count == 0)
             allTasks.AddRange(Resources.FindObjectsOfTypeAll<Task>());
+        if (allQuestlines.Count == 0)
+            allQuestlines.AddRange(Resources.FindObjectsOfTypeAll<Questline>());
 
     }
     public void ResetAll()
@@ -41,7 +44,11 @@ public class ScriptableManager : ScriptableObject
         }
         foreach (var item in allTasks)
         {
-            item.ChangeTaskState(TaskState.notStarted);
+            item.ChangeTaskState(TaskState.hidden);
+        }
+        foreach (var item in allQuestlines)
+        {
+            item.ResetQuestline();
         }
 
         GameManager.GameData.ResetValues();

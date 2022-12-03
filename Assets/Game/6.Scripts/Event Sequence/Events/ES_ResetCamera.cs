@@ -13,10 +13,16 @@ public class ES_ResetCamera : ES_EventBase
 
         GameManager.CameraManager.brain.m_DefaultBlend.m_Time = blendTime;
 
+        foreach (var item in transform.parent.GetComponentsInChildren<ES_ChangeCamera>())
+        {
+            item.changingCamera.enabled = false;
+        }
+        /*
         foreach (var item in transform.parent.GetComponentsInChildren<CinemachineVirtualCameraBase>())
         {
             item.enabled = false;
         }
+        */
 
         GameManager.CameraManager.EnableDisableBaseCams(true);
 

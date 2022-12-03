@@ -21,6 +21,7 @@ public class Saveable : MonoBehaviour
         switch (dataType)
         {
             case SaveableDataType.oneShot:
+            case SaveableDataType.lostCow:
             case SaveableDataType.item:
                 if (SaveSystem.Load(dataType, gameObject.name))
                     gameObject.SetActive(false);

@@ -44,6 +44,7 @@ public class Enemy : BehaviourManager
     {
         iaOn = active;
     }
+
     // Start is called before the first frame update
     protected override void Start()
     {

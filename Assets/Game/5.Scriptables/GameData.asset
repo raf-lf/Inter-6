@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHp: 100
   maxHp: 100
+  startingHp: 100
+  hpBoostPerMilk: 20
   invulnerabilitySeconds: 0.5
-  currentGas: 10
+  currentGas: 0
   maxGas: 25
+  milkItem: {fileID: 11400000, guid: 45194499df455184195923d0da402709, type: 2}
   moveSpeed: 8
   multiplierUsingLantern: -0.7
-  multiplierDashing: 1.3
+  multiplierDashing: 1.2
   turnSpeed: 90
   velocityLow: 5
   velocityHigh: 15

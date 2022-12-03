@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SaveableDataType {eventSequence, item, shortcut, spiritLock, oneShot}
+public enum SaveableDataType {eventSequence, item, shortcut, spiritLock, oneShot, lostCow}
 
 public static class SaveSystem
 {
@@ -40,9 +40,18 @@ public static class SaveSystem
         switch (type)
         {
             default:
-                return "unknown";
+                return "???";
             case SaveableDataType.eventSequence:
-                return "ES";
+                return "Seq";
+            case SaveableDataType.item:
+                return "Itm";
+            case SaveableDataType.shortcut:
+                return "Shc";
+            case SaveableDataType.spiritLock:
+                return "SpL";
+            case SaveableDataType.lostCow:
+                return "Cow";
+
         }
     }
 

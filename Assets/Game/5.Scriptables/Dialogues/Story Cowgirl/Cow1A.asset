@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
-  m_Name: CowFirst1
+  m_Name: Cow1A
   m_EditorClassIdentifier: 
   lines:
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
@@ -24,11 +24,7 @@ MonoBehaviour:
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
     emotion: 1
     portraitPosition: 1
-    line: Muito agradecida, barqueiro! A primeira vaquinha foi resgatada!
-  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
-    emotion: 4
-    portraitPosition: 1
-    line: Como posso te retribuir?
+    line: Muito agradecida, barqueiro! Como posso te retribuir?
   - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
     emotion: 0
     portraitPosition: 0
@@ -36,7 +32,7 @@ MonoBehaviour:
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
     emotion: 4
     portraitPosition: 1
-    line: '?'
+    line: Hm?
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
     emotion: 1
     portraitPosition: 1
