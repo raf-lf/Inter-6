@@ -181,8 +181,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.SetAnimationTrigger("attack");
         while (actualAttackTime < chompAttackTime)
         {
-            if(actualAttackTime <= chompAttackTime*0.2f)
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, chompAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
