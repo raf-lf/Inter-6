@@ -57,7 +57,9 @@ public class EventSequence : MonoBehaviour
         {
 
             GameManager.DialogueSystem.CinematicMode(false);
+
             GameManager.CanvasManager.ShowHud(true);
+
             GameManager.PlayerControl = true;
             GameManager.PlayerClickControl = true;
         }

@@ -18,7 +18,6 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
 
     void Awake()
     {
-        encounterPoints = new EncounterPoints();
         entity = GetComponent<Enemy>();
         entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
         entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
@@ -97,19 +96,15 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         entity.attackSequenceCount = 1;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
+        if (encounterPoints.dredgeEncounterPoints.Length > 0)
         {
-            if (encounterPoints.dredgeEncounterPoints[i] != null)
+            Gizmos.color = new Color(1, 1, 0, 0.1f);
+            for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
             {
-                Gizmos.color = new Color(1, 1, 0, 0.1f);
-                Gizmos.DrawSphere(encounterPoints.dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
-            }
-            else
-            {
-                Gizmos.color = new Color(1, 1, 0, 0.1f);
-                Gizmos.DrawSphere(encounterPoints.dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
+                if(encounterPoints.dredgeEncounterPoints[i] != null)
+                    Gizmos.DrawSphere(encounterPoints.dredgeEncounterPoints[i].transform.position, encounterPoints.rangeLeash[i]);
             }
         }
     }

@@ -14,10 +14,15 @@ public class OptionMenu : MonoBehaviour
     private bool menuOpen;
 
     [SerializeField] private CanvasGroup cgMaster;
+    [SerializeField] private CanvasGroup cgBase;
     [SerializeField] private CanvasGroup cgOptions;
+    [SerializeField] private CanvasGroup cgControls;
     [SerializeField] private CanvasGroup cgLeave;
 
-    [SerializeField] private Button buttonBack;
+    [SerializeField] private Button buttonReturnGame;
+    [SerializeField] private Button[] buttonsBack = new Button[3];
+    [SerializeField] private Button buttonControls;
+    [SerializeField] private Button buttonOptions;
     [SerializeField] private Button buttonExit;
     [SerializeField] private Button buttonExitModalYes;
     [SerializeField] private Button buttonExitModalNo;
@@ -40,16 +45,31 @@ public class OptionMenu : MonoBehaviour
 
     private void Start()
     {
-        buttonBack.onClick.AddListener(delegate
+        foreach (var item in buttonsBack)
         {
-            RuntimeManager.PlayOneShot("event:/UI/back");
-            OpenCloseMenu();
+            item.onClick.AddListener(ButtonBack);
+        }
+
+        buttonReturnGame.onClick.AddListener(OpenCloseMenu);
+
+        buttonControls.onClick.AddListener(delegate
+        {
+            RuntimeManager.PlayOneShot("event:/UI/click");
+            OpenCloseModal(cgBase, false);
+            OpenCloseModal(cgControls, true);
+        });
+
+        buttonOptions.onClick.AddListener(delegate
+        {
+            RuntimeManager.PlayOneShot("event:/UI/click");
+            OpenCloseModal(cgBase, false);
+            OpenCloseModal(cgOptions, true);
         });
 
         buttonExit.onClick.AddListener(delegate
         {
             RuntimeManager.PlayOneShot("event:/UI/click");
-            OpenCloseModal(cgOptions, false);
+            OpenCloseModal(cgBase, false);
             OpenCloseModal(cgLeave, true);
         });
 
@@ -63,8 +83,8 @@ public class OptionMenu : MonoBehaviour
         buttonExitModalNo.onClick.AddListener( delegate 
         {
             RuntimeManager.PlayOneShot("event:/UI/back");
+            OpenCloseModal(cgBase, true);
             OpenCloseModal(cgLeave, false);
-            OpenCloseModal(cgOptions, true);
         });
 
         sfxVCA = RuntimeManager.GetVCA("vca:/SFX");
@@ -77,18 +97,34 @@ public class OptionMenu : MonoBehaviour
             
     }
 
+    private void ButtonBack()
+    {
+        RuntimeManager.PlayOneShot("event:/UI/back");
+        OpenCloseModal(cgBase, true);
+        OpenCloseModal(cgControls, false);
+        OpenCloseModal(cgOptions, false);
+        OpenCloseModal(cgLeave, false);
+    }
+
     private void OpenCloseMenu()
     {
         menuOpen = !menuOpen;
 
+        if (menuOpen)
+            Cursor.visible = true;
+        else
+            GameManager.GameplayManager.ConfigureCursor();
+
         OpenCloseModal(cgMaster, menuOpen);
+        OpenCloseModal(cgBase, menuOpen);
+        OpenCloseModal(cgControls, false);
+        OpenCloseModal(cgOptions, false);
+        OpenCloseModal(cgLeave, false);
 
         Time.timeScale = menuOpen ? 0 : 1;
 
         if (menuOpen)
         {
-            OpenCloseModal(cgOptions, true);
-            OpenCloseModal(cgLeave, false);
             RuntimeManager.PlayOneShot("event:/UI/click");
         }
         else
@@ -104,7 +140,17 @@ public class OptionMenu : MonoBehaviour
 
         cg.blocksRaycasts = open;
 
-        cg.DOFade(open? 1 : 0, .5f).SetUpdate(true);
+        if(open)
+        {
+            if(cg.alpha <1)
+                cg.DOFade(1, .25f).SetUpdate(true);
+
+        }
+        else
+        {
+            if (cg.alpha > 0)
+                cg.DOFade(0, .25f).SetUpdate(true);
+        }
     }
 
     private IEnumerator LeaveSequence()
