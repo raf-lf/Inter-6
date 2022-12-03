@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
   m_Name: Child 3A
   m_EditorClassIdentifier: 
-  lines: []
+  lines:
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 1
+    portraitPosition: 0
+    line: "Eu sinto que tem algo de valor nesse ba\xFA."
+  - actor: {fileID: 11400000, guid: 9331254e55403b64f8ac268a14d90c43, type: 2}
+    emotion: 4
+    portraitPosition: 1
+    line: "Eu acho que ja vi esse tro\xE7o em algum lugar. N\xE3o to conseguindo
+      me lembrar."
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "Porque n\xE3o abre e da uma olhada?"
