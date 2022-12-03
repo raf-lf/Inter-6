@@ -17,7 +17,7 @@ public class Enemy : BehaviourManager
 
     public float rangeDetection;
     public float rangeLeash;
-    public static bool isInCombat;
+    public bool iaOn = true;
 
     /*[HideInInspector]*/ public bool isTeleporting;
     [HideInInspector] public bool isBanished;
@@ -40,6 +40,10 @@ public class Enemy : BehaviourManager
         stateManager = gameObject.GetComponent<StateManager>();
     }
 
+    public void ToggleIa(bool active)
+    {
+        iaOn = active;
+    }
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -62,8 +66,9 @@ public class Enemy : BehaviourManager
     // Update is called once per frame
     void Update()
     {
-        if (isInCombat)
+        if (!iaOn)
             return;
+
         if (!isBanished)
             EnemyActions?.Invoke(ActualState);
         attackSequenceCount = Mathf.Clamp(attackSequenceCount, 1, maxAttackCombo);
