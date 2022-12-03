@@ -29,12 +29,23 @@ public class AfflictedAIAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
+            if (!entity.isInCombat)
+            {
+                entity.isInCombat = true;
+                GameManager.CombatState.ChangeCombatants(1);
+            }
             if (entity.canAttack && !entity.isAttacking)
                 StartCoroutine(ChargeAttackTimer());
         }
         else
         {
-            if(state == BehaviourState.Rest)
+            if (entity.isInCombat)
+            {
+                entity.isInCombat = false;
+                GameManager.CombatState.ChangeCombatants(-1);
+            }
+
+            if (state == BehaviourState.Rest)
             {
                 if (entity.isPreparingAttack)
                     StopCoroutine(PrepareAttackTimer(0));
