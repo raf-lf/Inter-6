@@ -123,6 +123,23 @@ public class Enemy : BehaviourManager
         return dredgeAttack;
     }
 
+    public void StartCombatMusic()
+    {
+        if (!isInCombat)
+        {
+            isInCombat = true;
+            GameManager.CombatState.ChangeCombatants(1);
+        }
+    }
+
+    public void StopCombatMusic()
+    {
+        if (isInCombat)
+        {
+            isInCombat = false;
+            GameManager.CombatState.ChangeCombatants(-1);
+        }
+    }
     public void SetDredgeAttack(DredgeAttackVariations _dredgeAttack)
     {
         dredgeAttack = _dredgeAttack;

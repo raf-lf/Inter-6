@@ -19,8 +19,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     void Awake()
     {
         entity = GetComponent<Enemy>();
-        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
-        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        SetNewencounterPoint();
     }
     void Start()
     {
@@ -65,6 +64,13 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         }
     }
 
+    void SetNewencounterPoint()
+    {
+        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
+        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        entity.rangeDetection = encounterPoints.rangeDetection[actualEncounterIndex];
+    }
+
 
     IEnumerator Teleport()
     {
@@ -76,8 +82,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         if(Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
             entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
 
-        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
-        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        SetNewencounterPoint();
         ResetTeleporting();
     }
 
@@ -116,4 +121,5 @@ public class EncounterPoints
 {
     public Transform[] dredgeEncounterPoints;
     public float[] rangeLeash;
+    public float[] rangeDetection;
 }

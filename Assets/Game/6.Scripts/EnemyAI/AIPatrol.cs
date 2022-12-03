@@ -37,6 +37,7 @@ public class AIPatrol : MonoBehaviour
     {
         if (state == classState)
         {
+            entity.StopCombatMusic();
             Patrol();
         }
         else

@@ -32,7 +32,8 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            if(!isObserving)
+            entity.StartCombatMusic();
+            if (!isObserving)
             StartCoroutine(ObservingPlayer());
         }
         else

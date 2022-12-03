@@ -34,7 +34,7 @@ public class AIRest : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-
+            entity.StopCombatMusic();
         }
         else
         {
@@ -77,6 +77,7 @@ public class AIRest : MonoBehaviour, IEnemy
     IEnumerator StartBanish()
     {
         entity.isBanished = true;
+        entity.StopCombatMusic();
         SetRestAnimation();
         teleportParticle.Play();
         yield return new WaitForSeconds(timeToTeleport);

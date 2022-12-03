@@ -48,24 +48,11 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         {
             if (entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
                 return;
-
-            if (!entity.isInCombat)
-            {
-                entity.isInCombat = true;
-                GameManager.CombatState.ChangeCombatants(1);
-            }
-
             StartAttack();
             UpdateRotation();
         }
         else
         {
-
-            if (entity.isInCombat)
-            {
-                entity.isInCombat = false;
-                GameManager.CombatState.ChangeCombatants(-1);
-            }
 
             if (state == BehaviourState.Teleport)
             {
@@ -216,7 +203,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             actualAttackTime = 0;
             entity.attackSequenceCount += 1;
             yield return new WaitForSeconds(0.5f);
-            StartCoroutine(ChompAttack());
+            StartCoroutine(ChompChargeAttack());
         }
     }
 
