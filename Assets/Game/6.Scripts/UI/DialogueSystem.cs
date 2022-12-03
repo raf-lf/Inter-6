@@ -96,7 +96,16 @@ public class DialogueSystem : MonoBehaviour
 
     public void PlayLine(ActorData actor, ActorEmotion emotion, string line, PortraitPosition position)
     {
-        nameText.text = actor.ReturnName();
+        if (actor.ReturnName() == "")
+        {
+            nameTagRect.gameObject.SetActive(false);
+            nameText.text = actor.ReturnName();
+        }
+        else
+        {
+            nameTagRect.gameObject.SetActive(true);
+            nameText.text = actor.ReturnName();
+        }
 
         Image currentPortrait = null;
 
@@ -117,6 +126,12 @@ public class DialogueSystem : MonoBehaviour
         }
 
         currentPortrait.sprite = actor.ReturnPortrait(emotion);
+
+        if(currentPortrait.sprite == null)
+            currentPortrait.enabled = false;
+        else
+            currentPortrait.enabled = true;
+
         if (currentPortrait.color.a == 0)
             currentPortrait.DOFade(1, .3f).SetUpdate(true);
 

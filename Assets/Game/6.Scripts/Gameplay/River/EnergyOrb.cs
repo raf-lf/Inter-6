@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class EnergyOrb : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnergyOrb : MonoBehaviour
     [SerializeField] private bool chasing;
     [SerializeField] private bool collected;
     [SerializeField] private float chaseStartTime;
+    [SerializeField] private StudioEventEmitter sfxCollect;
 
     private void SeekPlayer()
     {
@@ -57,6 +59,8 @@ public class EnergyOrb : MonoBehaviour
             GameManager.PlayerInstance.atributes.EnergyChange(energyGain);
             GetComponent<Animator>().SetTrigger("collect");
             collected = true;
+            sfxCollect.Play();
+
             Destroy(gameObject,5);
         }
     }

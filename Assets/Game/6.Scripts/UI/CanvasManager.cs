@@ -22,6 +22,8 @@ public class CanvasManager : MonoBehaviour
     [Header("Overlay")]
     [SerializeField] private CanvasGroup overlay;
     [SerializeField] private Image overlayImage;
+    [SerializeField] private CanvasGroup slideCg;
+    [SerializeField] private Image slideImage;
 
     [Header("Logs")] 
     [SerializeField] private CanvasGroup logGroup;
@@ -52,14 +54,38 @@ public class CanvasManager : MonoBehaviour
                 overlay.DOFade(0, speed).SetUpdate(true); ;
                 break;
             case OverlayAnimation.Black:
+                overlayImage.DOColor(Color.black, 0).SetUpdate(true); ;
                 overlay.DOFade(1, speed).SetUpdate(true); ;
                 overlayImage.DOColor(Color.black, speed).SetUpdate(true); ;
                 break;
             case OverlayAnimation.White:
+                overlayImage.DOColor(Color.white, 0).SetUpdate(true); ;
                 overlay.DOFade(1, speed).SetUpdate(true);
                 overlayImage.DOColor(Color.white, speed).SetUpdate(true); ;
                 break;
 
+        }
+    }
+    public void ShowSlideImage(Sprite image)
+    {
+        StopCoroutine(SlideSequence(image));
+        StartCoroutine(SlideSequence(image));
+    }
+
+    private IEnumerator SlideSequence(Sprite image)
+    {
+        if (image != null)
+        {
+            slideCg.alpha = 0;
+            slideImage.sprite = image;
+            slideCg.DOFade(1, 1);
+            yield return new WaitForSeconds(1);
+        }
+        else
+        {
+            slideCg.DOFade(0, 1);
+            yield return new WaitForSeconds(1);
+            slideImage.sprite = null;
         }
     }
 
