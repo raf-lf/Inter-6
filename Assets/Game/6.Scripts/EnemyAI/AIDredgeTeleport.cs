@@ -13,8 +13,6 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     [SerializeField] private int actualEncounterIndex;
 
     //[SerializeField] private float moveSpeed;
-    [SerializeField] private float actualTeleportTime;
-    [SerializeField] private float teleportTimer;
 
     BehaviourState actualState = BehaviourState.Teleport;
 
@@ -76,14 +74,9 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
         patrol.patrolWaypoints.RemoveAt(0);
         patrol.CheckNearestPatrolWaypoint();
-        while (Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
-        {
-            //float dist = Vector3.Distance(patrolWaypoints[waypointIndex].transform.position, GameManager.PlayerInstance.transform.position);
-            //actualSpeed = dist >= entity.rangeDetection * 4f ? moveSpeed * speedDistanceMultiplier : moveSpeed;
+        if(Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
             entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
-            actualTeleportTime = Mathf.MoveTowards(actualTeleportTime, teleportTimer, Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
+
         entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
         entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
         ResetTeleporting();
