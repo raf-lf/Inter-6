@@ -40,7 +40,9 @@ public class GameData : ScriptableObject
     public void UpdateHpBoosts()
     {
         maxHp = startingHp + (hpBoostPerMilk * milkItem.quantity);
-        GameManager.PlayerInstance.atributes.HpChange(maxHp);
+
+        if(GameManager.PlayerInstance)
+            GameManager.PlayerInstance.atributes.HpChange(maxHp);
 
     }
 }
