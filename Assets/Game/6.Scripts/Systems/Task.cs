@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum TaskType { main, side }
-public enum TaskState {notStarted, acquired, completed}
+public enum TaskState {hidden, acquired, completed}
 
 [CreateAssetMenu(fileName = "Task", menuName = "Scriptables/Task")]
 public class Task : ScriptableObject
@@ -28,7 +28,7 @@ public class Task : ScriptableObject
         }
 
         if(GameManager.TaskManager)
-            GameManager.TaskManager.ShowHideTaskList();
+            GameManager.TaskManager.UpdateTaskList();
     }
     public void CompleteTask()
     {

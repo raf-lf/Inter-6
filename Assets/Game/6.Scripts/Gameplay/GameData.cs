@@ -7,10 +7,13 @@ public class GameData : ScriptableObject
 {
     [Header("Player")]
     public float currentHp;
-    public float maxHp;
+    [HideInInspector] public float maxHp;
+    public float startingHp;
+    public float hpBoostPerMilk;
     public float invulnerabilitySeconds;
     public float currentGas;
     public float maxGas;
+    public InventoryItem milkItem;
 
     [Header("Player Movement")]
     public float moveSpeed;
@@ -24,9 +27,22 @@ public class GameData : ScriptableObject
     public int damageLowVelocity;
     public int damageHighVelocity;
 
+
     public void ResetValues()
     {
-        currentHp = maxHp;
+        maxHp = startingHp;
+        currentHp = startingHp;
         currentGas = 0;
+
+        UpdateHpBoosts();
+    }
+
+    public void UpdateHpBoosts()
+    {
+        maxHp = startingHp + (hpBoostPerMilk * milkItem.quantity);
+
+        if(GameManager.PlayerInstance)
+            GameManager.PlayerInstance.atributes.HpChange(maxHp);
+
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ES_ChangeCamera : ES_EventBase
 {
 
-    [SerializeField] private CinemachineVirtualCameraBase changingCamera;
+    public CinemachineVirtualCameraBase changingCamera;
     [SerializeField] private bool activeCam = true;
     [SerializeField] private float blendTime = 1;
     public static CinemachineVirtualCameraBase lastCamera;

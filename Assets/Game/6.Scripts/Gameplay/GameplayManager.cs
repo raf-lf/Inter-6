@@ -28,7 +28,8 @@ public class GameplayManager : MonoBehaviour
 
     public void ConfigureCursor()
     {
-        //Cursor.lockState = CursorLockMode.Confined;
+        if(!Application.isEditor)
+            Cursor.lockState = CursorLockMode.Confined;
 
         if (FindObjectOfType<IslandManager>() || SceneManager.GetActiveScene().name == "Menu")
             Cursor.visible = true;

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a8848b7c3888d4390ca7411970a322, type: 3}
+  m_Name: Cowgirl Questline
+  m_EditorClassIdentifier: 
+  currentIndex: -1
+  stages:
+  - stageFlag: {fileID: 11400000, guid: ef03a221fbb6edf4fa6cabf7c880b3e1, type: 2}
+    stageTask: {fileID: 11400000, guid: a72e2bcc3b66c534cbeb1b88cd78e31d, type: 2}
+  - stageFlag: {fileID: 11400000, guid: 4c526655a1c3af04e8d0fa592858dab5, type: 2}
+    stageTask: {fileID: 11400000, guid: 742fb3aed57bec747bb4f87638bc725c, type: 2}
+  - stageFlag: {fileID: 11400000, guid: c417083c2d983004e8e91ef751ed978c, type: 2}
+    stageTask: {fileID: 11400000, guid: 6bf5c928ed7007b4d95fd70e92ec1eec, type: 2}
+  - stageFlag: {fileID: 11400000, guid: a8ef55ea157781f4da3424d0df7872c2, type: 2}
+    stageTask: {fileID: 11400000, guid: e87c9888fb710dd4b914d110458c37b0, type: 2}
+  - stageFlag: {fileID: 11400000, guid: 2f62c7bf97c21b04584928cf41078f32, type: 2}
+    stageTask: {fileID: 11400000, guid: c355c20fdbcbccc4c8f5345c13aa2810, type: 2}

@@ -26,7 +26,7 @@ public class TaskManager : MonoBehaviour
     {
         foreach (var item in GameManager.ScriptableManager.allTasks)
         {
-            if (item.taskState != TaskState.notStarted)
+            if (item.taskState != TaskState.hidden)
             {
                CreateTask(item);
             }

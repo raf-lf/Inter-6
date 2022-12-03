@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a8848b7c3888d4390ca7411970a322, type: 3}
+  m_Name: Child Questline
+  m_EditorClassIdentifier: 
+  currentIndex: -1
+  stages:
+  - stageFlag: {fileID: 11400000, guid: 2f26ec676a158f3478733ce421b2c7d1, type: 2}
+    stageTask: {fileID: 11400000, guid: f8330811abcf8c241aae7f9673350318, type: 2}
+  - stageFlag: {fileID: 11400000, guid: ba4dbadce3d6d2f428299424339c8a81, type: 2}
+    stageTask: {fileID: 11400000, guid: e6799998474c96f46a935e345e345bc9, type: 2}
+  - stageFlag: {fileID: 11400000, guid: 39f90b67c9de5d5459c2e71712942cad, type: 2}
+    stageTask: {fileID: 11400000, guid: 657ad5a4ce5ccca49919375d3ed46b2f, type: 2}
