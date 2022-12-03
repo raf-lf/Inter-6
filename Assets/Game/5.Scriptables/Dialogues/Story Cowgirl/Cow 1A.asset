@@ -10,37 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac93e3151d371d54b9c2242daf660070, type: 3}
-  m_Name: Cow5B
+  m_Name: Cow 1A
   m_EditorClassIdentifier: 
   lines:
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: "Solange Maria! Voc\xEA est\xE1 a\xED!"
   - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
     emotion: 1
     portraitPosition: 0
-    line: Essa foi a ultima vaquinha?
+    line: Nome interessante para uma vaca.
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
     emotion: 1
     portraitPosition: 1
-    line: "Barqueiro, voc\xEA n\xE3o tem ideia do al\xEDvio que to sentindo! \xC9
-      quase como se um enorme peso tivesse sa\xEDdo das minhas costas!"
+    line: Muito agradecida, barqueiro! Como posso te retribuir?
+  - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
+    emotion: 0
+    portraitPosition: 0
+    line: "N\xE3o se preocupe. Encontrar essas vacas vai te ajudar a seguir seu caminho."
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 4
+    portraitPosition: 1
+    line: Hm?
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: "J\xE1 sei! Vou te dar um pouco de leite! Leite faz bem pros ossos!"
+  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
+    emotion: 1
+    portraitPosition: 1
+    line: "Muito bom na sua idade, n\xE3o?"
   - actor: {fileID: 11400000, guid: 48c13206a3c2a2c4ca6e27faf2af1056, type: 2}
     emotion: 1
     portraitPosition: 0
-    line: "Eu fico feliz por ter ajudado... Te ajudar a se livrar desses pesos \xE9
-      um dos meus trabalhos, sabe?"
+    line: Minha idade? Haha...
   - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
-    emotion: 4
+    emotion: 0
     portraitPosition: 1
-    line: Eu... Eu acho que sei.
-  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
-    emotion: 4
-    portraitPosition: 1
-    line: Todo esse tempo que ficamos juntos... Todas essas estranhezas que vimos...
-  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
-    emotion: 4
-    portraitPosition: 1
-    line: "E algo que me pergunto... Eu sei que salvamos minhas vaquinhas... Mas
-      onde est\xE3o todas elas agora?"
-  - actor: {fileID: 11400000, guid: 2db28608dd23898449ce087b06792cbd, type: 2}
-    emotion: 1
-    portraitPosition: 0
-    line: "Elas est\xE3o a salvo, vaqueira."
+    line: "S\xF3 aguarde um pouquinho e vai ter leite fresquinho!"
