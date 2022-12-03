@@ -8,10 +8,11 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     Enemy entity;
     AIPatrol patrol;
 
-    [SerializeField] private Transform[] dredgeEncounterPoints;
+    [SerializeField] private EncounterPoints encounterPoints;
+
     [SerializeField] private int actualEncounterIndex;
 
-    [SerializeField] private float moveSpeed;
+    //[SerializeField] private float moveSpeed;
     [SerializeField] private float actualTeleportTime;
     [SerializeField] private float teleportTimer;
 
@@ -19,13 +20,15 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
 
     void Awake()
     {
+        encounterPoints = new EncounterPoints();
         entity = GetComponent<Enemy>();
-        entity.encounterPoint = dredgeEncounterPoints[actualEncounterIndex];
+        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
+        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
     }
     void Start()
     {
         patrol = GetComponent<AIPatrol>();
-        patrol.patrolWaypoints.AddRange(dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
         patrol.patrolWaypoints.RemoveAt(0);
         entity.EnemyActions += AIActionExecuting;
     }
@@ -53,13 +56,12 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {   
         if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
         {
-            for (int i = 0; i < dredgeEncounterPoints.Length; i++)
+            for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
             {
-                if (Vector3.Distance(dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < entity.rangeLeash)
+                if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < entity.rangeLeash)
                 {
                     actualEncounterIndex = i;
                     entity.ChangeState(actualState);
-                    Debug.Log("CheckNeededTeleport");
                     break;
                 }
             }
@@ -70,26 +72,29 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     IEnumerator Teleport()
     {
         StartTeleporting();yield return new WaitForSeconds(4);
+        patrol.patrolWaypoints.Clear();
+        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.RemoveAt(0);
         patrol.CheckNearestPatrolWaypoint();
-        while (Vector3.Distance(entity.transform.position, new Vector3(dredgeEncounterPoints[actualEncounterIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[actualEncounterIndex].transform.position.z)) != 0)
+        while (Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(dredgeEncounterPoints[actualEncounterIndex].transform.position.x, entity.transform.position.y, dredgeEncounterPoints[actualEncounterIndex].transform.position.z), moveSpeed * Time.deltaTime);
+            //float dist = Vector3.Distance(patrolWaypoints[waypointIndex].transform.position, GameManager.PlayerInstance.transform.position);
+            //actualSpeed = dist >= entity.rangeDetection * 4f ? moveSpeed * speedDistanceMultiplier : moveSpeed;
+            entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
             actualTeleportTime = Mathf.MoveTowards(actualTeleportTime, teleportTimer, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        patrol.patrolWaypoints.Clear();
-        patrol.patrolWaypoints.AddRange(dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
-        patrol.patrolWaypoints.RemoveAt(0);
-        entity.encounterPoint = dredgeEncounterPoints[actualEncounterIndex];
+        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
+        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
         ResetTeleporting();
     }
 
     void StartTeleporting()
     {
-        Debug.Log("TESTE");
         entity.isTeleporting = true;
         entity.SetAnimationBool("submerge", true);
     }
+
     void ResetTeleporting()
     {
         entity.isTeleporting = false;
@@ -101,21 +106,26 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
 
     private void OnDrawGizmosSelected()
     {
-        for (int i = 0; i < dredgeEncounterPoints.Length; i++)
+        for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
         {
-            if (dredgeEncounterPoints[i] != null)
+            if (encounterPoints.dredgeEncounterPoints[i] != null)
             {
                 Gizmos.color = new Color(1, 1, 0, 0.1f);
-                Gizmos.DrawSphere(dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
+                Gizmos.DrawSphere(encounterPoints.dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
             }
             else
             {
                 Gizmos.color = new Color(1, 1, 0, 0.1f);
-                Gizmos.DrawSphere(dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
-
+                Gizmos.DrawSphere(encounterPoints.dredgeEncounterPoints[i].transform.position, entity.rangeLeash);
             }
         }
-
     }
 
+}
+
+[System.Serializable]
+public class EncounterPoints
+{
+    public Transform[] dredgeEncounterPoints;
+    public float[] rangeLeash;
 }

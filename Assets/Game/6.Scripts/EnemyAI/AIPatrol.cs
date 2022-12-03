@@ -16,6 +16,8 @@ public class AIPatrol : MonoBehaviour
 
     [SerializeField] private bool isMovingToNearestWaypoint;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float speedDistanceMultiplier;
+    private float actualSpeed;
     [SerializeField] private float rotationSpeed;
     private int sign =  1;
 
@@ -74,7 +76,8 @@ public class AIPatrol : MonoBehaviour
         CheckNearestPatrolWaypoint();
         while(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) > 0)
         {
-            entity.transform.position =Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+            UpdateSpeed();
+            entity.transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         isMovingToNearestWaypoint = false;
@@ -83,13 +86,20 @@ public class AIPatrol : MonoBehaviour
         entity.attackSequenceCount = 1;
     }
 
+    void UpdateSpeed()
+    {
+        float dist = Vector3.Distance(patrolWaypoints[waypointIndex].transform.position, GameManager.PlayerInstance.transform.position);
+        actualSpeed = dist >= entity.rangeDetection * 4f ? moveSpeed * speedDistanceMultiplier : moveSpeed;
+    }
+
     void Patrol()
     {
         if (patrolWaypoints.Count == 0)
             return;
         entity.SetAnimationBool("alert", false);
         entity.SetAnimationBool("isObserving", false);
-        transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+        UpdateSpeed();
+        transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
 
         Vector3 dir = patrolWaypoints[waypointIndex].transform.position - entity.transform.position;
         Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
