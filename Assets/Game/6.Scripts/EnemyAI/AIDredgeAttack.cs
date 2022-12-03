@@ -46,14 +46,26 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            
             if (entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
                 return;
+
+            if (!entity.isInCombat)
+            {
+                entity.isInCombat = true;
+                GameManager.CombatState.ChangeCombatants(1);
+            }
+
             StartAttack();
             UpdateRotation();
         }
         else
         {
+
+            if (entity.isInCombat)
+            {
+                entity.isInCombat = false;
+                GameManager.CombatState.ChangeCombatants(-1);
+            }
 
             if (state == BehaviourState.Teleport)
             {

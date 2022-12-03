@@ -18,6 +18,7 @@ public class Enemy : BehaviourManager
     public float rangeDetection;
     public float rangeLeash;
     public bool iaOn = true;
+    public bool isInCombat = false;
 
     /*[HideInInspector]*/ public bool isTeleporting;
     [HideInInspector] public bool isBanished;
