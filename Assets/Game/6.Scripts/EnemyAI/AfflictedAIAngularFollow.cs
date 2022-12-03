@@ -60,6 +60,7 @@ public class AfflictedAIAngularFollow : MonoBehaviour, IEnemy
         }
         if (state == classState /*|| state == BehaviourState.Attack && !entity.isAttacking && entity.isPreparingAttack && !entity.canAttack*/)
         {
+            entity.StartCombatMusic();
             RotationMovement();
         }
         else

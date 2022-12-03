@@ -19,14 +19,12 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     void Awake()
     {
         entity = GetComponent<Enemy>();
-        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
-        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        SetNewencounterPoint();
     }
     void Start()
     {
         patrol = GetComponent<AIPatrol>();
-        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
-        patrol.patrolWaypoints.RemoveAt(0);
+        UpdatePatrolWaypoints();
         entity.EnemyActions += AIActionExecuting;
     }
 
@@ -49,7 +47,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         }
     }
 
-    void CheckNeededTeleport()
+    public void CheckNeededTeleport()
     {   
         if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
         {
@@ -63,22 +61,50 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
                 }
             }
         }
+    }    
+
+    public void UpdateEncounterPoint()
+    {   
+        if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
+        {
+            for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
+            {
+                if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < encounterPoints.rangeLeash[i])
+                {
+                    actualEncounterIndex = i;
+                    SetNewencounterPoint();
+                    UpdatePatrolWaypoints();
+                    break;
+                }
+            }
+        }
+    }
+
+    void SetNewencounterPoint()
+    {
+        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
+        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        entity.rangeDetection = encounterPoints.rangeDetection[actualEncounterIndex];
     }
 
 
     IEnumerator Teleport()
     {
         StartTeleporting();yield return new WaitForSeconds(4);
-        patrol.patrolWaypoints.Clear();
-        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
-        patrol.patrolWaypoints.RemoveAt(0);
+        UpdatePatrolWaypoints();
         patrol.CheckNearestPatrolWaypoint();
         if(Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
             entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
 
-        entity.encounterPoint = encounterPoints.dredgeEncounterPoints[actualEncounterIndex];
-        entity.rangeLeash = encounterPoints.rangeLeash[actualEncounterIndex];
+        SetNewencounterPoint();
         ResetTeleporting();
+    }
+
+    void UpdatePatrolWaypoints()
+    {
+        patrol.patrolWaypoints.Clear();
+        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.RemoveAt(0);
     }
 
     void StartTeleporting()
@@ -116,4 +142,5 @@ public class EncounterPoints
 {
     public Transform[] dredgeEncounterPoints;
     public float[] rangeLeash;
+    public float[] rangeDetection;
 }

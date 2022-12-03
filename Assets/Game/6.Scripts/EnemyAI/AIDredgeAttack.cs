@@ -19,12 +19,13 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] private float actualPreparationTime;
 
     [SerializeField] private float submergeTime;
-    [SerializeField] private float chompChargeTime;
     [SerializeField] private float actualAttackTime;
     [SerializeField] private float pukeAttackTime;
     [SerializeField] private float chompAttackTime;
+    [SerializeField] private float waitToChomp;
 
     [SerializeField] private float minDistanceToPuke;
+    [SerializeField] private float minDistanceToChomp;
 
     [SerializeField] private float pukePreparationTime;
     [SerializeField] private float actualTimeObserving;
@@ -47,7 +48,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            
             if (entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
                 return;
             StartAttack();
@@ -55,6 +55,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         }
         else
         {
+
             if (state == BehaviourState.Teleport)
             {
                 if (isSubmerging)
@@ -89,13 +90,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         }
     }
 
-    //bool CanAttack()
-    //{
-    //    if (Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.transform.position) > entity.rangeLeash)
-    //        return false;
-    //    else return true;
-    //}
-
     IEnumerator AttackPreparation(float timeToAchieve)
     {
         while (actualPreparationTime < timeToAchieve)
@@ -109,7 +103,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     IEnumerator PukeAttack()
     {
         yield return StartCoroutine(AttackPreparation(pukePreparationTime));
-        if (entity.isTeleporting)
+        if (entity.isTeleporting || IsStoppingPuke())
             yield break;
         entity.SetAnimationTrigger("attack");
         entity.SetAnimationBool("purge", true);
@@ -119,17 +113,8 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
                 pukeParticle.Play();
             else
             {
-                float dist = Vector3.Distance(new Vector3(GameManager.PlayerInstance.transform.position.x, 0, GameManager.PlayerInstance.transform.position.z), new Vector3 (entity.transform.position.x, 0, entity.transform.position.z));
-                if (dist < minDistanceToPuke)
-                {
-                    if (!isSubmerging)
-                    {
-                        ResetPukeAttack();
-                        entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
-                        StartCoroutine(SubmergeToAttack());
-                    }
+                if(IsStoppingPuke())
                     yield break;
-                }
             }
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
@@ -141,6 +126,18 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.attackSequenceCount += 1;
     }
 
+    bool IsStoppingPuke()
+    {
+        float dist = Vector3.Distance(new Vector3(GameManager.PlayerInstance.transform.position.x, 0, GameManager.PlayerInstance.transform.position.z), new Vector3(entity.transform.position.x, 0, entity.transform.position.z));
+        if (dist < minDistanceToPuke && !isSubmerging)
+        {
+            ResetPukeAttack();
+            entity.SetDredgeAttack(DredgeAttackVariations.Submerge);
+            StartCoroutine(SubmergeToAttack());
+            return true;
+        }
+        return false;
+    }
     void ResetPukeAttack()
     {
         actualAttackTime = 0;
@@ -167,13 +164,11 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (entity.isTeleporting)
             yield break;
-        actualPreparationTime = 0;
-        while(actualPreparationTime < chompChargeTime)
+        while(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > minDistanceToChomp)
         {
             float multiplier = Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeDetection ? speedMultiplier : 1;
 
             entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * multiplier * Time.deltaTime);
-            actualPreparationTime = Mathf.MoveTowards(actualPreparationTime, chompChargeTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -185,28 +180,31 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (entity.isTeleporting)
             yield break;
+        yield return new WaitForSeconds(waitToChomp);
         entity.SetAnimationTrigger("attack");
         while (actualAttackTime < chompAttackTime)
         {
-            if(actualAttackTime <= chompAttackTime*0.2f)
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, new Vector3(GameManager.PlayerInstance.transform.position.x, entity.transform.position.y, GameManager.PlayerInstance.transform.position.z), moveSpeed * Time.deltaTime);
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, chompAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        Debug.Log("ChompFinish");
-        if(entity.attackSequenceCount == entity.GetMaxComboSequence())
+
+
+        if (entity.isTeleporting)
+            yield break;
+        if (entity.attackSequenceCount == entity.GetMaxComboSequence())
         {
             entity.attackSequenceCount  = 1;
             actualAttackTime = 0;
             entity.SetDredgeAttack(DredgeAttackVariations.Hide);
             entity.SetAnimationBool("submerge", true);
+            yield break;
         }
         else
         {
             actualAttackTime = 0;
             entity.attackSequenceCount += 1;
             yield return new WaitForSeconds(0.5f);
-            StartCoroutine(ChompAttack());
+            StartCoroutine(ChompChargeAttack());
         }
     }
 
