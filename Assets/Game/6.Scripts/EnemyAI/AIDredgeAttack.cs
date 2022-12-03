@@ -200,14 +200,14 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             actualAttackTime = 0;
             entity.SetDredgeAttack(DredgeAttackVariations.Hide);
             entity.SetAnimationBool("submerge", true);
-            yield break;
         }
         else
         {
-            StartCoroutine(ChompChargeAttack());
+            actualAttackTime = 0;
+            entity.attackSequenceCount += 1;
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(ChompAttack());
         }
-        actualAttackTime = 0;
-        entity.attackSequenceCount += 1;
     }
 
     private void UpdateRotation()
