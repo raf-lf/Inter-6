@@ -7,6 +7,7 @@ using DredgeAttack;
 public class AIPatrol : MonoBehaviour
 {
     Enemy entity;
+    AIDredgeTeleport teleport;
     BehaviourState classState = BehaviourState.Patrol;
     enum PatrolBehaviour { Circular, Sequential }
     [SerializeField] PatrolBehaviour actualBehaviour;
@@ -25,6 +26,7 @@ public class AIPatrol : MonoBehaviour
     void Start()
     {
         entity = GetComponent<Enemy>();
+        teleport = GetComponent<AIDredgeTeleport>();
         entity.EnemyActions += AIActionExecuting;
     }
 
@@ -80,16 +82,10 @@ public class AIPatrol : MonoBehaviour
     IEnumerator GoToNearestWaypoint()
     {
         isMovingToNearestWaypoint = true;
+        teleport.UpdateEncounterPoint();
         CheckNearestPatrolWaypoint();
         while(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
         {
-            if (entity.isTeleporting)
-            {
-                isMovingToNearestWaypoint = false;
-                entity.SetDredgeAttack(DredgeAttackVariations.Noone);
-                entity.attackSequenceCount = 1;
-                yield break;
-            }
             UpdateSpeed();
             entity.transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
@@ -126,6 +122,7 @@ public class AIPatrol : MonoBehaviour
                 sign *= actualBehaviour == PatrolBehaviour.Sequential ? -1 : 1;
         }
     }
+
 
     void ResetPatrol()
     {

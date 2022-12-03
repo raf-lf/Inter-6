@@ -22,8 +22,10 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] private float actualAttackTime;
     [SerializeField] private float pukeAttackTime;
     [SerializeField] private float chompAttackTime;
+    [SerializeField] private float waitToChomp;
 
     [SerializeField] private float minDistanceToPuke;
+    [SerializeField] private float minDistanceToChomp;
 
     [SerializeField] private float pukePreparationTime;
     [SerializeField] private float actualTimeObserving;
@@ -162,7 +164,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (entity.isTeleporting)
             yield break;
-        while(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > 1)
+        while(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > minDistanceToChomp)
         {
             float multiplier = Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeDetection ? speedMultiplier : 1;
 
@@ -178,6 +180,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         if (entity.isTeleporting)
             yield break;
+        yield return new WaitForSeconds(waitToChomp);
         entity.SetAnimationTrigger("attack");
         while (actualAttackTime < chompAttackTime)
         {

@@ -24,8 +24,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     void Start()
     {
         patrol = GetComponent<AIPatrol>();
-        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
-        patrol.patrolWaypoints.RemoveAt(0);
+        UpdatePatrolWaypoints();
         entity.EnemyActions += AIActionExecuting;
     }
 
@@ -43,12 +42,12 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         }
         else
         {
-            if(state == BehaviourState.Patrol || entity.GetDredgeAttack() == DredgeAttack.DredgeAttackVariations.Hide)
+            if(state == BehaviourState.Patrol)
             CheckNeededTeleport();
         }
     }
 
-    void CheckNeededTeleport()
+    public void CheckNeededTeleport()
     {   
         if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
         {
@@ -58,6 +57,23 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
                 {
                     actualEncounterIndex = i;
                     entity.ChangeState(actualState);
+                    break;
+                }
+            }
+        }
+    }    
+
+    public void UpdateEncounterPoint()
+    {   
+        if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
+        {
+            for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
+            {
+                if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < encounterPoints.rangeLeash[i])
+                {
+                    actualEncounterIndex = i;
+                    SetNewencounterPoint();
+                    UpdatePatrolWaypoints();
                     break;
                 }
             }
@@ -75,15 +91,20 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     IEnumerator Teleport()
     {
         StartTeleporting();yield return new WaitForSeconds(4);
-        patrol.patrolWaypoints.Clear();
-        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
-        patrol.patrolWaypoints.RemoveAt(0);
+        UpdatePatrolWaypoints();
         patrol.CheckNearestPatrolWaypoint();
         if(Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
             entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
 
         SetNewencounterPoint();
         ResetTeleporting();
+    }
+
+    void UpdatePatrolWaypoints()
+    {
+        patrol.patrolWaypoints.Clear();
+        patrol.patrolWaypoints.AddRange(encounterPoints.dredgeEncounterPoints[actualEncounterIndex].GetComponentsInChildren<Transform>());
+        patrol.patrolWaypoints.RemoveAt(0);
     }
 
     void StartTeleporting()
