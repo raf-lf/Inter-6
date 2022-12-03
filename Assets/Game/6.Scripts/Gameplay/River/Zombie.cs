@@ -106,7 +106,7 @@ public class Zombie : MonoBehaviour
                     inCombat = false;
                     GameManager.CombatState.ChangeCombatants(-1);
                 }
-
+                sfxEmitter.SetParameter("attack", 0);
                 if (Vector3.Distance(encounterPoint.position, GameManager.PlayerInstance.transform.position) <= rangeDetection)
                     ChangeState(StateZombie.chasing);
                 break;
@@ -119,6 +119,8 @@ public class Zombie : MonoBehaviour
                     GameManager.CombatState.ChangeCombatants(1);
                 }
 
+                sfxEmitter.SetParameter("attack", 0);
+
                 transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) <= rangeAttack)
@@ -126,6 +128,9 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.attacking:
+
+                sfxEmitter.SetParameter("attack", 1);
+
                 transform.position = Vector3.MoveTowards(transform.position, GameManager.PlayerInstance.transform.position, moveSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, GameManager.PlayerInstance.transform.position) > rangeAttack)
@@ -133,6 +138,8 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.banishing:
+
+                sfxEmitter.SetParameter("attack", 1);
 
                 if (!inCombat)
                 {
@@ -147,7 +154,7 @@ public class Zombie : MonoBehaviour
                 break;
 
             case StateZombie.banished:
-
+                sfxEmitter.SetParameter("attack", 0);
                 break;
         }
     }
