@@ -4823,6 +4823,7 @@ GameObject:
   - component: {fileID: 9048167618313904872}
   - component: {fileID: 6501504018367779316}
   - component: {fileID: 2383093562375735696}
+  - component: {fileID: 332382208640365696}
   m_Layer: 0
   m_Name: Aura Weak
   m_TagString: Untagged
@@ -4837,8 +4838,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641337143718921234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.22656365, y: -0.000009046196, z: -0.000013767186, w: 0.9739964}
+  m_LocalPosition: {x: 0.0010159552, y: -0.42749032, z: -0.32474113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9627,6 +9628,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1773428102 &332382208640365696
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641337143718921234}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: 0.00010159406, y: -0.87288815, z: -0.013050729}
+  m_RotationOffsets:
+  - {x: 1.3910365, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 7770120231642918458}
+    weight: 1
 --- !u!1 &1772894271004414651
 GameObject:
   m_ObjectHideFlags: 0
@@ -33785,6 +33812,7 @@ GameObject:
   - component: {fileID: 5001980752579242464}
   - component: {fileID: 985913254536090276}
   - component: {fileID: 3627035212241629772}
+  - component: {fileID: 6000548645911741361}
   m_Layer: 0
   m_Name: Aura
   m_TagString: Untagged
@@ -33799,8 +33827,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8393130838010413232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.22656365, y: -0.000009046196, z: -0.000013767186, w: 0.9739964}
+  m_LocalPosition: {x: 0.0010159552, y: -0.42749032, z: -0.32474113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38590,6 +38618,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1773428102 &6000548645911741361
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393130838010413232}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: 0.00010159406, y: -0.87288815, z: -0.013050729}
+  m_RotationOffsets:
+  - {x: 1.3910365, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 7770120231642918458}
+    weight: 1
 --- !u!1 &9079161878847486089
 GameObject:
   m_ObjectHideFlags: 0
@@ -43479,6 +43533,12 @@ PrefabInstance:
 --- !u!137 &3235521050796564953 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5868903707145209432, guid: c9f721d7f22c0784f974ab062bd28ae4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9048973633478338433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7770120231642918458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1603680305262938555, guid: c9f721d7f22c0784f974ab062bd28ae4,
     type: 3}
   m_PrefabInstance: {fileID: 9048973633478338433}
   m_PrefabAsset: {fileID: 0}
