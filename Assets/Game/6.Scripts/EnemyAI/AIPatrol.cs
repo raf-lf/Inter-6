@@ -83,6 +83,13 @@ public class AIPatrol : MonoBehaviour
         CheckNearestPatrolWaypoint();
         while(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
         {
+            if (entity.isTeleporting)
+            {
+                isMovingToNearestWaypoint = false;
+                entity.SetDredgeAttack(DredgeAttackVariations.Noone);
+                entity.attackSequenceCount = 1;
+                yield break;
+            }
             UpdateSpeed();
             entity.transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();

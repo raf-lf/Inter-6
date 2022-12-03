@@ -43,7 +43,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         }
         else
         {
-            if(state == BehaviourState.Patrol)
+            if(state == BehaviourState.Patrol || entity.GetDredgeAttack() == DredgeAttack.DredgeAttackVariations.Hide)
             CheckNeededTeleport();
         }
     }
