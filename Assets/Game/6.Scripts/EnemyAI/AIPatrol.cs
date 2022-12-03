@@ -86,8 +86,7 @@ public class AIPatrol : MonoBehaviour
         CheckNearestPatrolWaypoint();
         while(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
         {
-            UpdateSpeed();
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
+            UpdatePosition();
             yield return new WaitForEndOfFrame();
         }
         isMovingToNearestWaypoint = false;
@@ -96,10 +95,11 @@ public class AIPatrol : MonoBehaviour
         entity.attackSequenceCount = 1;
     }
 
-    void UpdateSpeed()
+    void UpdatePosition()
     {
         float dist = Vector3.Distance(patrolWaypoints[waypointIndex].transform.position, GameManager.PlayerInstance.transform.position);
         actualSpeed = dist >= entity.rangeDetection * 4f ? moveSpeed * speedDistanceMultiplier : moveSpeed;
+        transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
     }
 
     void Patrol()
@@ -108,21 +108,28 @@ public class AIPatrol : MonoBehaviour
             return;
         entity.SetAnimationBool("alert", false);
         entity.SetAnimationBool("isObserving", false);
-        UpdateSpeed();
-        transform.position = Vector3.MoveTowards(entity.transform.position, patrolWaypoints[waypointIndex].transform.position, actualSpeed * Time.deltaTime);
 
-        Vector3 dir = patrolWaypoints[waypointIndex].transform.position - entity.transform.position;
-        Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, rotationSpeed*Time.deltaTime);
+        UpdatePosition();
+        UpdateRotation();
+        UpdateWaypoint();
+    }
 
+    void UpdateWaypoint()
+    {
         if (Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) == 0)
         {
-            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Count, 0, patrolWaypoints.Count -1);
+            waypointIndex = Mathf.Clamp(actualBehaviour == PatrolBehaviour.Sequential ? waypointIndex + sign : (waypointIndex + sign) % patrolWaypoints.Count, 0, patrolWaypoints.Count - 1);
             if (waypointIndex == patrolWaypoints.Count - 1 || waypointIndex == 0)
                 sign *= actualBehaviour == PatrolBehaviour.Sequential ? -1 : 1;
         }
     }
 
+    void UpdateRotation()
+    {
+        Vector3 dir = patrolWaypoints[waypointIndex].transform.position - entity.transform.position;
+        Quaternion quaternion = Quaternion.LookRotation(dir, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, rotationSpeed * Time.deltaTime);
+    }
 
     void ResetPatrol()
     {
