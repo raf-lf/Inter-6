@@ -10,7 +10,7 @@ public class PlayQuestlineEventSequence : MonoBehaviour
 
     public void PlayCorrectSequence()
     {
-        eventSequences[questline.currentIndex+1].gameObject.SetActive(true);
-        eventSequences[questline.currentIndex+1].StartCinematic();
+        eventSequences[questline.currentIndex].gameObject.SetActive(true);
+        eventSequences[questline.currentIndex].StartCinematic();
     }
 }
