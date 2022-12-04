@@ -71,7 +71,6 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
             {
                 if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < encounterPoints.rangeLeash[i])
                 {
-                    Debug.Log("Change");
                     actualEncounterIndex = i;
                     SetNewencounterPoint();
                     UpdatePatrolWaypoints();
@@ -113,6 +112,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {
         entity.isTeleporting = true;
         entity.SetAnimationBool("submerge", true);
+        entity.SetAnimationBool("purge", false);
         entity.SetAnimationBool("alert", true);
     }
 
