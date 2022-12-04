@@ -136,7 +136,16 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             StartCoroutine(SubmergeToAttack());
             return true;
         }
-        return false;
+        //else
+        //{
+        //    if(Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
+        //    {
+        //        ResetPukeAttack();
+        //        entity.SetDredgeAttack(DredgeAttackVariations.Hide);
+        //        entity.SetAnimationBool("submerge", true);
+        //    }
+        //}
+            return false;
     }
     void ResetPukeAttack()
     {

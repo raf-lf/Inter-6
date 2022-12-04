@@ -53,7 +53,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
         {
             for (int i = 0; i < encounterPoints.dredgeEncounterPoints.Length; i++)
             {
-                if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < entity.rangeLeash)
+                if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < encounterPoints.rangeLeash[i])
                 {
                     actualEncounterIndex = i;
                     entity.ChangeState(actualState);
@@ -71,6 +71,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
             {
                 if (Vector3.Distance(encounterPoints.dredgeEncounterPoints[i].transform.position, GameManager.PlayerInstance.transform.position) < encounterPoints.rangeLeash[i])
                 {
+                    Debug.Log("Change");
                     actualEncounterIndex = i;
                     SetNewencounterPoint();
                     UpdatePatrolWaypoints();
@@ -90,11 +91,12 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
 
     IEnumerator Teleport()
     {
-        StartTeleporting();yield return new WaitForSeconds(4);
+        StartTeleporting();yield return new WaitForSeconds(6);
         UpdatePatrolWaypoints();
         patrol.CheckNearestPatrolWaypoint();
         if(Vector3.Distance(entity.transform.position, new Vector3(patrol.patrolWaypoints[patrol.waypointIndex].transform.position.x, entity.transform.position.y, patrol.patrolWaypoints[patrol.waypointIndex].transform.position.z)) != 0)
             entity.transform.position = patrol.patrolWaypoints[patrol.waypointIndex].transform.position;
+        yield return new WaitForSeconds(1);
 
         SetNewencounterPoint();
         ResetTeleporting();
@@ -111,6 +113,7 @@ public class AIDredgeTeleport : MonoBehaviour, IEnemy
     {
         entity.isTeleporting = true;
         entity.SetAnimationBool("submerge", true);
+        entity.SetAnimationBool("alert", true);
     }
 
     void ResetTeleporting()
