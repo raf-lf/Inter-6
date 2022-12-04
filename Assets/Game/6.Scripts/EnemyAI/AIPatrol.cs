@@ -54,7 +54,8 @@ public class AIPatrol : MonoBehaviour
             if (entity.GetActualState() == BehaviourState.Attack && entity.GetDredgeAttack() != DredgeAttackVariations.Noone || entity.isTeleporting)
                 return;
 
-            if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
+            if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone ||
+            Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeLeash && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
                 CheckNearestPatrolWaypoint();
                 entity.ChangeState(classState);
@@ -84,10 +85,10 @@ public class AIPatrol : MonoBehaviour
         isMovingToNearestWaypoint = true;
         teleport.UpdateEncounterPoint();
         CheckNearestPatrolWaypoint();
-        while(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
+        if(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
         {
-            UpdatePosition();
-            yield return new WaitForEndOfFrame();
+            entity.transform.position = patrolWaypoints[waypointIndex].transform.position;
+            yield return new WaitForSeconds(0.5f);
         }
         isMovingToNearestWaypoint = false;
         entity.SetDredgeAttack(DredgeAttackVariations.Noone);

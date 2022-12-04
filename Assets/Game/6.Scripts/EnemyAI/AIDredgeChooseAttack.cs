@@ -32,13 +32,15 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            entity.StartCombatMusic();
-            if (!isObserving)
-            StartCoroutine(ObservingPlayer());
+            if (!isObserving || !entity.isTeleporting)
+            {
+                StartCoroutine(ObservingPlayer());
+                entity.StartCombatMusic();
+            }
         }
         else
         {
-            if (entity.isTeleporting && entity.GetDredgeAttack() != DredgeAttackVariations.Hide)
+            if (entity.isTeleporting && entity.GetDredgeAttack() != DredgeAttackVariations.Hide || Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) > entity.rangeLeash)
                 return;
             if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
