@@ -18,7 +18,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     [SerializeField] private bool isSubmerging;
     [SerializeField] private float actualPreparationTime;
 
-    [SerializeField] private float submergeTime;
+    //[SerializeField] private float submergeTime;
     [SerializeField] private float actualAttackTime;
     [SerializeField] private float pukeAttackTime;
     [SerializeField] private float chompAttackTime;
@@ -29,8 +29,6 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
 
     [SerializeField] private float pukePreparationTime;
     [SerializeField] private float actualTimeObserving;
-
-    public Vector3 vectorOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +57,10 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             if (state == BehaviourState.Teleport)
             {
                 if (isSubmerging)
+                {
                     StopCoroutine(SubmergeToAttack());
-                return;
+                    return;
+                }
             }
 
             if (entity.GetDredgeAttack() != DredgeAttackVariations.Noone)
@@ -76,7 +76,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         if (entity.isPreparingAttack || entity.canAttack || entity.isAttacking)
             return;
         actualAttack = entity.GetDredgeAttack();
-        entity.isPreparingAttack = true;
+        entity.isAttacking = true;
         AttackToStart();
     }
 
@@ -115,6 +115,13 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             {
                 if(IsStoppingPuke())
                     yield break;
+                else if (entity.isTeleporting)
+                {
+                    entity.SetAnimationBool("purge", false);
+                    ResetPukeAttack();
+                    yield break;
+                }
+
             }
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
@@ -161,7 +168,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
             yield break;
         isSubmerging = true;
         entity.SetAnimationBool("submerge", true);
-        yield return new WaitForSeconds(submergeTime);
+        yield return new WaitForSeconds(6);
 
         isSubmerging = false;
         entity.SetDredgeAttack(DredgeAttackVariations.Chomp);

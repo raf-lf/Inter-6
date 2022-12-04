@@ -32,7 +32,7 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            if (!isObserving || !entity.isTeleporting)
+            if (!isObserving && !entity.isTeleporting)
             {
                 StartCoroutine(ObservingPlayer());
                 entity.StartCombatMusic();
@@ -44,7 +44,6 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
                 return;
             if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) <= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
-                ResetObservingTimer();
                 entity.ChangeState(classState);
             }
         }
@@ -52,16 +51,17 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 
     IEnumerator ObservingPlayer()
     {
+        Debug.Log("eu");
         isObserving = true;
 
         entity.SetAnimationBool("alert", true);
         entity.SetAnimationBool("isObserving", true);
-
+        actualTimeObserving = 0;
         while (actualTimeObserving < observeTime)
         {
             if(Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection)
             {
-                ResetObservingTimer();
+                isObserving = false;
                 yield break;
             }
             Vector3 dir = GameManager.PlayerInstance.transform.position - entity.transform.position;
@@ -70,17 +70,12 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
             actualTimeObserving = Mathf.MoveTowards(actualTimeObserving, observeTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        isObserving = false;
         ChooseAttack();
     }
 
     void ChooseAttack()
     {
         entity.SetDredgeAttack(DredgeAttackVariations.Puke);
-    }
-
-    void ResetObservingTimer()
-    {
-        isObserving = false;
-        actualTimeObserving = 0;
     }
 }

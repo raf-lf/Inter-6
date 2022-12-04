@@ -57,6 +57,7 @@ public class AIPatrol : MonoBehaviour
             if (Vector3.Distance(entity.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeDetection && entity.GetDredgeAttack() == DredgeAttackVariations.Noone ||
             Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position) >= entity.rangeLeash && entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
             {
+                entity.SetDredgeAttack(DredgeAttackVariations.Noone);
                 CheckNearestPatrolWaypoint();
                 entity.ChangeState(classState);
             }
@@ -85,13 +86,13 @@ public class AIPatrol : MonoBehaviour
         isMovingToNearestWaypoint = true;
         teleport.UpdateEncounterPoint();
         CheckNearestPatrolWaypoint();
+        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
         if(Vector3.Distance(entity.transform.position, patrolWaypoints[waypointIndex].transform.position) != 0)
         {
             entity.transform.position = patrolWaypoints[waypointIndex].transform.position;
             yield return new WaitForSeconds(0.5f);
         }
         isMovingToNearestWaypoint = false;
-        entity.SetDredgeAttack(DredgeAttackVariations.Noone);
         entity.SetAnimationBool("submerge", false);
         entity.attackSequenceCount = 1;
     }
