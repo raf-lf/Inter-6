@@ -19980,16 +19980,14 @@ MonoBehaviour:
   speedMultiplier: 3
   isSubmerging: 0
   actualPreparationTime: 0
-  submergeTime: 4
   actualAttackTime: 0
   pukeAttackTime: 4
   chompAttackTime: 4
   waitToChomp: 0
   minDistanceToPuke: 10
-  minDistanceToChomp: 0
+  minDistanceToChomp: 0.5
   pukePreparationTime: 1
   actualTimeObserving: 0
-  vectorOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5685379587511835947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41086,11 +41084,21 @@ PrefabInstance:
     - target: {fileID: 2793205867962623972, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793205867962623972, guid: 6a3419812fa42744fa505ae0022f6f61,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769370610521912, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507769370610521912, guid: 6a3419812fa42744fa505ae0022f6f61,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769370610521912, guid: 6a3419812fa42744fa505ae0022f6f61,
@@ -41111,6 +41119,11 @@ PrefabInstance:
     - target: {fileID: 8507769371165872899, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507769371165872899, guid: 6a3419812fa42744fa505ae0022f6f61,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769371165872899, guid: 6a3419812fa42744fa505ae0022f6f61,
@@ -41131,6 +41144,11 @@ PrefabInstance:
     - target: {fileID: 8507769371166503516, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507769371166503516, guid: 6a3419812fa42744fa505ae0022f6f61,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769371166503516, guid: 6a3419812fa42744fa505ae0022f6f61,
@@ -41151,6 +41169,11 @@ PrefabInstance:
     - target: {fileID: 8507769371180224654, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507769371180224654, guid: 6a3419812fa42744fa505ae0022f6f61,
+        type: 3}
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769371180224654, guid: 6a3419812fa42744fa505ae0022f6f61,
@@ -41175,7 +41198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8507769371345813046, guid: 6a3419812fa42744fa505ae0022f6f61,
         type: 3}
-      propertyPath: playOnAwake
+      propertyPath: EmissionModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507769371345813046, guid: 6a3419812fa42744fa505ae0022f6f61,
