@@ -13,6 +13,7 @@ public class Lantern : MonoBehaviour
     [SerializeField] private Renderer boatRenderer;
 
     [Header("AoE")]
+    [SerializeField] private Vector3 startOffset;
     [SerializeField] private int AoeRepetitions;
     [SerializeField] private float AoeDistanceIncrement;
     [SerializeField] private float AoeSizeIncrement;
@@ -54,9 +55,9 @@ public class Lantern : MonoBehaviour
     {
         targetsAffected.Clear();
 
-        for (int i = AoeRepetitions; i > 0 ; i--)
+        for (int i = AoeRepetitions; i >= 0 ; i--)
         {
-            RaycastHit[] hit = Physics.SphereCastAll(transform.position + transform.forward * (i * AoeDistanceIncrement), i * AoeSizeIncrement, Vector3.forward) ;
+            RaycastHit[] hit = Physics.SphereCastAll(transform.position + transform.forward * (i * AoeDistanceIncrement) + startOffset, i * AoeSizeIncrement, Vector3.forward) ;
 
             foreach (var item in hit)
             {
@@ -110,9 +111,9 @@ public class Lantern : MonoBehaviour
     {
         Gizmos.color = new Color(1, .8f, .6f, .1f);
 
-        for (int i = AoeRepetitions; i > 0; i--)
+        for (int i = AoeRepetitions; i >= 0; i--)
         {
-            Gizmos.DrawSphere(transform.position + transform.forward * (i * AoeDistanceIncrement), i * AoeSizeIncrement);
+            Gizmos.DrawSphere(transform.position + transform.forward * (i * AoeDistanceIncrement) + startOffset, i * AoeSizeIncrement);
         }
     }
 }

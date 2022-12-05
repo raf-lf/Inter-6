@@ -157,7 +157,6 @@ public class OptionMenu : MonoBehaviour
     {
         OpenCloseModal(cgMaster, false);
 
-        PlayerSfx.engineEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 2);
         yield return new WaitForSecondsRealtime(2);
 
