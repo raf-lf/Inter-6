@@ -18,8 +18,8 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] private bool isMovingToNearestWaypoint;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float speedDistanceMultiplier;
-    private float actualSpeed;
     [SerializeField] private float rotationSpeed;
+    private float actualSpeed;
     private int sign =  1;
 
     // Start is called before the first frame update

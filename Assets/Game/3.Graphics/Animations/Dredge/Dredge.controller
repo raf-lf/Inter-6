@@ -95,6 +95,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isObserving
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: purge
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4044449302370895464}
   m_Solo: 0
