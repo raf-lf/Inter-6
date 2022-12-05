@@ -27,7 +27,9 @@ public class CombatState : MonoBehaviour
 
     private void Update()
     {
-        DOTween.To(() => bgmTransition, x => bgmTransition = x, combatants > 0 ? 1 : 0, 2);
+        //DOTween.To(() => bgmTransition, x => bgmTransition = x, combatants > 0 ? 1 : 0, 2);
+
+        bgmTransition = combatants > 0 ? 1 : 0;
 
         bgmCombat.SetParameter("draga", bgmTransition); 
 
