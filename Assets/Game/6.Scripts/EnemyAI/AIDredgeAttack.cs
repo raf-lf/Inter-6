@@ -48,6 +48,7 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         {
             if (entity.GetDredgeAttack() == DredgeAttackVariations.Noone)
                 return;
+            entity.StartCombatMusic();
             StartAttack();
             UpdateRotation();
         }
