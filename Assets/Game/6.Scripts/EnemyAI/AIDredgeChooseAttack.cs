@@ -50,7 +50,6 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
 
     IEnumerator ObservingPlayer()
     {
-        Debug.Log("eu");
         isObserving = true;
 
         entity.SetAnimationBool("alert", true);
