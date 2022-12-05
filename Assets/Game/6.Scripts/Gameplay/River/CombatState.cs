@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using DG.Tweening;
 
 public class CombatState : MonoBehaviour
 {
     private int combatants;
     [SerializeField] private StudioEventEmitter bgmCombat;
+    private float bgmTransition;
 
     private void Start()
     {
@@ -25,7 +27,9 @@ public class CombatState : MonoBehaviour
 
     private void Update()
     {
-        bgmCombat.SetParameter("draga", combatants > 0 ? 1 : 0); 
+        DOTween.To(() => bgmTransition, x => bgmTransition = x, combatants > 0 ? 1 : 0, 2);
+
+        bgmCombat.SetParameter("draga", bgmTransition); 
 
     }
 }

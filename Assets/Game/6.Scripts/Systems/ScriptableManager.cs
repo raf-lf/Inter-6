@@ -10,6 +10,7 @@ public class ScriptableManager : ScriptableObject
     public List<Flag> allFlags = new List<Flag>();
     public List<Task> allTasks = new List<Task>();
     public List<Questline> allQuestlines = new List<Questline>();
+    public List<Log> allLogs = new List<Log>();
 
     public void PopulateLists()
     {
@@ -21,6 +22,8 @@ public class ScriptableManager : ScriptableObject
             allFlags.AddRange(Resources.FindObjectsOfTypeAll<Flag>());
         if (allTasks.Count == 0)
             allTasks.AddRange(Resources.FindObjectsOfTypeAll<Task>());
+        if (allLogs.Count == 0)
+            allLogs.AddRange(Resources.FindObjectsOfTypeAll<Log>());
         if (allQuestlines.Count == 0)
             allQuestlines.AddRange(Resources.FindObjectsOfTypeAll<Questline>());
 
@@ -37,6 +40,10 @@ public class ScriptableManager : ScriptableObject
         foreach (var item in allSpirits)
         {
             item.found = false;
+        }
+        foreach (var item in allLogs)
+        {
+            item.alreadyShown = false;
         }
         foreach (var item in allFlags)
         {

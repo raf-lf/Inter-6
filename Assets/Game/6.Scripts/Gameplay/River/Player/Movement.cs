@@ -20,9 +20,6 @@ public class Movement : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         energyDashing = GetComponent<EnergyDashing>();
-        PlayerSfx.engineEvent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
-        PlayerSfx.engineEvent.start();
-        PlayerSfx.engineEvent.setParameterByName("rpm",0.4f);
     }
 
     private void Update()
@@ -47,10 +44,8 @@ public class Movement : MonoBehaviour
         }
         else   sfxRPM = 0.4f;
 
-        
-        
-        
-        PlayerSfx.engineEvent.setParameterByName("rpm",sfxRPM);
+        GameManager.PlayerInstance.playerSfx.sfxEngine.SetParameter("rpm", sfxRPM);
+
         if(transform.position.y != 0)   controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
     public void MoveTo(Transform destination)
@@ -82,7 +77,7 @@ public class Movement : MonoBehaviour
         movement = 0;
         movement = GameManager.GameData.moveSpeed * GameManager.PlayerInstance.GetSpeedModifier() * Input.GetAxis("Vertical") * Time.deltaTime;
         movement *= 1 - movementSlowdown;
-        PlayerSfx.engineEvent.setParameterByName("rpm",sfxRPM);
+        GameManager.PlayerInstance.playerSfx.sfxEngine.SetParameter("rpm", sfxRPM);
         controller.Move(movement * transform.forward);
      }
 
