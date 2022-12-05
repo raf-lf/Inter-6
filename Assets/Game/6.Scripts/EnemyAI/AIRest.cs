@@ -34,17 +34,10 @@ public class AIRest : MonoBehaviour, IEnemy
     {
         if (state == classState)
         {
-            entity.StopCombatMusic();
+            
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("canAttack" + entity.canAttack);
-                Debug.Log("isPreparingAttack" + entity.isPreparingAttack);
-                Debug.Log("isAttacking" + entity.isAttacking);
-                Debug.Log("Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position)" + Vector3.Distance(entity.encounterPoint.transform.position, GameManager.PlayerInstance.transform.position));
-            }
             float dist = Vector3.Distance(GameManager.PlayerInstance.transform.position, entity.encounterPoint.position);
             if (state == BehaviourState.Banished)
             {
@@ -62,6 +55,7 @@ public class AIRest : MonoBehaviour, IEnemy
                 entity.EnemyHolder.transform.position = startPosition;
                 SetRestAnimation();
                 lanternTarget.ResetProgress();
+                entity.StopCombatMusic();
             }
         }
     }
@@ -70,16 +64,16 @@ public class AIRest : MonoBehaviour, IEnemy
     {
         StartCoroutine(StartBanish());
         yield return new WaitForSeconds(banishedTime);
-        entity.ChangeState( classState);
+        entity.ChangeState(classState);
         ResetToDefault();
     }
 
     IEnumerator StartBanish()
     {
         entity.isBanished = true;
-        entity.StopCombatMusic();
         SetRestAnimation();
         teleportParticle.Play();
+        entity.StopCombatMusic();
         yield return new WaitForSeconds(timeToTeleport);
         entity.EnemyHolder.transform.position = startPosition;
     }
