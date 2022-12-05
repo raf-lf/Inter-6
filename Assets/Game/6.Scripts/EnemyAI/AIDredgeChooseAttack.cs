@@ -14,7 +14,6 @@ public class AIDredgeChooseAttack : MonoBehaviour, IEnemy
     [SerializeField] private bool isObserving;
     [SerializeField] private float observeTime;
     [SerializeField] private float actualTimeObserving;
-    [SerializeField] private float stopObservingDistance;
 
     // Start is called before the first frame update
     void Start()

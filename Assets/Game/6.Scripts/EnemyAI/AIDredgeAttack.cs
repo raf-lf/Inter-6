@@ -110,20 +110,20 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
         entity.SetAnimationBool("purge", true);
         while (actualAttackTime < pukeAttackTime)
         {
-            if (!pukeParticle.isPlaying)
-                pukeParticle.Play();
-            else
+            //if (!pukeParticle.isPlaying)
+            //    pukeParticle.Play();
+            //else
+            //{
+            if(IsStoppingPuke())
+                yield break;
+            else if (entity.isTeleporting)
             {
-                if(IsStoppingPuke())
-                    yield break;
-                else if (entity.isTeleporting)
-                {
-                    entity.SetAnimationBool("purge", false);
-                    ResetPukeAttack();
-                    yield break;
-                }
-
+                entity.SetAnimationBool("purge", false);
+                ResetPukeAttack();
+                yield break;
             }
+
+            //}
             actualAttackTime = Mathf.MoveTowards(actualAttackTime, pukeAttackTime, Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
@@ -159,8 +159,8 @@ public class AIDredgeAttack : MonoBehaviour, IEnemy
     {
         actualAttackTime = 0;
         entity.SetAnimationBool("purge", false);
-        if (pukeParticle.isPlaying)
-            pukeParticle.Stop();
+        //if (pukeParticle.isPlaying)
+        //    pukeParticle.Stop();
     }
 
     IEnumerator SubmergeToAttack()
