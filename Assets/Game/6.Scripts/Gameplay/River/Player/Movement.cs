@@ -24,6 +24,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+
+
         if (GameManager.PlayerControl) 
         {
                 if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0)
@@ -44,9 +46,8 @@ public class Movement : MonoBehaviour
         }
         else   sfxRPM = 0.4f;
 
-        GameManager.PlayerInstance.playerSfx.sfxEngine.SetParameter("rpm", sfxRPM);
-
-        if(transform.position.y != 0)   controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
+        PlayerSfx.sfxEngine.setParameterByName("rpm", sfxRPM);
+        if (transform.position.y != 0)   controller.transform.position = new Vector3(transform.position.x,0,transform.position.z);
     }
     public void MoveTo(Transform destination)
     {
@@ -77,7 +78,7 @@ public class Movement : MonoBehaviour
         movement = 0;
         movement = GameManager.GameData.moveSpeed * GameManager.PlayerInstance.GetSpeedModifier() * Input.GetAxis("Vertical") * Time.deltaTime;
         movement *= 1 - movementSlowdown;
-        GameManager.PlayerInstance.playerSfx.sfxEngine.SetParameter("rpm", sfxRPM);
+        PlayerSfx.sfxEngine.setParameterByName("rpm", sfxRPM);
         controller.Move(movement * transform.forward);
      }
 
