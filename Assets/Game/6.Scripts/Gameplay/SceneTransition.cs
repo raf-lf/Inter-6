@@ -25,8 +25,8 @@ public class SceneTransition : MonoBehaviour
         GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 1);
         yield return new WaitForSeconds(1);
 
-        if(GameManager.PlayerInstance)
-            GameManager.PlayerInstance.playerSfx.sfxEngine.Stop();
+        if (GameManager.PlayerInstance)
+            PlayerSfx.EngineOnOff(false);
 
         SceneManager.LoadScene(sceneDestination,LoadSceneMode.Single);
     
