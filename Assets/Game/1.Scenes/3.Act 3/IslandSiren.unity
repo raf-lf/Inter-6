@@ -9029,7 +9029,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagsToCheck:
-  - {fileID: 11400000, guid: dc6e00150a5471344945666a0561a35c, type: 2}
+  - {fileID: 11400000, guid: 2f26ec676a158f3478733ce421b2c7d1, type: 2}
+  - {fileID: 11400000, guid: ba4dbadce3d6d2f428299424339c8a81, type: 2}
+  - {fileID: 11400000, guid: 39f90b67c9de5d5459c2e71712942cad, type: 2}
   checkType: 0
 --- !u!114 &1032604330
 MonoBehaviour:
@@ -15917,6 +15919,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912949434799759183, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3944501119188633231, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -20347,7 +20379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagsToCheck:
-  - {fileID: 11400000, guid: dc6e00150a5471344945666a0561a35c, type: 2}
+  - {fileID: 11400000, guid: 2f26ec676a158f3478733ce421b2c7d1, type: 2}
+  - {fileID: 11400000, guid: ba4dbadce3d6d2f428299424339c8a81, type: 2}
+  - {fileID: 11400000, guid: 39f90b67c9de5d5459c2e71712942cad, type: 2}
   checkType: 0
 --- !u!114 &1587055394
 MonoBehaviour:
