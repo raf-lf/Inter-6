@@ -21,26 +21,40 @@ public class PlayerSfx : MonoBehaviour
         collisionEvent = RuntimeManager.CreateInstance(collisionEventPath);
         
     }
+    public void Start()
+    {
+        IslandManager island = FindObjectOfType<IslandManager>();
+
+        if (island == null) 
+        {
+            EngineOnOff(true);
+        }
+    }
+
+
 
     public static void EngineOnOff(bool on) 
     {
         if (on == true)
         {
             sfxEngine.start();
-            sfxEngine.setParameterByName("rpm", 0.6f);
-
+            sfxEngine.setParameterByName("rpm", 1f);
         }
+
         else
         {
-
             sfxEngine.setParameterByName("rpm", 0);
             sfxEngine.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
           //  sfxEngine.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
 
         }
-        
-        
-        }
-    
+
+    public void OnDestroy()
+    {
+        EngineOnOff(false);
+    }
+
+
 
 }
