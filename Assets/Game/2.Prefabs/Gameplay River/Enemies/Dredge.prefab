@@ -19985,7 +19985,7 @@ MonoBehaviour:
   chompAttackTime: 4
   waitToChomp: 0
   minDistanceToPuke: 10
-  minDistanceToChomp: 0.5
+  minDistanceToChomp: 0.25
   pukePreparationTime: 1
   actualTimeObserving: 0
 --- !u!114 &5685379587511835947
@@ -20023,7 +20023,6 @@ MonoBehaviour:
   isObserving: 0
   observeTime: 3
   actualTimeObserving: 0
-  stopObservingDistance: 15
 --- !u!114 &-1782587680846639626
 MonoBehaviour:
   m_ObjectHideFlags: 0
