@@ -24,8 +24,8 @@ public class Interactable_Island : Interactable
 
     IEnumerator Transition()
     {
-        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, 1);
-        yield return new WaitForSeconds(1);
+        GameManager.CanvasManager.AnimateOverlay(OverlayAnimation.Black, .5f);
+        yield return new WaitForSeconds(.5f);
         SceneManager.LoadScene(islandConnected, LoadSceneMode.Single);
 
     }
