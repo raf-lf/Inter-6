@@ -18,4 +18,19 @@ public class DialogueLine
     public PortraitPosition portraitPosition;
     [TextArea(3, 10)]
     public string line;
+    [TextArea(3, 10)]
+    public string lineEnglish;
+
+    public string RetrieveLine()
+    {
+        switch(GameManager.gameLanguage)
+        {
+            default:
+            case Language.portuguese:
+                return line;
+
+            case Language.english:
+                return lineEnglish;
+        }
+    }
 }

@@ -64,7 +64,7 @@ public class DialogueSystem : MonoBehaviour
 
         PlayLine(currentDialogue.dialogue.lines[currentDialogueIndex].actor, 
             currentDialogue.dialogue.lines[currentDialogueIndex].emotion, 
-            currentDialogue.dialogue.lines[currentDialogueIndex].line,
+            currentDialogue.dialogue.lines[currentDialogueIndex].RetrieveLine(),
             currentDialogue.dialogue.lines[currentDialogueIndex].portraitPosition);
 
         currentDialogueIndex++;

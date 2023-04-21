@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Language { portuguese, english}
+
 public static class GameManager
 {
     public static GameData GameData;
@@ -9,6 +11,8 @@ public static class GameManager
     public static bool PlayerClickControl = true;
 
     public static ScriptableManager ScriptableManager;
+
+    public static Language gameLanguage = Language.english;
 
     [Header("Singletons")]
     public static PlayerData PlayerInstance;

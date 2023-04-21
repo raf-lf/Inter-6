@@ -112,8 +112,6 @@ public class CanvasManager : MonoBehaviour
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));
 
-        if (!spiritTutorialLog.alreadyShown)
-            StartCoroutine(SpiritTutorialSequence());
 
     }
     
@@ -127,6 +125,9 @@ public class CanvasManager : MonoBehaviour
         
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));
+
+        if (!spiritTutorialLog.alreadyShown)
+            StartCoroutine(SpiritTutorialSequence());
     }
 
     public IEnumerator ShowLogSequence(float duration)
