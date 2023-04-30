@@ -23,9 +23,18 @@ public class InventoryItemUi : InventoryElement
     {
         associatedItem = item;
         itemQty.text = item.quantity.ToString();
-        itemName.text = item.itemName;
-        itemDescription.text = item.description;
-        //itemFlavor.text = item.flavorText;
+
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            itemName.text = item.itemPTName;
+            itemDescription.text = item.ptDescription;      
+        }
+        else
+        {
+            itemName.text = item.itemENName;
+            itemDescription.text = item.itemENDescription;
+        }
+        
         itemIcon.sprite = item.itemIcon;
 
     }

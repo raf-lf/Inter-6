@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476f719eb4b169c4784274ce2ad209be, type: 3}
   m_Name: Item_Smoke
   m_EditorClassIdentifier: 
-  itemName: Fumo
-  description: "Recupera toda a integridade e reduz a dist\xE2ncia a qual inimigos
+  itemPTName: Fumo
+  ptDescription: "Recupera toda a integridade e reduz a dist\xE2ncia a qual os inimigos
     te percebem pela metade."
-  flavorText: "A fuma\xE7a do cachimbo ajuda o barqueiro a se ocultar daqueles que
-    podem causar o mal."
+  ptFlavorText: "A fuma\xE7a do cachimbo ajuda o barqueiro a se ocultas daqueles
+    que podem causar o mal."
   itemIcon: {fileID: 21300000, guid: 7c42012829d377d49914afaf6ad4b4ae, type: 3}
   quantity: 0
+  itemENName: Smoke Pipe
+  itemENDescription: Recovers full health and decreases your detection range to enemies
+    by half.
+  itemENFlavorText: The pipe's smoke helps the ferryman to hide and avoid those who
+    may harm him.

@@ -6,13 +6,19 @@ using UnityEngine;
 
 public class InventoryItem : ScriptableObject
 {
-    public string itemName;
+    public string itemPTName;
     [TextArea (2,5)]
-    public string description;
+    public string ptDescription;
     [TextArea(2, 5)]
-    public string flavorText;
+    public string ptFlavorText;
     public Sprite itemIcon;
 
     public int quantity;
+
+    public string itemENName;
+    [TextArea(2, 5)]
+    public string itemENDescription;
+    [TextArea(2, 5)]
+    public string itemENFlavorText;
 
 }

@@ -11,7 +11,9 @@ public class Task : ScriptableObject
     public TaskState taskState;
     public TaskType taskType;
     [TextArea(1,1)]
-    public string taskDescription;
+    public string taskPTDescription;
+    [TextArea(1,1)]
+    public string taskEnDescription;
     public Sprite taskIcon;
     [SerializeField] private Flag[] flagsOnCompletion;
 

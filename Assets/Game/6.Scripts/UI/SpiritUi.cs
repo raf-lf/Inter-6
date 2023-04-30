@@ -22,8 +22,16 @@ public class SpiritUi : InventoryElement
     public void Setup(Spirit spirit)
     {
         associatedSpirit = spirit;
-        spiritName.text = spirit.spiritName;
-        spiritDescription.text = spirit.spiritDescription;
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            spiritName.text = spirit.spiritPTName;
+            spiritDescription.text = spirit.spiritPTDescription;
+        }
+        else 
+        {
+            spiritName.text = spirit.spiritENName;
+            spiritDescription.text = spirit.spiritENDescription;
+        }
         itemIcon.sprite = spirit.spiritIcon;
         itemIcon.enabled = spirit.found ? true : false;
         

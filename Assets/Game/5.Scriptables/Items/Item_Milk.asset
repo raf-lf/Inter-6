@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476f719eb4b169c4784274ce2ad209be, type: 3}
   m_Name: Item_Milk
   m_EditorClassIdentifier: 
-  itemName: Leite de Vaca
-  description: "Aumenta a integridade total do barqueiro para cada frasco possu\xEDdo."
-  flavorText: Leite bom e fresquinho fornecido por vaquinhas felizes. Faz muito bem
+  itemPTName: Leite de Vaca
+  ptDescription: "Aumenta a integridade total do barqueiro para cada frasco possu\xEDdo."
+  ptFlavorText: Leite bom e fresquinho vindo de vaquinhas felizes. Faz muito bem
     pros ossos!
   itemIcon: {fileID: 21300000, guid: ed04258e916e1044389f59cec74f5bce, type: 3}
   quantity: 0
+  itemENName: Cow Milk
+  itemENDescription: Increases max health for each flask in inventory.
+  itemENFlavorText: Good and fresh milk from happy little cows. Very healthy and
+    good for your bones!

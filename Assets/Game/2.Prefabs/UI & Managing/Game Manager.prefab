@@ -692,7 +692,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -953,6 +953,7 @@ GameObject:
   - component: {fileID: 1063895889568007463}
   - component: {fileID: 4600587138535916420}
   - component: {fileID: 8181585530100025609}
+  - component: {fileID: 3156029303647484380}
   m_Layer: 0
   m_Name: Leave Modal
   m_TagString: Untagged
@@ -1076,6 +1077,25 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &3156029303647484380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225475450925882737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 1890027355286023400}
+  - {fileID: 3891674155201123324}
+  - {fileID: 1246753135496425422}
+  - {fileID: 811093959943523766}
+  textHolderScriptableObject: {fileID: 11400000, guid: af9095b8839d27d4b92cf11445e7428c,
+    type: 2}
 --- !u!1 &353979541176220054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1480,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2650,7 +2670,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3111,7 +3131,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3341,7 +3361,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820253486895630039}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -4684,7 +4704,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5101,7 +5121,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sair do Jogo
+  m_text: "Op\xE7\xF5es"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b0561e93c7305447a0c0d0f53858c48, type: 2}
   m_sharedMaterial: {fileID: -5928017846812116367, guid: 3b0561e93c7305447a0c0d0f53858c48,
@@ -6800,8 +6820,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4099579901645819697}
-  m_LocalRotation: {x: 0.02973115, y: 0.9702658, z: -0.16861382, w: 0.17108391}
-  m_LocalPosition: {x: 42.0195, y: 15, z: 82.11232}
+  m_LocalRotation: {x: 0.05133008, y: 0.94845533, z: -0.2105299, w: 0.23124644}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6833,7 +6853,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 30
   orthographic: 0
   orthographic size: 10
   m_Depth: 1
@@ -11821,7 +11841,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19190,6 +19210,7 @@ GameObject:
   - component: {fileID: 1211666726497446376}
   - component: {fileID: 2040000982054352271}
   - component: {fileID: 2425852973074556057}
+  - component: {fileID: 4237458688056155987}
   m_Layer: 0
   m_Name: Controls Modal
   m_TagString: Untagged
@@ -19322,6 +19343,33 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &4237458688056155987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285567915586051286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 6833603504915881200}
+  - {fileID: 742747498212296106}
+  - {fileID: 5706020045817375223}
+  - {fileID: 3988274147068278775}
+  - {fileID: 5772037841582636540}
+  - {fileID: 6433714478489651111}
+  - {fileID: 2154602248643829727}
+  - {fileID: 3402876303595635576}
+  - {fileID: 365368104710095369}
+  - {fileID: 4805812427538385270}
+  - {fileID: 7112787540604706612}
+  - {fileID: 5193245466257264571}
+  textHolderScriptableObject: {fileID: 11400000, guid: 55466e0dfe8a81d4bbe8c3ffc9bb33a7,
+    type: 2}
 --- !u!1 &6306223962680550630
 GameObject:
   m_ObjectHideFlags: 0
@@ -19336,6 +19384,7 @@ GameObject:
   - component: {fileID: 4578192151603531970}
   - component: {fileID: 344700789258114644}
   - component: {fileID: 6229690963320266144}
+  - component: {fileID: 8576342387474158781}
   m_Layer: 0
   m_Name: Base Modal
   m_TagString: Untagged
@@ -19460,6 +19509,27 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &8576342387474158781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306223962680550630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 5242342572012495678}
+  - {fileID: 8075607389521090096}
+  - {fileID: 5725677529409071102}
+  - {fileID: 2525991375367522425}
+  - {fileID: 5044706375332050954}
+  - {fileID: 5044706375332050954}
+  textHolderScriptableObject: {fileID: 11400000, guid: 0cd8e66be8d2dc04aad7ba87153c6657,
+    type: 2}
 --- !u!1 &6359745218739122319
 GameObject:
   m_ObjectHideFlags: 0
@@ -19830,6 +19900,7 @@ GameObject:
   - component: {fileID: 475148033992779636}
   - component: {fileID: 7619640939338221809}
   - component: {fileID: 6179436008089235636}
+  - component: {fileID: 3295811673964455682}
   m_Layer: 5
   m_Name: Task Window
   m_TagString: Untagged
@@ -19927,6 +19998,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &3295811673964455682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484543422158678556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 2878613229844954889}
+  textHolderScriptableObject: {fileID: 11400000, guid: 5fa11428e285a26448cb0bb332d076ce,
+    type: 2}
 --- !u!1 &6580394983927386894
 GameObject:
   m_ObjectHideFlags: 0
@@ -31939,6 +32026,7 @@ GameObject:
   - component: {fileID: 9153841723595172910}
   - component: {fileID: 2853917374066414778}
   - component: {fileID: 5338530614563141606}
+  - component: {fileID: 9172746444297049468}
   m_Layer: 0
   m_Name: Options Modal
   m_TagString: Untagged
@@ -32062,6 +32150,25 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &9172746444297049468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928846365622681298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 4255014875664089521}
+  - {fileID: 4459118050060430019}
+  - {fileID: 7092693338384925916}
+  - {fileID: 4101308741369144653}
+  textHolderScriptableObject: {fileID: 11400000, guid: d2c6c450a39f2b54ebeddc04b8b70b8b,
+    type: 2}
 --- !u!1 &7963457015122422628
 GameObject:
   m_ObjectHideFlags: 0
@@ -32812,7 +32919,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -33175,7 +33282,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

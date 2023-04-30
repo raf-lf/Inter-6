@@ -93,7 +93,14 @@ public class CanvasManager : MonoBehaviour
     {
         logTitle.color = logStyles.ReturnLogInfo(log.logType).logColor;
         logTitle.text = log.logType.ToString();
-        logText.text = log.logText;
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            logText.text = log.ptLogText;
+        }
+        else 
+        {
+            logText.text = log.enLogtext;
+        }
         StopCoroutine(ShowLogSequence(duration));
         StartCoroutine(ShowLogSequence(duration));
     }
@@ -103,12 +110,23 @@ public class CanvasManager : MonoBehaviour
         logTitle.color = logStyles.ReturnLogInfo(LogTypes.Item).logColor;
         logTitle.text = logStyles.ReturnLogInfo(LogTypes.Item).type.ToString();
         
-        if(quantity == 1)
-            logText.text = item.itemName + " encontrado";
-        else
-            logText.text = item.itemName + " x" + quantity + " encontrados";
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            if(quantity == 1)
+                logText.text = item.itemPTName + " encontrado";
+            else
+                logText.text = item.itemPTName +  quantity + " x"  + " encontrados";
 
-        
+        }
+        else 
+        {
+            if (quantity == 1)
+                logText.text = "found " + item.itemENName ;
+            else
+                logText.text = "found " + item.itemENName  + quantity + " x";
+
+
+        }
         StopCoroutine(ShowLogSequence(2));
         StartCoroutine(ShowLogSequence(2));
 
@@ -120,7 +138,15 @@ public class CanvasManager : MonoBehaviour
         logTitle.color = logStyles.ReturnLogInfo(LogTypes.Spirit).logColor;
         logTitle.text = logStyles.ReturnLogInfo(LogTypes.Spirit).type.ToString();
         
-        logText.text = "Espírito resgatado: " + spirit.spiritName;
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            logText.text = "Espírito resgatado: " + spirit.spiritPTName;
+        }
+        else 
+        {
+            logText.text = "Spirit rescued: " + spirit.spiritENName;
+        
+        }
 
         
         StopCoroutine(ShowLogSequence(2));

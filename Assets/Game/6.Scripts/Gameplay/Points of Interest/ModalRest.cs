@@ -98,9 +98,18 @@ public class ModalRest : IslandModal
         }
         else
         {
-            nameText.text = item.itemName;
-            descriptionText.text = item.description;
-            flavorText.text = item.flavorText;
+            if(GameManager.gameLanguage == Language.portuguese) 
+            {
+                nameText.text = item.itemPTName;
+                descriptionText.text = item.ptDescription;
+                flavorText.text = item.ptFlavorText;
+            }
+            else 
+            {
+                nameText.text = item.itemENName;
+                descriptionText.text = item.itemENDescription;
+                flavorText.text = item.itemENFlavorText;
+            }
         }
     }
 

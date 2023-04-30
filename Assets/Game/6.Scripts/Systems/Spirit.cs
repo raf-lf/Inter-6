@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Spirit", menuName = "Scriptables/Spirit")]
 public class Spirit : ScriptableObject
 {
-    public string spiritName;
+    public string spiritPTName;
+    public string spiritENName;
     [TextArea (1,3)]
-    public string spiritDescription;
+    public string spiritPTDescription;
+    [TextArea (1,3)]
+    public string spiritENDescription;
     public Sprite spiritIcon;
     public bool found;
     public Dialogue dialogue;

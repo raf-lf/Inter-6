@@ -9,10 +9,12 @@ public class Log : ScriptableObject
 {
     public LogTypes logType;
     [TextArea(1,3)]
-    public string logText;
+    public string ptLogText;
     public bool repeats = true;
     public bool alreadyShown;
 
+    [TextArea(1,3)]
+    public string enLogtext;
     public void PlayLog()
     {
         if (!repeats && alreadyShown)

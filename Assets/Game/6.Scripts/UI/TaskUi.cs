@@ -19,7 +19,15 @@ public class TaskUi : MonoBehaviour
     public void Setup(Task creatingTask)
     {
         associatedTask = creatingTask;
-        taskDescription.text = creatingTask.taskDescription;
+        if(GameManager.gameLanguage == Language.portuguese) 
+        {
+            taskDescription.text = creatingTask.taskPTDescription;
+        }
+        else 
+        {
+            taskDescription.text = creatingTask.taskEnDescription;
+        
+        }
 
         if (associatedTask.taskState == TaskState.completed)
         {
