@@ -96,15 +96,33 @@ public class DialogueSystem : MonoBehaviour
 
     public void PlayLine(ActorData actor, ActorEmotion emotion, string line, PortraitPosition position)
     {
-        if (actor.ReturnName() == "")
+        if(GameManager.gameLanguage == Language.portuguese) 
         {
-            nameTagRect.gameObject.SetActive(false);
-            nameText.text = actor.ReturnName();
+            if (actor.ReturnPTName() == "")
+            {
+                nameTagRect.gameObject.SetActive(false);
+                nameText.text = actor.ReturnPTName();
+            }
+            else
+            {
+                nameTagRect.gameObject.SetActive(true);
+                nameText.text = actor.ReturnPTName();
+            }        
         }
-        else
+        else 
         {
-            nameTagRect.gameObject.SetActive(true);
-            nameText.text = actor.ReturnName();
+
+            if (actor.ReturnEnName() == "")
+            {
+                nameTagRect.gameObject.SetActive(false);
+                nameText.text = actor.ReturnEnName();
+            }
+            else
+            {
+                nameTagRect.gameObject.SetActive(true);
+                nameText.text = actor.ReturnEnName();
+            }
+
         }
 
         Image currentPortrait = null;

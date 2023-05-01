@@ -3277,7 +3277,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4011,6 +4011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347212413}
   - component: {fileID: 347212414}
+  - component: {fileID: 347212415}
   m_Layer: 0
   m_Name: Credits
   m_TagString: Untagged
@@ -4048,10 +4049,34 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347212412}
   m_Enabled: 1
-  m_Alpha: 0.82
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &347212415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347212412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 1517086075}
+  - {fileID: 1734986661}
+  - {fileID: 495618607}
+  - {fileID: 286312368}
+  - {fileID: 945061791}
+  - {fileID: 1258170374}
+  - {fileID: 1156334211}
+  - {fileID: 1396138956}
+  - {fileID: 2101610808}
+  textHolderScriptableObject: {fileID: 11400000, guid: 0edea344e10697441bc033541ea7492f,
+    type: 2}
 --- !u!1001 &349616243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5072,7 +5097,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465374307}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -5642,7 +5667,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7897,6 +7922,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8375151962939001854, guid: cf0d997c071d8f744b5d5954ad710332,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8546902218597129160, guid: cf0d997c071d8f744b5d5954ad710332,
         type: 3}
       propertyPath: m_IsActive
@@ -9913,7 +9943,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13305,7 +13335,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13777,6 +13807,7 @@ GameObject:
   - component: {fileID: 1388051325}
   - component: {fileID: 1388051324}
   - component: {fileID: 1388051323}
+  - component: {fileID: 1388051326}
   m_Layer: 0
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -13914,6 +13945,29 @@ Canvas:
   m_SortingLayerID: 768452373
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1388051326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388051320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed328f7f4a811d1489ed68fd61878554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 991304905}
+  - {fileID: 39993875}
+  - {fileID: 2008451336}
+  - {fileID: 2056786399}
+  - {fileID: 2123281501}
+  - {fileID: 1662255180}
+  - {fileID: 646167243}
+  - {fileID: 712915902}
+  textHolderScriptableObject: {fileID: 11400000, guid: 4f77c7da09ac6304f9ec468390c8314d,
+    type: 2}
 --- !u!1 &1396138954
 GameObject:
   m_ObjectHideFlags: 0
@@ -15519,7 +15573,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

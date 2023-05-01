@@ -7,8 +7,9 @@ public enum ActorEmotion { neutral, happy, sad, angry, confused }
 [CreateAssetMenu(fileName = "ActorData", menuName = "Scriptables/Cinematic/Actor")]
 public class ActorData : ScriptableObject
 {
-    public string actorNameReal;
+    public string actorPTName;
     public string actorNameUnknown;
+    public string actonENName;
     public Sprite portraitNeutral;
     public Sprite portraitHappy;
     public Sprite portraitSad;
@@ -16,9 +17,14 @@ public class ActorData : ScriptableObject
     public Sprite portraitConfused;
     public AudioClip[] sfxVoice = new AudioClip[0];
 
-    public string ReturnName()
+    public string ReturnPTName()
     {
-        return actorNameReal;
+        return actorPTName;
+    }
+
+    public string ReturnEnName()
+    {
+        return actonENName;
     }
 
     public Sprite ReturnPortrait(ActorEmotion emotion)
