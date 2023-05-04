@@ -8,7 +8,6 @@ public enum ActorEmotion { neutral, happy, sad, angry, confused }
 public class ActorData : ScriptableObject
 {
     public string actorPTName;
-    public string actorNameUnknown;
     public string actonENName;
     public Sprite portraitNeutral;
     public Sprite portraitHappy;

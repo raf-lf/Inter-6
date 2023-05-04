@@ -162,7 +162,7 @@ public class OptionMenu : MonoBehaviour
 
 
         Time.timeScale = 1;
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Language", LoadSceneMode.Single);
     }
 
 
