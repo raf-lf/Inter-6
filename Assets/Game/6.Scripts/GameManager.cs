@@ -12,7 +12,7 @@ public static class GameManager
 
     public static ScriptableManager ScriptableManager;
 
-    public static Language gameLanguage = Language.english;
+    public static Language gameLanguage = Language.portuguese;
 
     [Header("Singletons")]
     public static PlayerData PlayerInstance;
