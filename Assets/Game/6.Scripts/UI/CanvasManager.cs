@@ -31,6 +31,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI logText;
     [SerializeField] private LogStyles logStyles;
     [SerializeField] private Log spiritTutorialLog;
+    [SerializeField] private float extraLogDuration;
 
     private void Awake()
     {
@@ -91,6 +92,7 @@ public class CanvasManager : MonoBehaviour
 
     public void DisplayLog(Log log, float duration)
     {
+        var logDuration = duration + extraLogDuration;
         logTitle.color = logStyles.ReturnLogInfo(log.logType).logColor;
         logTitle.text = log.logType.ToString();
         if(GameManager.gameLanguage == Language.portuguese) 
@@ -101,8 +103,8 @@ public class CanvasManager : MonoBehaviour
         {
             logText.text = log.enLogtext;
         }
-        StopCoroutine(ShowLogSequence(duration));
-        StartCoroutine(ShowLogSequence(duration));
+        StopCoroutine(ShowLogSequence(logDuration));
+        StartCoroutine(ShowLogSequence(logDuration));
     }
 
     public void DisplayItemMessage(InventoryItem item, int quantity)
